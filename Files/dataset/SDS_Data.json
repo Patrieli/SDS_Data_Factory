@@ -1,0 +1,77 @@
+{
+	"name": "SDS_Data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Azure_folder",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"folderPath": "SDS_Data"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": ".",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Postinumero",
+				"type": "String"
+			},
+			{
+				"name": "Talotyyppi",
+				"type": "String"
+			},
+			{
+				"name": "Rakennusvuosi",
+				"type": "String"
+			},
+			{
+				"name": "2010 Neli�hinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2010 Kauppojen lukum��r�",
+				"type": "String"
+			},
+			{
+				"name": "2011 Neli�hinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2011 Kauppojen lukum��r�",
+				"type": "String"
+			},
+			{
+				"name": "2012 Neli�hinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2012 Kauppojen lukum��r�",
+				"type": "String"
+			},
+			{
+				"name": "2013 Neli�hinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2013 Kauppojen lukum��r�",
+				"type": "String"
+			},
+			{
+				"name": "2014 Neli�hinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2014 Kauppojen lukum��r�",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

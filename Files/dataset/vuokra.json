@@ -1,0 +1,46 @@
+{
+	"name": "vuokra",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Vuosineljannes",
+				"type": "varchar"
+			},
+			{
+				"name": "Alue",
+				"type": "varchar"
+			},
+			{
+				"name": "Huoneluku",
+				"type": "varchar"
+			},
+			{
+				"name": "Rahoitusmuoto",
+				"type": "varchar"
+			},
+			{
+				"name": "Lukumaara",
+				"type": "varchar"
+			},
+			{
+				"name": "Neliovuokra",
+				"type": "varchar"
+			},
+			{
+				"name": "Vuosi",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Vuokrahinnat_2015Q1_2018Q1]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

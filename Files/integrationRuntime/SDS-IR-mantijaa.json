@@ -1,0 +1,7 @@
+{
+	"name": "SDS-IR-mantijaa",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Self-hosted Integration Runtime "
+	}
+}

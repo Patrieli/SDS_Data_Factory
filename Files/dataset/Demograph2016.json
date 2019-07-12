@@ -1,0 +1,71 @@
+{
+	"name": "Demograph2016",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Demographics_2016_2017.csv",
+				"folderPath": "SDS_Data",
+				"fileSystem": "realestatedata"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": ".",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+				"type": "String"
+			},
+			{
+				"name": " 2017 (HE)\";\"Asukkaiden keski-ik�",
+				"type": "String"
+			},
+			{
+				"name": " 2017 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+				"type": "String"
+			},
+			{
+				"name": " 2017 (KO)\";\"Asukkaiden keskitulot",
+				"type": "String"
+			},
+			{
+				"name": " 2016 (HR)\";\"Taloudet yhteens�",
+				"type": "String"
+			},
+			{
+				"name": " 2017 (TE)\";\"Talouksien keskikoko",
+				"type": "String"
+			},
+			{
+				"name": " 2017 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+				"type": "String"
+			},
+			{
+				"name": " 2017 (TE)\";\"Asuntojen keskipinta-ala",
+				"type": "String"
+			},
+			{
+				"name": " 2017 (RA)\";\"Ty�lliset",
+				"type": "String"
+			},
+			{
+				"name": " 2016 (PT)\";\"Ty�tt�m�t",
+				"type": "String"
+			},
+			{
+				"name": " 2016 (PT)\"",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

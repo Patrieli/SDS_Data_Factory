@@ -1,0 +1,31 @@
+{
+	"name": "BKTseutukunnittain2000",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "BKT_seutukunnittain_2000_2016.csv",
+				"folderPath": "SDS_Data",
+				"fileSystem": "realestatedata"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": ".",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "\"Taloustoimi\";\"Alue\";\"Tiedot\";\"2000\";\"2001\";\"2002\";\"2003\";\"2004\";\"2005\";\"2006\";\"2007\";\"2008\";\"2009\";\"2010\";\"2011\";\"2012\";\"2013\";\"2014\";\"2015\";\"2016\"",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
