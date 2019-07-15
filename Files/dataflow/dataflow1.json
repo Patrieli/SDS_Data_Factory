@@ -1,7 +1,7 @@
 {
 	"name": "dataflow1",
 	"properties": {
-		"description": "",
+		"description": "Osakeasunto flow toimii. \nDemograph flow toimii. (Data näkyy previewissä mutta ei SQL kannassa).\nVuokra flow toimii.\nMappaukset putoilevat välillä. Ja välillä antaa erroria tupla Postinumeroalue -kentistä.",
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
