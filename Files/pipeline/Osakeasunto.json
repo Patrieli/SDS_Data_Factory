@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "Osakeasunto_flow_copy",
+						"referenceName": "Osakeasunto_flow",
 						"type": "DataFlowReference"
 					}
 				}
