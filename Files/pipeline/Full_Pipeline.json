@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "dataflow1",
+				"name": "Osakeasunto_flow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
@@ -36,6 +36,44 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "BKT_flow",
+						"type": "DataFlowReference"
+					}
+				}
+			},
+			{
+				"name": "Vuokra_flow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Vuokra_flow",
+						"type": "DataFlowReference"
+					}
+				}
+			},
+			{
+				"name": "Demographics_flow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Demographics_flow",
 						"type": "DataFlowReference"
 					}
 				}
