@@ -77,6 +77,25 @@
 						"type": "DataFlowReference"
 					}
 				}
+			},
+			{
+				"name": "Omakotitalo_flow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Omakotitalo_flow",
+						"type": "DataFlowReference"
+					}
+				}
 			}
 		],
 		"annotations": []
