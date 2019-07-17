@@ -22,7 +22,83 @@
 		},
 		"schema": [
 			{
-				"name": "\"Taloustoimi\";\"Alue\";\"Tiedot\";\"2000\";\"2001\";\"2002\";\"2003\";\"2004\";\"2005\";\"2006\";\"2007\";\"2008\";\"2009\";\"2010\";\"2011\";\"2012\";\"2013\";\"2014\";\"2015\";\"2016\"",
+				"name": "Taloustoimi",
+				"type": "String"
+			},
+			{
+				"name": "Alue",
+				"type": "String"
+			},
+			{
+				"name": "Tiedot",
+				"type": "String"
+			},
+			{
+				"name": "2000",
+				"type": "String"
+			},
+			{
+				"name": "2001",
+				"type": "String"
+			},
+			{
+				"name": "2002",
+				"type": "String"
+			},
+			{
+				"name": "2003",
+				"type": "String"
+			},
+			{
+				"name": "2004",
+				"type": "String"
+			},
+			{
+				"name": "2005",
+				"type": "String"
+			},
+			{
+				"name": "2006",
+				"type": "String"
+			},
+			{
+				"name": "2007",
+				"type": "String"
+			},
+			{
+				"name": "2008",
+				"type": "String"
+			},
+			{
+				"name": "2009",
+				"type": "String"
+			},
+			{
+				"name": "2010",
+				"type": "String"
+			},
+			{
+				"name": "2011",
+				"type": "String"
+			},
+			{
+				"name": "2012",
+				"type": "String"
+			},
+			{
+				"name": "2013",
+				"type": "String"
+			},
+			{
+				"name": "2014",
+				"type": "String"
+			},
+			{
+				"name": "2015",
+				"type": "String"
+			},
+			{
+				"name": "2016",
 				"type": "String"
 			}
 		]
