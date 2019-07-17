@@ -19,18 +19,24 @@
 				"scale": 2
 			},
 			{
-				"name": "Kauppojen_lukumaara_2015",
-				"type": "int",
-				"precision": 10
-			},
-			{
 				"name": "Keskipinta_ala_2015",
 				"type": "decimal",
 				"precision": 20,
 				"scale": 2
 			},
 			{
+				"name": "Kauppojen_lukumaara_2015",
+				"type": "int",
+				"precision": 10
+			},
+			{
 				"name": "Neliohinta_2016",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Keskipinta_ala_2016",
 				"type": "decimal",
 				"precision": 20,
 				"scale": 2
@@ -41,13 +47,13 @@
 				"precision": 10
 			},
 			{
-				"name": "Keskipinta_ala_2016",
+				"name": "Neliohinta_2017",
 				"type": "decimal",
 				"precision": 20,
 				"scale": 2
 			},
 			{
-				"name": "Neliohinta_2017",
+				"name": "Keskipinta_ala_2017",
 				"type": "decimal",
 				"precision": 20,
 				"scale": 2
@@ -58,13 +64,13 @@
 				"precision": 10
 			},
 			{
-				"name": "Keskipinta_ala_2017",
+				"name": "Neliohinta_2018",
 				"type": "decimal",
 				"precision": 20,
 				"scale": 2
 			},
 			{
-				"name": "Neliohinta_2018",
+				"name": "Keskipinta_ala_2018",
 				"type": "decimal",
 				"precision": 20,
 				"scale": 2
@@ -73,12 +79,6 @@
 				"name": "Kauppojen_lukumaara_2018",
 				"type": "int",
 				"precision": 10
-			},
-			{
-				"name": "Keskipinta_ala_2018",
-				"type": "decimal",
-				"precision": 20,
-				"scale": 2
 			}
 		],
 		"typeProperties": {
