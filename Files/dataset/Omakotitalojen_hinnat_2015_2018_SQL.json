@@ -1,0 +1,88 @@
+{
+	"name": "Omakotitalojen_hinnat_2015_2018_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Aluejako",
+				"type": "varchar"
+			},
+			{
+				"name": "Neliohinta_2015",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2015",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Keskipinta_ala_2015",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Neliohinta_2016",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2016",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Keskipinta_ala_2016",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Neliohinta_2017",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2017",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Keskipinta_ala_2017",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Neliohinta_2018",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2018",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Keskipinta_ala_2018",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[Omakotitalojen_hinnat_2015_2018]"
+		}
+	}
+}
