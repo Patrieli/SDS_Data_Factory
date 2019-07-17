@@ -22,6 +22,55 @@
 		},
 		"schema": [
 			{
+				"name": "Aluejako",
+				"type": "String"
+			},
+			{
+				"name": "2015 Neliohinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2015 Keskipinta-ala m2",
+				"type": "String"
+			},
+			{
+				"name": "2015 Kauppojen lukumaara",
+				"type": "String"
+			},
+			{
+				"name": "2016 Neliohinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2016 Keskipinta-ala m2",
+				"type": "String"
+			},
+			{
+				"name": "2016 Kauppojen lukumaara",
+				"type": "String"
+			},
+			{
+				"name": "2017 Neliohinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2017 Keskipinta-ala m2",
+				"type": "String"
+			},
+			{
+				"name": "2017 Kauppojen lukumaara",
+				"type": "String"
+			},
+			{
+				"name": "2018 Neliohinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2018 Keskipinta-ala m2",
+				"type": "String"
+			},
+			{
+				"name": "2018 Kauppojen lukumaara",
 				"type": "String"
 			}
 		]
