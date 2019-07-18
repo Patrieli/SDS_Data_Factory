@@ -1,7 +1,7 @@
 {
 	"name": "Demographics_flow",
 	"properties": {
-		"description": "Read data from 5 Demographic files and join them together in to a single SQL table. Select 11 renames Postinumero to Postnum, as there was an issue with same named columns in Join5. In join 5 the data is joined based on first 5 characters of Postinumeroalue (=Postinumero), which is also derived in DerivedColumn -tranformation. Also Alue and Kaupunki are derived in this transformation.\n\n\nMappaukset putoilevat välillä. Ja välillä antaa erroria tupla Postinumeroalue -kentistä.",
+		"description": "Read data from 5 Demographic files and join them together in to a single SQL table. Select 11 renames Postinumero to Postnum, as there was an issue with same named columns in Join5. In join 5 the data is joined based on first 5 characters of Postinumeroalue (=Postinumero), which is also derived in DerivedColumn -tranformation. Also Alue and Kaupunki are derived in this transformation.",
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
