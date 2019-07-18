@@ -1,7 +1,7 @@
 {
 	"name": "Vuokra_flow",
 	"properties": {
-		"description": "Osakeasunto flow toimii. \nDemograph flow toimii. (Data näkyy previewissä mutta ei SQL kannassa).\nVuokra flow toimii.\nMappaukset putoilevat välillä. Ja välillä antaa erroria tupla Postinumeroalue -kentistä.",
+		"description": "Read data from Vuokra file, derive Vuosi -column and load the data to SQL.",
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
