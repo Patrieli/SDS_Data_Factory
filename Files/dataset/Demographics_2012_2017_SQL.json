@@ -21,6 +21,38 @@
 				"type": "varchar"
 			},
 			{
+				"name": "Asukkaat_yhteensa_2012",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Keski_ika_2012",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Taloudet_yhteensa_2012",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Talouksien_keskikoko_2012",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
+			},
+			{
+				"name": "Omistusasunto_taloudet_2012",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Asuntojen_keskipinta_ala_2012",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
 				"name": "Tyolliset_2012",
 				"type": "int",
 				"precision": 10
@@ -57,8 +89,9 @@
 			},
 			{
 				"name": "Talouksien_keskikoko_2013",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
 			},
 			{
 				"name": "Omistusasunto_taloudet_2013",
@@ -108,8 +141,9 @@
 			},
 			{
 				"name": "Talouksien_keskikoko_2014",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
 			},
 			{
 				"name": "Omistusasunto_taloudet_2014",
@@ -159,8 +193,9 @@
 			},
 			{
 				"name": "Talouksien_keskikoko_2015",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
 			},
 			{
 				"name": "Omistusasunto_taloudet_2015",
@@ -210,8 +245,9 @@
 			},
 			{
 				"name": "Talouksien_keskikoko_2016",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
 			},
 			{
 				"name": "Omistusasunto_taloudet_2016",
@@ -261,8 +297,9 @@
 			},
 			{
 				"name": "Talouksien_keskikoko_2017",
-				"type": "int",
-				"precision": 10
+				"type": "decimal",
+				"precision": 5,
+				"scale": 2
 			},
 			{
 				"name": "Omistusasunto_taloudet_2017",
@@ -274,6 +311,26 @@
 				"type": "decimal",
 				"precision": 10,
 				"scale": 2
+			},
+			{
+				"name": "Tyolliset_2017",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Tyottomat_2017",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Alempi_korkeakoulututkinto_2017",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Asukkaiden_keskitulot_2017",
+				"type": "int",
+				"precision": 10
 			}
 		],
 		"typeProperties": {
