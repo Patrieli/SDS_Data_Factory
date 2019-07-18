@@ -1,5 +1,5 @@
 {
-	"name": "Full_Pipeline",
+	"name": "Main_Pipeline",
 	"properties": {
 		"description": "Starts the Copy Data action and after that starts each of the 5 separate pipelines. ",
 		"activities": [
