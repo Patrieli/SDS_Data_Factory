@@ -1,7 +1,7 @@
 {
 	"name": "Vuokra_flow",
 	"properties": {
-		"description": "Read data from Vuokra file, derive Vuosi -column and load the data to SQL.",
+		"description": "Read data from Vuokra file, derive Vuosi -column and load the data to SQL table.",
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
