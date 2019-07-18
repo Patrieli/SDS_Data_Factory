@@ -1,7 +1,7 @@
 {
 	"name": "Demographics_flow",
 	"properties": {
-		"description": "Demograph flow toimii. (Data näkyy previewissä mutta ei SQL kannassa).\nVuokra flow toimii.\nMappaukset putoilevat välillä. Ja välillä antaa erroria tupla Postinumeroalue -kentistä.",
+		"description": "Read data from 5 Demographic files and join them together in to a single SQL table. Selects 11 renames Postinumero to Postnum, as there was an issue with same named \n\n\nMappaukset putoilevat välillä. Ja välillä antaa erroria tupla Postinumeroalue -kentistä.",
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
