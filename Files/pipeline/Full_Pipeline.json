@@ -1,13 +1,14 @@
 {
 	"name": "Full_Pipeline",
 	"properties": {
+		"description": "Starts the Copy Data action and after that starts each of the 5 separate pipelines. ",
 		"activities": [
 			{
 				"name": "Osakeasunto_flow",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy1",
+						"activity": "Copy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -33,7 +34,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy1",
+						"activity": "Copy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -59,7 +60,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy1",
+						"activity": "Copy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -85,7 +86,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy1",
+						"activity": "Copy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -111,7 +112,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy1",
+						"activity": "Copy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -133,7 +134,8 @@
 				}
 			},
 			{
-				"name": "Copy1",
+				"name": "Copy",
+				"description": "Copies all .csv files from Jaakko's folder to Aureolissdsdatalake.",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
