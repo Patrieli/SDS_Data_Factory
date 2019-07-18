@@ -1,7 +1,7 @@
 {
 	"name": "BKT_flow",
 	"properties": {
-		"description": "Source filet ei tunnistu csv muotoisina. --> source datasetin asetuksista Schema välilehti ja ratkesi.\nSelect 9 Alue-kentän mappaus putoaaa välillä.\nSink 4-5 vain testausta varten.",
+		"description": "Source 2-4 load data three times from the same file, to create\ncolumns for each variable for every year. Select 6-8 drops unnecessary columns. Then (left) join the streams together in join 1 and 2. \n\nIssues:\nSelect 9 Alue-field mapping keeps dropping by itself.\nThe fields seems to be strings, but are actually decimals in SQL.",
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
