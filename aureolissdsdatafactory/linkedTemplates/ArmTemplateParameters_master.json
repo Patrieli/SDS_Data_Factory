@@ -20,11 +20,17 @@
 		"sdsirserver_connectionString": {
 			"value": ""
 		},
+		"DataLake_GEN1_accountKey": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://aureolissdsdatalake.dfs.core.windows.net"
 		},
 		"Azure_folder_properties_typeProperties_userId": {
 			"value": "jaakko.mantila@aureolis.com"
+		},
+		"DataLake_GEN1_properties_typeProperties_url": {
+			"value": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
 		},
 		"containerUri": {
 			"value": ""

@@ -19,9 +19,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks'"
 		},
+		"DataLake_GEN1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
+		},
+		"DataLake_GEN1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
 		}
 	},
 	"variables": {
@@ -95,79 +103,21 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BKT')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/DataLake_GEN1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "AzureBlobFS",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "BKT_seutukunnittain_2000_2016.csv",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Postinumero",
-						"type": "String"
-					},
-					{
-						"name": "Talotyyppi",
-						"type": "String"
-					},
-					{
-						"name": "Rakennusvuosi",
-						"type": "String"
-					},
-					{
-						"name": "2015 Neliohinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2015 Kauppojen lukumaara",
-						"type": "String"
-					},
-					{
-						"name": "2016 Neliohinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2016 Kauppojen lukumaara",
-						"type": "String"
-					},
-					{
-						"name": "2017 Neliohinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2017 Kauppojen lukumaara",
-						"type": "String"
-					},
-					{
-						"name": "2018 Neliohinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2018 Kauppojen lukumaara",
-						"type": "String"
+					"url": "[parameters('DataLake_GEN1_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('DataLake_GEN1_accountKey')]"
 					}
-				]
+				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BKT_BKT')]",
@@ -310,22 +260,10 @@
 				"schema": [
 					{
 						"name": "Alue",
-						"type": "varchar"
+						"type": "nvarchar"
 					},
 					{
 						"name": "BKT_2000",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2000",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2000",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -337,31 +275,7 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2001",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2001",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2002",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2002",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2002",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -373,31 +287,7 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2003",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2003",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2004",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2004",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2004",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -409,31 +299,7 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2005",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2005",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2006",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2006",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2006",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -445,31 +311,7 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2007",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2007",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2008",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2008",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2008",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -481,31 +323,7 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2009",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2009",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2010",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2010",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2010",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -517,31 +335,7 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2011",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2011",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2012",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2012",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2012",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -553,31 +347,7 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2013",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2013",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2014",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2014",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2014",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -589,25 +359,205 @@
 						"scale": 2
 					},
 					{
-						"name": "Tyolliset_2015",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2015",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
 						"name": "BKT_2016",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
 					},
 					{
+						"name": "Tyolliset_2000",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2001",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2002",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2003",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2004",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2005",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2006",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2007",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2008",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2009",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2010",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2011",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2012",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2013",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2014",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2015",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
 						"name": "Tyolliset_2016",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2000",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2001",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2002",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2003",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2004",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2005",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2006",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2007",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2008",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2009",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2010",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2011",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2012",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2013",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2014",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Vakiluku_2015",
 						"type": "decimal",
 						"precision": 20,
 						"scale": 2
@@ -755,68 +705,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/BKT_curated')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "curated"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BKT_seutukunnittain_2000_2016')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "009 -- Tuotanto ja ty�llisyys seutukunnittain 2000-2016*",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BKTseutukunnittain2000')]",
+			"name": "[concat(parameters('factoryName'), '/BKT_csv')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -841,36 +730,86 @@
 				},
 				"schema": [
 					{
-						"name": "\"Taloustoimi\";\"Alue\";\"Tiedot\";\"2000\";\"2001\";\"2002\";\"2003\";\"2004\";\"2005\";\"2006\";\"2007\";\"2008\";\"2009\";\"2010\";\"2011\";\"2012\";\"2013\";\"2014\";\"2015\";\"2016\"",
+						"name": "Taloustoimi",
+						"type": "String"
+					},
+					{
+						"name": "Alue",
+						"type": "String"
+					},
+					{
+						"name": "Tiedot",
+						"type": "String"
+					},
+					{
+						"name": "2000",
+						"type": "String"
+					},
+					{
+						"name": "2001",
+						"type": "String"
+					},
+					{
+						"name": "2002",
+						"type": "String"
+					},
+					{
+						"name": "2003",
+						"type": "String"
+					},
+					{
+						"name": "2004",
+						"type": "String"
+					},
+					{
+						"name": "2005",
+						"type": "String"
+					},
+					{
+						"name": "2006",
+						"type": "String"
+					},
+					{
+						"name": "2007",
+						"type": "String"
+					},
+					{
+						"name": "2008",
+						"type": "String"
+					},
+					{
+						"name": "2009",
+						"type": "String"
+					},
+					{
+						"name": "2010",
+						"type": "String"
+					},
+					{
+						"name": "2011",
+						"type": "String"
+					},
+					{
+						"name": "2012",
+						"type": "String"
+					},
+					{
+						"name": "2013",
+						"type": "String"
+					},
+					{
+						"name": "2014",
+						"type": "String"
+					},
+					{
+						"name": "2015",
+						"type": "String"
+					},
+					{
+						"name": "2016",
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Curated_data')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "curated"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
@@ -1309,6 +1248,38 @@
 						"type": "varchar"
 					},
 					{
+						"name": "Asukkaat_yhteensa_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Keski_ika_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Taloudet_yhteensa_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Talouksien_keskikoko_2012",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "Omistusasunto_taloudet_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asuntojen_keskipinta_ala_2012",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
 						"name": "Tyolliset_2012",
 						"type": "int",
 						"precision": 10
@@ -1345,8 +1316,9 @@
 					},
 					{
 						"name": "Talouksien_keskikoko_2013",
-						"type": "int",
-						"precision": 10
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
 					},
 					{
 						"name": "Omistusasunto_taloudet_2013",
@@ -1396,8 +1368,9 @@
 					},
 					{
 						"name": "Talouksien_keskikoko_2014",
-						"type": "int",
-						"precision": 10
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
 					},
 					{
 						"name": "Omistusasunto_taloudet_2014",
@@ -1447,8 +1420,9 @@
 					},
 					{
 						"name": "Talouksien_keskikoko_2015",
-						"type": "int",
-						"precision": 10
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
 					},
 					{
 						"name": "Omistusasunto_taloudet_2015",
@@ -1498,8 +1472,9 @@
 					},
 					{
 						"name": "Talouksien_keskikoko_2016",
-						"type": "int",
-						"precision": 10
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
 					},
 					{
 						"name": "Omistusasunto_taloudet_2016",
@@ -1549,8 +1524,9 @@
 					},
 					{
 						"name": "Talouksien_keskikoko_2017",
-						"type": "int",
-						"precision": 10
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
 					},
 					{
 						"name": "Omistusasunto_taloudet_2017",
@@ -1562,6 +1538,26 @@
 						"type": "decimal",
 						"precision": 10,
 						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Tyottomat_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Alempi_korkeakoulututkinto_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaiden_keskitulot_2017",
+						"type": "int",
+						"precision": 10
 					}
 				],
 				"typeProperties": {
@@ -1573,7 +1569,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Kuluttajahintaindexi')]",
+			"name": "[concat(parameters('factoryName'), '/OKThinnat2015')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1586,19 +1582,269 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "Kuluttajahintaindeksi_2010_2018.csv",
+						"fileName": "Omakotitalojen_hinnat_2015_2018.csv",
 						"folderPath": "SDS_Data",
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
-					"nullValue": "..",
+					"nullValue": ".",
 					"quoteChar": "\""
 				},
 				"schema": [
 					{
-						"name": "\"Vuosi\";\"Hy�dyke\";\"Pisteluku\";\"Vuosimuutos (%)\"",
+						"name": "Aluejako",
+						"type": "String"
+					},
+					{
+						"name": "2015 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2015 Keskipinta-ala m2",
+						"type": "String"
+					},
+					{
+						"name": "2015 Kauppojen lukumaara",
+						"type": "String"
+					},
+					{
+						"name": "2016 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2016 Keskipinta-ala m2",
+						"type": "String"
+					},
+					{
+						"name": "2016 Kauppojen lukumaara",
+						"type": "String"
+					},
+					{
+						"name": "2017 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2017 Keskipinta-ala m2",
+						"type": "String"
+					},
+					{
+						"name": "2017 Kauppojen lukumaara",
+						"type": "String"
+					},
+					{
+						"name": "2018 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2018 Keskipinta-ala m2",
+						"type": "String"
+					},
+					{
+						"name": "2018 Kauppojen lukumaara",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Omakotitalojen_hinnat_2015_2018_SQL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Aluejako",
+						"type": "varchar"
+					},
+					{
+						"name": "Neliohinta_2015",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Keskipinta_ala_2015",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2016",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Keskipinta_ala_2016",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2017",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Keskipinta_ala_2017",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2018",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Keskipinta_ala_2018",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2018",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[Omakotitalojen_hinnat_2015_2018]"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasunnot_2015_2018_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Osakeasuntojen_hinnat_2015_2018.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Postinumero",
+						"type": "String"
+					},
+					{
+						"name": "Talotyyppi",
+						"type": "String"
+					},
+					{
+						"name": "Rakennusvuosi",
+						"type": "String"
+					},
+					{
+						"name": "2015 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2015 Kauppojen lukumaara",
+						"type": "String"
+					},
+					{
+						"name": "2016 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2016 Kauppojen lukumaara",
+						"type": "String"
+					},
+					{
+						"name": "2017 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2017 Kauppojen lukumaara",
+						"type": "String"
+					},
+					{
+						"name": "2018 Neliohinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2018 Kauppojen lukumaara",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasuntohinnat2010')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Osakeasuntojen_hinnat_2010_2014.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
 						"type": "String"
 					}
 				]

@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sdsirserver'"
 		},
+		"DataLake_GEN1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
@@ -34,6 +38,10 @@
 		"Azure_folder_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "jaakko.mantila@aureolis.com"
+		},
+		"DataLake_GEN1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
 		},
 		"containerUri": {
 			"type": "string",
@@ -71,8 +79,14 @@
 					"SDS_DataBricks_accessToken": {
 						"value": "[parameters('SDS_DataBricks_accessToken')]"
 					},
+					"DataLake_GEN1_accountKey": {
+						"value": "[parameters('DataLake_GEN1_accountKey')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"DataLake_GEN1_properties_typeProperties_url": {
+						"value": "[parameters('DataLake_GEN1_properties_typeProperties_url')]"
 					}
 				}
 			},
