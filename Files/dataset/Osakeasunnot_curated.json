@@ -12,9 +12,10 @@
 				"type": "AzureBlobFSLocation",
 				"fileSystem": "curated"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ";",
 			"escapeChar": "\\",
-			"firstRowAsHeader": false,
+			"firstRowAsHeader": true,
+			"nullValue": ".",
 			"quoteChar": "\""
 		},
 		"schema": []
