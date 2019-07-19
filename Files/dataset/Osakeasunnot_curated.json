@@ -1,0 +1,23 @@
+{
+	"name": "Osakeasunnot_curated",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake_GEN1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "tyhja.csv",
+				"fileSystem": "curated"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
