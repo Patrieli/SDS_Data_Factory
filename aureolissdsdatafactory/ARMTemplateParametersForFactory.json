@@ -14,13 +14,13 @@
 		"Azure_folder_password": {
 			"value": ""
 		},
+		"DataLake_GEN1_accountKey": {
+			"value": ""
+		},
 		"SDS_DataBricks_accessToken": {
 			"value": ""
 		},
 		"sdsirserver_connectionString": {
-			"value": ""
-		},
-		"DataLake_GEN1_accountKey": {
 			"value": ""
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {

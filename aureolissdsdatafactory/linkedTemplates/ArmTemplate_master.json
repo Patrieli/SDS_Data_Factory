@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Azure_folder'"
 		},
+		"DataLake_GEN1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
+		},
 		"SDS_DataBricks_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks'"
@@ -26,10 +30,6 @@
 		"sdsirserver_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sdsirserver'"
-		},
-		"DataLake_GEN1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
@@ -76,11 +76,11 @@
 					"AzureSqlDatabase1_connectionString": {
 						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
 					},
-					"SDS_DataBricks_accessToken": {
-						"value": "[parameters('SDS_DataBricks_accessToken')]"
-					},
 					"DataLake_GEN1_accountKey": {
 						"value": "[parameters('DataLake_GEN1_accountKey')]"
+					},
+					"SDS_DataBricks_accessToken": {
+						"value": "[parameters('SDS_DataBricks_accessToken')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
