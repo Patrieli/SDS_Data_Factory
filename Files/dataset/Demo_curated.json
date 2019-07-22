@@ -18,6 +18,223 @@
 			"nullValue": ".",
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Postinumero",
+				"type": "String"
+			},
+			{
+				"name": "\tAlue",
+				"type": "String"
+			},
+			{
+				"name": "\tKaupunki",
+				"type": "String"
+			},
+			{
+				"name": "\tTyolliset_2012",
+				"type": "String"
+			},
+			{
+				"name": "\tTyottomat_2012",
+				"type": "String"
+			},
+			{
+				"name": "\tAlempi_korkeakoulututkinto_2012",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaiden_keskitulot_2012",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaat_yhteensa_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tKeski_ika_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tTaloudet_yhteensa_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tTalouksien_keskikoko_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tOmistusasunto_taloudet_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tAsuntojen_keskipinta_ala_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tTyolliset_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tTyottomat_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tAlempi_korkeakoulututkinto_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaiden_keskitulot_2013",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaat_yhteensa_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tKeski_ika_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tTaloudet_yhteensa_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tTalouksien_keskikoko_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tOmistusasunto_taloudet_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tAsuntojen_keskipinta_ala_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tTyolliset_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tTyottomat_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tAlempi_korkeakoulututkinto_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaiden_keskitulot_2014",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaat_yhteensa_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tKeski_ika_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tTaloudet_yhteensa_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tTalouksien_keskikoko_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tOmistusasunto_taloudet_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tAsuntojen_keskipinta_ala_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tTyolliset_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tTyottomat_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tAlempi_korkeakoulututkinto_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaiden_keskitulot_2015",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaat_yhteensa_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tKeski_ika_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tTaloudet_yhteensa_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tTalouksien_keskikoko_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tOmistusasunto_taloudet_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tAsuntojen_keskipinta_ala_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tTyolliset_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tTyottomat_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tAlempi_korkeakoulututkinto_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaiden_keskitulot_2016",
+				"type": "String"
+			},
+			{
+				"name": "\tAsukkaat_yhteensa_2017",
+				"type": "String"
+			},
+			{
+				"name": "\tKeski_ika_2017",
+				"type": "String"
+			},
+			{
+				"name": "\tTaloudet_yhteensa_2017",
+				"type": "String"
+			},
+			{
+				"name": "\tTalouksien_keskikoko_2017",
+				"type": "String"
+			},
+			{
+				"name": "\tOmistusasunto_taloudet_2017",
+				"type": "String"
+			},
+			{
+				"name": "\tAsuntojen_keskipinta_ala_2017",
+				"type": "String"
+			},
+			{
+				"name": "\tAlempi_korkeakoulututkinto_2017",
+				"type": "String"
+			}
+		]
 	}
 }
