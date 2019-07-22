@@ -1,0 +1,29 @@
+{
+	"name": "Curated_blob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Osakeasuntojen_hinnat",
+				"container": "curated"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": ".",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Postinumero;Alue;Kaupunki;Talotyyppi;Rakennusvuosi;Neliohinta_2015;Kauppojen_lukumaara_2015;Neliohinta_2016;Kauppojen_lukumaara_2016;Neliohinta_2017;Kauppojen_lukumaara_2017;Neliohinta_2018;Kauppojen_lukumaara_2018;Neliohinta_2010;Kauppojen_lukumaara_2010;Neliohinta_2011;Kauppojen_lukumaara_2011;Neliohinta_2012;Kauppojen_lukumaara_2012;Neliohinta_2013;Kauppojen_lukumaara_2013;Neliohinta_2014;Kauppojen_lukumaara_2014",
+				"type": "String"
+			}
+		]
+	}
+}
