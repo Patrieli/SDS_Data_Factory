@@ -1,0 +1,23 @@
+{
+	"name": "Demo_curated",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake_GEN1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "curated"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": ".",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
