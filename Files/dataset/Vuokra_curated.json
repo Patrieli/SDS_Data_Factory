@@ -13,7 +13,7 @@
 				"fileSystem": "curated"
 			},
 			"columnDelimiter": ";",
-			"rowDelimiter": "",
+			"rowDelimiter": "\n",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"nullValue": ".",
