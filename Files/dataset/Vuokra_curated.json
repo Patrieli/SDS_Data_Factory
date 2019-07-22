@@ -1,0 +1,52 @@
+{
+	"name": "Vuokra_curated",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake_GEN1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "curated"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"nullValue": ".",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Vuosineljannes",
+				"type": "String"
+			},
+			{
+				"name": "Vuosi",
+				"type": "String"
+			},
+			{
+				"name": "Alue",
+				"type": "String"
+			},
+			{
+				"name": "Huoneluku",
+				"type": "String"
+			},
+			{
+				"name": "Rahoitusmuoto",
+				"type": "String"
+			},
+			{
+				"name": "Lukumaara",
+				"type": "String"
+			},
+			{
+				"name": "Neliovuokra",
+				"type": "String"
+			}
+		]
+	}
+}
