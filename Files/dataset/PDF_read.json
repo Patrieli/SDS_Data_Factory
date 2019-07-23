@@ -1,0 +1,120 @@
+{
+	"name": "PDF_read",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Lapsen_koko_nimi",
+				"type": "varchar"
+			},
+			{
+				"name": "Ikä",
+				"type": "varchar"
+			},
+			{
+				"name": "Syntymäaika",
+				"type": "varchar"
+			},
+			{
+				"name": "Lapsen_koko_nimi2",
+				"type": "varchar"
+			},
+			{
+				"name": "Ikä2",
+				"type": "varchar"
+			},
+			{
+				"name": "Syntymäaika2",
+				"type": "varchar"
+			},
+			{
+				"name": "Varausnumero",
+				"type": "varchar"
+			},
+			{
+				"name": "Laiva1",
+				"type": "varchar"
+			},
+			{
+				"name": "Lähtöpäivä1",
+				"type": "varchar"
+			},
+			{
+				"name": "Mistä1",
+				"type": "varchar"
+			},
+			{
+				"name": "Mihin1",
+				"type": "varchar"
+			},
+			{
+				"name": "Laiva2",
+				"type": "varchar"
+			},
+			{
+				"name": "Lähtöpäivä2",
+				"type": "varchar"
+			},
+			{
+				"name": "Mistä2",
+				"type": "varchar"
+			},
+			{
+				"name": "Mihin2",
+				"type": "varchar"
+			},
+			{
+				"name": "Laiva3",
+				"type": "varchar"
+			},
+			{
+				"name": "Lähtöpäivä3",
+				"type": "varchar"
+			},
+			{
+				"name": "Mistä3",
+				"type": "varchar"
+			},
+			{
+				"name": "Mihin3",
+				"type": "varchar"
+			},
+			{
+				"name": "Huoltajan_nimi",
+				"type": "varchar"
+			},
+			{
+				"name": "Postiosoite",
+				"type": "varchar"
+			},
+			{
+				"name": "Puhelinnumero",
+				"type": "varchar"
+			},
+			{
+				"name": "Valtuutetun_nimi2",
+				"type": "varchar"
+			},
+			{
+				"name": "Postiosoite2",
+				"type": "varchar"
+			},
+			{
+				"name": "Puhelinnumero2",
+				"type": "varchar"
+			},
+			{
+				"name": "Paikka_ja_päivämäärä",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[dbo].[testing]"
+		}
+	}
+}
