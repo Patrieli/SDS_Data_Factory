@@ -25,6 +25,349 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Demographics_2012_2017_SQL')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Postinumero",
+						"type": "varchar"
+					},
+					{
+						"name": "Alue",
+						"type": "varchar"
+					},
+					{
+						"name": "Kaupunki",
+						"type": "varchar"
+					},
+					{
+						"name": "Asukkaat_yhteensa_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Keski_ika_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Taloudet_yhteensa_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Talouksien_keskikoko_2012",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "Omistusasunto_taloudet_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asuntojen_keskipinta_ala_2012",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Tyottomat_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Alempi_korkeakoulututkinto_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaiden_keskitulot_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaat_yhteensa_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Keski_ika_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Taloudet_yhteensa_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Talouksien_keskikoko_2013",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "Omistusasunto_taloudet_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asuntojen_keskipinta_ala_2013",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Tyottomat_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Alempi_korkeakoulututkinto_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaiden_keskitulot_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaat_yhteensa_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Keski_ika_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Taloudet_yhteensa_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Talouksien_keskikoko_2014",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "Omistusasunto_taloudet_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asuntojen_keskipinta_ala_2014",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Tyottomat_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Alempi_korkeakoulututkinto_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaiden_keskitulot_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaat_yhteensa_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Keski_ika_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Taloudet_yhteensa_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Talouksien_keskikoko_2015",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "Omistusasunto_taloudet_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asuntojen_keskipinta_ala_2015",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Tyottomat_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Alempi_korkeakoulututkinto_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaiden_keskitulot_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaat_yhteensa_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Keski_ika_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Taloudet_yhteensa_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Talouksien_keskikoko_2016",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "Omistusasunto_taloudet_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asuntojen_keskipinta_ala_2016",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Tyottomat_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Alempi_korkeakoulututkinto_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaiden_keskitulot_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaat_yhteensa_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Keski_ika_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Taloudet_yhteensa_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Talouksien_keskikoko_2017",
+						"type": "decimal",
+						"precision": 5,
+						"scale": 2
+					},
+					{
+						"name": "Omistusasunto_taloudet_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asuntojen_keskipinta_ala_2017",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "Tyolliset_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Tyottomat_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Alempi_korkeakoulututkinto_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Asukkaiden_keskitulot_2017",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[Demographics_2012_2017]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/OKThinnat2015')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1090,37 +1433,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Python')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DatabricksSparkPython1",
-						"type": "DatabricksSparkPython",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"pythonFile": "dbfs:/PDF_read.py"
-						},
-						"linkedServiceName": {
-							"referenceName": "SDS_DataBricks",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/SDS_Data')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1309,7 +1621,7 @@
 						},
 						{
 							"dataset": {
-								"referenceName": "Demo_curated",
+								"referenceName": "Demographics_curated",
 								"type": "DatasetReference"
 							},
 							"name": "sink6"
@@ -1318,7 +1630,9 @@
 					"script": "\n\nsource(output(\n\t\tPostinumeroalue as string,\n\t\t{Asukkaat yhteensa, 2017 (HE)} as integer,\n\t\t{Asukkaiden keski-ika, 2017 (HE)} as integer,\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2017 (KO)} as integer,\n\t\t{Asukkaiden keskitulot, 2016 (HR)} as integer,\n\t\t{Taloudet yhteensa, 2017 (TE)} as integer,\n\t\t{Talouksien keskikoko, 2017 (TE)} as decimal(10,0),\n\t\t{Omistusasunnoissa asuvat taloudet, 2017 (TE)} as integer,\n\t\t{Asuntojen keskipinta-ala, 2017 (RA)} as decimal(10,0),\n\t\t{Tyolliset, 2016 (PT)} as integer,\n\t\t{Tyottomat, 2016 (PT)} as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> Demograph2016\nsource(output(\n\t\tPostinumeroalue as string,\n\t\t{Asukkaat yhteensa, 2016 (HE)} as integer,\n\t\t{Asukkaiden keski-ika, 2016 (HE)} as integer,\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2016 (KO)} as integer,\n\t\t{Asukkaiden keskitulot, 2015 (HR)} as integer,\n\t\t{Taloudet yhteensa, 2016 (TE)} as integer,\n\t\t{Talouksien keskikoko, 2016 (TE)} as decimal(10,0),\n\t\t{Omistusasunnoissa asuvat taloudet, 2016 (TE)} as integer,\n\t\t{Asuntojen keskipinta-ala, 2016 (RA)} as decimal(10,0),\n\t\t{Tyolliset, 2015 (PT)} as integer,\n\t\t{Tyottomat, 2015 (PT)} as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> Demograph2015\nsource(output(\n\t\tPostinumeroalue as string,\n\t\t{Asukkaat yhteensa, 2015 (HE)} as integer,\n\t\t{Asukkaiden keski-ika, 2015 (HE)} as integer,\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2014 (KO)} as integer,\n\t\t{Asukkaiden keskitulot, 2014 (HR)} as integer,\n\t\t{Taloudet yhteensa, 2015 (TE)} as integer,\n\t\t{Talouksien keskikoko, 2015 (TE)} as decimal(10,0),\n\t\t{Omistusasunnoissa asuvat taloudet, 2015 (TE)} as integer,\n\t\t{Asuntojen keskipinta-ala, 2015 (RA)} as decimal(10,0),\n\t\t{Tyolliset, 2014 (PT)} as integer,\n\t\t{Tyottomat, 2014 (PT)} as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> Demograph2014\nsource(output(\n\t\tPostinumeroalue as string,\n\t\t{Asukkaat yhteensa, 2014 (HE)} as integer,\n\t\t{Asukkaiden keski-ika, 2014 (HE)} as integer,\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2013 (KO)} as integer,\n\t\t{Asukkaiden keskitulot, 2013 (HR)} as integer,\n\t\t{Taloudet yhteensa, 2014 (TE)} as integer,\n\t\t{Talouksien keskikoko, 2014 (TE)} as decimal(10,0),\n\t\t{Omistusasunnoissa asuvat taloudet, 2014 (TE)} as string,\n\t\t{Asuntojen keskipinta-ala, 2014 (RA)} as decimal(10,0),\n\t\t{Tyolliset, 2013 (PT)} as string,\n\t\t{Tyottomat, 2013 (PT)} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> Demograph2013\nsource(output(\n\t\tPostinumeroalue as string,\n\t\t{Asukkaat yhteensa, 2013 (HE)} as integer,\n\t\t{Asukkaiden keski-ika, 2013 (HE)} as integer,\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2012 (KO)} as integer,\n\t\t{Asukkaiden keskitulot, 2012 (HR)} as integer,\n\t\t{Taloudet yhteensa, 2013 (TE)} as integer,\n\t\t{Talouksien keskikoko, 2013 (TE)} as decimal(10,0),\n\t\t{Omistusasunnoissa asuvat taloudet, 2013 (TE)} as integer,\n\t\t{Asuntojen keskipinta-ala, 2013 (RA)} as decimal(10,0),\n\t\t{Tyolliset, 2012 (PT)} as integer,\n\t\t{Tyottomat, 2012 (PT)} as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> Demograph2012\nDemograph2016, Demograph2015 join(Demograph2016@Postinumeroalue == Demograph2015@Postinumeroalue,\n\tjoinType:'left',\n\tbroadcast: 'none')~> Join2\nJoin2, Demograph2014 join(Demograph2016@Postinumeroalue == Demograph2014@Postinumeroalue,\n\tjoinType:'left',\n\tbroadcast: 'none')~> Join3\nJoin3, Demograph2013 join(Demograph2016@Postinumeroalue == Demograph2013@Postinumeroalue,\n\tjoinType:'left',\n\tbroadcast: 'none')~> Join4\nSelect10, Select11 join(substring(Postinumeroalue, 1, 5) == substring(Postnum, 1, 5),\n\tjoinType:'left',\n\tbroadcast: 'left')~> Join5\nJoin5 select(skipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select8\nSelect8 derive(Postinumero = substring(Postinumeroalue, 1, 5),\n\t\tAlue = trim(substring(Postinumeroalue, instr(Postinumeroalue, ' '), instr(Postinumeroalue, '(') - instr(Postinumeroalue, ' '))),\n\t\tKaupunki = trim(substring(Postinumeroalue, instr(Postinumeroalue, '('), 50),' ())')) ~> DerivedColumn3\nDerivedColumn3 select(mapColumn(\n\t\tPostinumero,\n\t\tAsukkaat_yhteensa_2017 = {Asukkaat yhteensa, 2017 (HE)},\n\t\tKeski_ika_2017 = {Asukkaiden keski-ika, 2017 (HE)},\n\t\tTyolliset_2012 = Postinumeroalue,\n\t\tAlempi_korkeakoulututkinto_2016 = {Alemman korkeakoulututkinnon suorittaneet, 2017 (KO)},\n\t\tAsukkaiden_keskitulot_2016 = {Asukkaiden keskitulot, 2016 (HR)},\n\t\tTaloudet_yhteensa_2017 = {Taloudet yhteensa, 2017 (TE)},\n\t\tTalouksien_keskikoko_2017 = {Talouksien keskikoko, 2017 (TE)},\n\t\tOmistusasunto_taloudet_2017 = {Omistusasunnoissa asuvat taloudet, 2017 (TE)},\n\t\tAsuntojen_keskipinta_ala_2017 = {Asuntojen keskipinta-ala, 2017 (RA)},\n\t\tTyolliset_2016 = {Tyolliset, 2016 (PT)},\n\t\tTyottomat_2016 = {Tyottomat, 2016 (PT)},\n\t\tAsukkaat_yhteensa_2016 = {Asukkaat yhteensa, 2016 (HE)},\n\t\tKeski_ika_2016 = {Asukkaiden keski-ika, 2016 (HE)},\n\t\tAlempi_korkeakoulututkinto_2015 = {Alemman korkeakoulututkinnon suorittaneet, 2016 (KO)},\n\t\tAsukkaiden_keskitulot_2015 = {Asukkaiden keskitulot, 2015 (HR)},\n\t\tTaloudet_yhteensa_2016 = {Taloudet yhteensa, 2016 (TE)},\n\t\tTalouksien_keskikoko_2016 = {Talouksien keskikoko, 2016 (TE)},\n\t\tOmistusasunto_taloudet_2016 = {Omistusasunnoissa asuvat taloudet, 2016 (TE)},\n\t\tAsuntojen_keskipinta_ala_2016 = {Asuntojen keskipinta-ala, 2016 (RA)},\n\t\tTyolliset_2015 = {Tyolliset, 2015 (PT)},\n\t\tTyottomat_2015 = {Tyottomat, 2015 (PT)},\n\t\tAsukkaat_yhteensa_2015 = {Asukkaat yhteensa, 2015 (HE)},\n\t\tKeski_ika_2015 = {Asukkaiden keski-ika, 2015 (HE)},\n\t\tAlempi_korkeakoulututkinto_2014 = {Alemman korkeakoulututkinnon suorittaneet, 2014 (KO)},\n\t\tAsukkaiden_keskitulot_2014 = {Asukkaiden keskitulot, 2014 (HR)},\n\t\tTaloudet_yhteensa_2015 = {Taloudet yhteensa, 2015 (TE)},\n\t\tTalouksien_keskikoko_2015 = {Talouksien keskikoko, 2015 (TE)},\n\t\tOmistusasunto_taloudet_2015 = {Omistusasunnoissa asuvat taloudet, 2015 (TE)},\n\t\tAsuntojen_keskipinta_ala_2015 = {Asuntojen keskipinta-ala, 2015 (RA)},\n\t\tTyolliset_2014 = {Tyolliset, 2014 (PT)},\n\t\tTyottomat_2014 = {Tyottomat, 2014 (PT)},\n\t\tAsukkaat_yhteensa_2014 = {Asukkaat yhteensa, 2014 (HE)},\n\t\tKeski_ika_2014 = {Asukkaiden keski-ika, 2014 (HE)},\n\t\tAlempi_korkeakoulututkinto_2013 = {Alemman korkeakoulututkinnon suorittaneet, 2013 (KO)},\n\t\tAsukkaiden_keskitulot_2013 = {Asukkaiden keskitulot, 2013 (HR)},\n\t\tTaloudet_yhteensa_2014 = {Taloudet yhteensa, 2014 (TE)},\n\t\tTalouksien_keskikoko_2014 = {Talouksien keskikoko, 2014 (TE)},\n\t\tOmistusasunto_taloudet_2014 = {Omistusasunnoissa asuvat taloudet, 2014 (TE)},\n\t\tAsuntojen_keskipinta_ala_2014 = {Asuntojen keskipinta-ala, 2014 (RA)},\n\t\tTyolliset_2013 = {Tyolliset, 2013 (PT)},\n\t\tTyottomat_2013 = {Tyottomat, 2013 (PT)},\n\t\tAsukkaat_yhteensa_2013 = Postinumeroalue,\n\t\tKeski_ika_2013 = Postinumeroalue,\n\t\tAlempi_korkeakoulututkinto_2012 = Postinumeroalue,\n\t\tAsukkaiden_keskitulot_2012 = Postinumeroalue,\n\t\tTaloudet_yhteensa_2013 = Postinumeroalue,\n\t\tTalouksien_keskikoko_2013 = Postinumeroalue,\n\t\tOmistusasunto_taloudet_2013 = Postinumeroalue,\n\t\tAsuntojen_keskipinta_ala_2013 = Postinumeroalue,\n\t\tTyottomat_2012 = Postinumeroalue,\n\t\tAlue,\n\t\tKaupunki\n\t)) ~> Select9\nJoin4 select(mapColumn(\n\t\tPostinumeroalue = Demograph2016@Postinumeroalue,\n\t\t{Asukkaat yhteensa, 2017 (HE)},\n\t\t{Asukkaiden keski-ika, 2017 (HE)},\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2017 (KO)},\n\t\t{Asukkaiden keskitulot, 2016 (HR)},\n\t\t{Taloudet yhteensa, 2017 (TE)},\n\t\t{Talouksien keskikoko, 2017 (TE)},\n\t\t{Omistusasunnoissa asuvat taloudet, 2017 (TE)},\n\t\t{Asuntojen keskipinta-ala, 2017 (RA)},\n\t\t{Tyolliset, 2016 (PT)},\n\t\t{Tyottomat, 2016 (PT)},\n\t\t{Asukkaat yhteensa, 2016 (HE)},\n\t\t{Asukkaiden keski-ika, 2016 (HE)},\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2016 (KO)},\n\t\t{Asukkaiden keskitulot, 2015 (HR)},\n\t\t{Taloudet yhteensa, 2016 (TE)},\n\t\t{Talouksien keskikoko, 2016 (TE)},\n\t\t{Omistusasunnoissa asuvat taloudet, 2016 (TE)},\n\t\t{Asuntojen keskipinta-ala, 2016 (RA)},\n\t\t{Tyolliset, 2015 (PT)},\n\t\t{Tyottomat, 2015 (PT)},\n\t\t{Asukkaat yhteensa, 2015 (HE)},\n\t\t{Asukkaiden keski-ika, 2015 (HE)},\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2014 (KO)},\n\t\t{Asukkaiden keskitulot, 2014 (HR)},\n\t\t{Taloudet yhteensa, 2015 (TE)},\n\t\t{Talouksien keskikoko, 2015 (TE)},\n\t\t{Omistusasunnoissa asuvat taloudet, 2015 (TE)},\n\t\t{Asuntojen keskipinta-ala, 2015 (RA)},\n\t\t{Tyolliset, 2014 (PT)},\n\t\t{Tyottomat, 2014 (PT)},\n\t\t{Asukkaat yhteensa, 2014 (HE)},\n\t\t{Asukkaiden keski-ika, 2014 (HE)},\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2013 (KO)},\n\t\t{Asukkaiden keskitulot, 2013 (HR)},\n\t\t{Taloudet yhteensa, 2014 (TE)},\n\t\t{Talouksien keskikoko, 2014 (TE)},\n\t\t{Omistusasunnoissa asuvat taloudet, 2014 (TE)},\n\t\t{Asuntojen keskipinta-ala, 2014 (RA)},\n\t\t{Tyolliset, 2013 (PT)},\n\t\t{Tyottomat, 2013 (PT)}\n\t)) ~> Select10\nDemograph2012 select(mapColumn(\n\t\tPostnum = Postinumeroalue,\n\t\t{Asukkaat yhteensa, 2013 (HE)},\n\t\t{Asukkaiden keski-ika, 2013 (HE)},\n\t\t{Alemman korkeakoulututkinnon suorittaneet, 2012 (KO)},\n\t\t{Asukkaiden keskitulot, 2012 (HR)},\n\t\t{Taloudet yhteensa, 2013 (TE)},\n\t\t{Talouksien keskikoko, 2013 (TE)},\n\t\t{Omistusasunnoissa asuvat taloudet, 2013 (TE)},\n\t\t{Asuntojen keskipinta-ala, 2013 (RA)},\n\t\t{Tyolliset, 2012 (PT)},\n\t\t{Tyottomat, 2012 (PT)}\n\t)) ~> Select11\nSelect9 sink(input(\n\t\tPostinumero as string,\n\t\tAlue as string,\n\t\tKaupunki as string,\n\t\tAsukkaat_yhteensa_2012 as integer,\n\t\tKeski_ika_2012 as integer,\n\t\tTaloudet_yhteensa_2012 as integer,\n\t\tTalouksien_keskikoko_2012 as decimal(5,2),\n\t\tOmistusasunto_taloudet_2012 as integer,\n\t\tAsuntojen_keskipinta_ala_2012 as decimal(10,2),\n\t\tTyolliset_2012 as integer,\n\t\tTyottomat_2012 as integer,\n\t\tAlempi_korkeakoulututkinto_2012 as integer,\n\t\tAsukkaiden_keskitulot_2012 as integer,\n\t\tAsukkaat_yhteensa_2013 as integer,\n\t\tKeski_ika_2013 as integer,\n\t\tTaloudet_yhteensa_2013 as integer,\n\t\tTalouksien_keskikoko_2013 as decimal(5,2),\n\t\tOmistusasunto_taloudet_2013 as integer,\n\t\tAsuntojen_keskipinta_ala_2013 as decimal(10,2),\n\t\tTyolliset_2013 as integer,\n\t\tTyottomat_2013 as integer,\n\t\tAlempi_korkeakoulututkinto_2013 as integer,\n\t\tAsukkaiden_keskitulot_2013 as integer,\n\t\tAsukkaat_yhteensa_2014 as integer,\n\t\tKeski_ika_2014 as integer,\n\t\tTaloudet_yhteensa_2014 as integer,\n\t\tTalouksien_keskikoko_2014 as decimal(5,2),\n\t\tOmistusasunto_taloudet_2014 as integer,\n\t\tAsuntojen_keskipinta_ala_2014 as decimal(10,2),\n\t\tTyolliset_2014 as integer,\n\t\tTyottomat_2014 as integer,\n\t\tAlempi_korkeakoulututkinto_2014 as integer,\n\t\tAsukkaiden_keskitulot_2014 as integer,\n\t\tAsukkaat_yhteensa_2015 as integer,\n\t\tKeski_ika_2015 as integer,\n\t\tTaloudet_yhteensa_2015 as integer,\n\t\tTalouksien_keskikoko_2015 as decimal(5,2),\n\t\tOmistusasunto_taloudet_2015 as integer,\n\t\tAsuntojen_keskipinta_ala_2015 as decimal(10,2),\n\t\tTyolliset_2015 as integer,\n\t\tTyottomat_2015 as integer,\n\t\tAlempi_korkeakoulututkinto_2015 as integer,\n\t\tAsukkaiden_keskitulot_2015 as integer,\n\t\tAsukkaat_yhteensa_2016 as integer,\n\t\tKeski_ika_2016 as integer,\n\t\tTaloudet_yhteensa_2016 as integer,\n\t\tTalouksien_keskikoko_2016 as decimal(5,2),\n\t\tOmistusasunto_taloudet_2016 as integer,\n\t\tAsuntojen_keskipinta_ala_2016 as decimal(10,2),\n\t\tTyolliset_2016 as integer,\n\t\tTyottomat_2016 as integer,\n\t\tAlempi_korkeakoulututkinto_2016 as integer,\n\t\tAsukkaiden_keskitulot_2016 as integer,\n\t\tAsukkaat_yhteensa_2017 as integer,\n\t\tKeski_ika_2017 as integer,\n\t\tTaloudet_yhteensa_2017 as integer,\n\t\tTalouksien_keskikoko_2017 as decimal(5,2),\n\t\tOmistusasunto_taloudet_2017 as integer,\n\t\tAsuntojen_keskipinta_ala_2017 as decimal(10,2),\n\t\tTyolliset_2017 as integer,\n\t\tTyottomat_2017 as integer,\n\t\tAlempi_korkeakoulututkinto_2017 as integer,\n\t\tAsukkaiden_keskitulot_2017 as integer\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tkeys:['Postinumero']) ~> sink5\nSelect9 sink(input(\n\t\tPostinumero as string,\n\t\t{\tAlue} as string,\n\t\t{\tKaupunki} as string,\n\t\t{\tTyolliset_2012} as string,\n\t\t{\tTyottomat_2012} as string,\n\t\t{\tAlempi_korkeakoulututkinto_2012} as string,\n\t\t{\tAsukkaiden_keskitulot_2012} as string,\n\t\t{\tAsukkaat_yhteensa_2013} as string,\n\t\t{\tKeski_ika_2013} as string,\n\t\t{\tTaloudet_yhteensa_2013} as string,\n\t\t{\tTalouksien_keskikoko_2013} as string,\n\t\t{\tOmistusasunto_taloudet_2013} as string,\n\t\t{\tAsuntojen_keskipinta_ala_2013} as string,\n\t\t{\tTyolliset_2013} as string,\n\t\t{\tTyottomat_2013} as string,\n\t\t{\tAlempi_korkeakoulututkinto_2013} as string,\n\t\t{\tAsukkaiden_keskitulot_2013} as string,\n\t\t{\tAsukkaat_yhteensa_2014} as string,\n\t\t{\tKeski_ika_2014} as string,\n\t\t{\tTaloudet_yhteensa_2014} as string,\n\t\t{\tTalouksien_keskikoko_2014} as string,\n\t\t{\tOmistusasunto_taloudet_2014} as string,\n\t\t{\tAsuntojen_keskipinta_ala_2014} as string,\n\t\t{\tTyolliset_2014} as string,\n\t\t{\tTyottomat_2014} as string,\n\t\t{\tAlempi_korkeakoulututkinto_2014} as string,\n\t\t{\tAsukkaiden_keskitulot_2014} as string,\n\t\t{\tAsukkaat_yhteensa_2015} as string,\n\t\t{\tKeski_ika_2015} as string,\n\t\t{\tTaloudet_yhteensa_2015} as string,\n\t\t{\tTalouksien_keskikoko_2015} as string,\n\t\t{\tOmistusasunto_taloudet_2015} as string,\n\t\t{\tAsuntojen_keskipinta_ala_2015} as string,\n\t\t{\tTyolliset_2015} as string,\n\t\t{\tTyottomat_2015} as string,\n\t\t{\tAlempi_korkeakoulututkinto_2015} as string,\n\t\t{\tAsukkaiden_keskitulot_2015} as string,\n\t\t{\tAsukkaat_yhteensa_2016} as string,\n\t\t{\tKeski_ika_2016} as string,\n\t\t{\tTaloudet_yhteensa_2016} as string,\n\t\t{\tTalouksien_keskikoko_2016} as string,\n\t\t{\tOmistusasunto_taloudet_2016} as string,\n\t\t{\tAsuntojen_keskipinta_ala_2016} as string,\n\t\t{\tTyolliset_2016} as string,\n\t\t{\tTyottomat_2016} as string,\n\t\t{\tAlempi_korkeakoulututkinto_2016} as string,\n\t\t{\tAsukkaiden_keskitulot_2016} as string,\n\t\t{\tAsukkaat_yhteensa_2017} as string,\n\t\t{\tKeski_ika_2017} as string,\n\t\t{\tTaloudet_yhteensa_2017} as string,\n\t\t{\tTalouksien_keskikoko_2017} as string,\n\t\t{\tOmistusasunto_taloudet_2017} as string,\n\t\t{\tAsuntojen_keskipinta_ala_2017} as string,\n\t\t{\tAlempi_korkeakoulututkinto_2017} as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tpartitionFileNames:['demo_curated'],\n\tpartitionBy('hash', 1)) ~> sink6"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Demographics_2012_2017_SQL')]"
+			]
 		}
 	]
 }

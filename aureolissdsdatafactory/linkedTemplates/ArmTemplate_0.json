@@ -137,6 +137,40 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Python')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "DatabricksSparkPython1",
+						"type": "DatabricksSparkPython",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pythonFile": "dbfs:/PDF_read.py",
+							"parameters": []
+						},
+						"linkedServiceName": {
+							"referenceName": "SDS_DataBricks",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SDS_DataBricks')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BKT_BKT')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -927,7 +961,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Demo_curated')]",
+			"name": "[concat(parameters('factoryName'), '/Demographics_curated')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1544,351 +1578,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Demographics_2012_2017_SQL')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Postinumero",
-						"type": "varchar"
-					},
-					{
-						"name": "Alue",
-						"type": "varchar"
-					},
-					{
-						"name": "Kaupunki",
-						"type": "varchar"
-					},
-					{
-						"name": "Asukkaat_yhteensa_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Keski_ika_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Taloudet_yhteensa_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Talouksien_keskikoko_2012",
-						"type": "decimal",
-						"precision": 5,
-						"scale": 2
-					},
-					{
-						"name": "Omistusasunto_taloudet_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asuntojen_keskipinta_ala_2012",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Tyottomat_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Alempi_korkeakoulututkinto_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaiden_keskitulot_2012",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaat_yhteensa_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Keski_ika_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Taloudet_yhteensa_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Talouksien_keskikoko_2013",
-						"type": "decimal",
-						"precision": 5,
-						"scale": 2
-					},
-					{
-						"name": "Omistusasunto_taloudet_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asuntojen_keskipinta_ala_2013",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Tyottomat_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Alempi_korkeakoulututkinto_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaiden_keskitulot_2013",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaat_yhteensa_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Keski_ika_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Taloudet_yhteensa_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Talouksien_keskikoko_2014",
-						"type": "decimal",
-						"precision": 5,
-						"scale": 2
-					},
-					{
-						"name": "Omistusasunto_taloudet_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asuntojen_keskipinta_ala_2014",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Tyottomat_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Alempi_korkeakoulututkinto_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaiden_keskitulot_2014",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaat_yhteensa_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Keski_ika_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Taloudet_yhteensa_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Talouksien_keskikoko_2015",
-						"type": "decimal",
-						"precision": 5,
-						"scale": 2
-					},
-					{
-						"name": "Omistusasunto_taloudet_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asuntojen_keskipinta_ala_2015",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Tyottomat_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Alempi_korkeakoulututkinto_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaiden_keskitulot_2015",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaat_yhteensa_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Keski_ika_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Taloudet_yhteensa_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Talouksien_keskikoko_2016",
-						"type": "decimal",
-						"precision": 5,
-						"scale": 2
-					},
-					{
-						"name": "Omistusasunto_taloudet_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asuntojen_keskipinta_ala_2016",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Tyottomat_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Alempi_korkeakoulututkinto_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaiden_keskitulot_2016",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaat_yhteensa_2017",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Keski_ika_2017",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Taloudet_yhteensa_2017",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Talouksien_keskikoko_2017",
-						"type": "decimal",
-						"precision": 5,
-						"scale": 2
-					},
-					{
-						"name": "Omistusasunto_taloudet_2017",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asuntojen_keskipinta_ala_2017",
-						"type": "decimal",
-						"precision": 10,
-						"scale": 2
-					},
-					{
-						"name": "Tyolliset_2017",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Tyottomat_2017",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Alempi_korkeakoulututkinto_2017",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Asukkaiden_keskitulot_2017",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[Demographics_2012_2017]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
 		}
 	]
