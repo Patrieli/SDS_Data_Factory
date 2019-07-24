@@ -1,5 +1,5 @@
 {
-	"name": "Demo_curated",
+	"name": "Demographics_curated",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataLake_GEN1",
