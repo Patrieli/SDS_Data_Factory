@@ -35,6 +35,9 @@
 		"DataLake_GEN1_properties_typeProperties_url": {
 			"value": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
 		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"
+		},
 		"containerUri": {
 			"value": ""
 		},
