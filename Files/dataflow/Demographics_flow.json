@@ -51,7 +51,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "Demo_curated",
+						"referenceName": "Demographics_curated",
 						"type": "DatasetReference"
 					},
 					"name": "sink6"
