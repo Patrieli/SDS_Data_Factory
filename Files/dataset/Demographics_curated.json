@@ -24,215 +24,215 @@
 				"type": "String"
 			},
 			{
-				"name": "\tAlue",
+				"name": "Alue",
 				"type": "String"
 			},
 			{
-				"name": "\tKaupunki",
+				"name": "Kaupunki",
 				"type": "String"
 			},
 			{
-				"name": "\tTyolliset_2012",
+				"name": "Tyolliset_2012",
 				"type": "String"
 			},
 			{
-				"name": "\tTyottomat_2012",
+				"name": "Tyottomat_2012",
 				"type": "String"
 			},
 			{
-				"name": "\tAlempi_korkeakoulututkinto_2012",
+				"name": "Alempi_korkeakoulututkinto_2012",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaiden_keskitulot_2012",
+				"name": "Asukkaiden_keskitulot_2012",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaat_yhteensa_2013",
+				"name": "Asukkaat_yhteensa_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tKeski_ika_2013",
+				"name": "Keski_ika_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tTaloudet_yhteensa_2013",
+				"name": "Taloudet_yhteensa_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tTalouksien_keskikoko_2013",
+				"name": "Talouksien_keskikoko_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tOmistusasunto_taloudet_2013",
+				"name": "Omistusasunto_taloudet_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tAsuntojen_keskipinta_ala_2013",
+				"name": "Asuntojen_keskipinta_ala_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tTyolliset_2013",
+				"name": "Tyolliset_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tTyottomat_2013",
+				"name": "Tyottomat_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tAlempi_korkeakoulututkinto_2013",
+				"name": "Alempi_korkeakoulututkinto_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaiden_keskitulot_2013",
+				"name": "Asukkaiden_keskitulot_2013",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaat_yhteensa_2014",
+				"name": "Asukkaat_yhteensa_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tKeski_ika_2014",
+				"name": "Keski_ika_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tTaloudet_yhteensa_2014",
+				"name": "Taloudet_yhteensa_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tTalouksien_keskikoko_2014",
+				"name": "Talouksien_keskikoko_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tOmistusasunto_taloudet_2014",
+				"name": "Omistusasunto_taloudet_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tAsuntojen_keskipinta_ala_2014",
+				"name": "Asuntojen_keskipinta_ala_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tTyolliset_2014",
+				"name": "Tyolliset_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tTyottomat_2014",
+				"name": "Tyottomat_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tAlempi_korkeakoulututkinto_2014",
+				"name": "Alempi_korkeakoulututkinto_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaiden_keskitulot_2014",
+				"name": "Asukkaiden_keskitulot_2014",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaat_yhteensa_2015",
+				"name": "Asukkaat_yhteensa_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tKeski_ika_2015",
+				"name": "Keski_ika_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tTaloudet_yhteensa_2015",
+				"name": "Taloudet_yhteensa_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tTalouksien_keskikoko_2015",
+				"name": "Talouksien_keskikoko_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tOmistusasunto_taloudet_2015",
+				"name": "Omistusasunto_taloudet_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tAsuntojen_keskipinta_ala_2015",
+				"name": "Asuntojen_keskipinta_ala_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tTyolliset_2015",
+				"name": "Tyolliset_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tTyottomat_2015",
+				"name": "Tyottomat_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tAlempi_korkeakoulututkinto_2015",
+				"name": "Alempi_korkeakoulututkinto_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaiden_keskitulot_2015",
+				"name": "Asukkaiden_keskitulot_2015",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaat_yhteensa_2016",
+				"name": "Asukkaat_yhteensa_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tKeski_ika_2016",
+				"name": "Keski_ika_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tTaloudet_yhteensa_2016",
+				"name": "Taloudet_yhteensa_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tTalouksien_keskikoko_2016",
+				"name": "Talouksien_keskikoko_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tOmistusasunto_taloudet_2016",
+				"name": "Omistusasunto_taloudet_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tAsuntojen_keskipinta_ala_2016",
+				"name": "Asuntojen_keskipinta_ala_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tTyolliset_2016",
+				"name": "Tyolliset_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tTyottomat_2016",
+				"name": "Tyottomat_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tAlempi_korkeakoulututkinto_2016",
+				"name": "Alempi_korkeakoulututkinto_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaiden_keskitulot_2016",
+				"name": "Asukkaiden_keskitulot_2016",
 				"type": "String"
 			},
 			{
-				"name": "\tAsukkaat_yhteensa_2017",
+				"name": "Asukkaat_yhteensa_2017",
 				"type": "String"
 			},
 			{
-				"name": "\tKeski_ika_2017",
+				"name": "Keski_ika_2017",
 				"type": "String"
 			},
 			{
-				"name": "\tTaloudet_yhteensa_2017",
+				"name": "Taloudet_yhteensa_2017",
 				"type": "String"
 			},
 			{
-				"name": "\tTalouksien_keskikoko_2017",
+				"name": "Talouksien_keskikoko_2017",
 				"type": "String"
 			},
 			{
-				"name": "\tOmistusasunto_taloudet_2017",
+				"name": "Omistusasunto_taloudet_2017",
 				"type": "String"
 			},
 			{
-				"name": "\tAsuntojen_keskipinta_ala_2017",
+				"name": "Asuntojen_keskipinta_ala_2017",
 				"type": "String"
 			},
 			{
-				"name": "\tAlempi_korkeakoulututkinto_2017",
+				"name": "Alempi_korkeakoulututkinto_2017",
 				"type": "String"
 			}
 		]
