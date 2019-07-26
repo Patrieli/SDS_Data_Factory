@@ -14,8 +14,62 @@
 			},
 			"columnDelimiter": ";",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Aluejako",
+				"type": "String"
+			},
+			{
+				"name": "Neliohinta_2015",
+				"type": "String"
+			},
+			{
+				"name": "Keskipinta_ala_2015",
+				"type": "String"
+			},
+			{
+				"name": "Kauppojen_lukumaara_2015",
+				"type": "String"
+			},
+			{
+				"name": "Neliohinta_2016",
+				"type": "String"
+			},
+			{
+				"name": "Keskipinta_ala_2016",
+				"type": "String"
+			},
+			{
+				"name": "Kauppojen_lukumaara_2016",
+				"type": "String"
+			},
+			{
+				"name": "Neliohinta_2017",
+				"type": "String"
+			},
+			{
+				"name": "Keskipinta_ala_2017",
+				"type": "String"
+			},
+			{
+				"name": "Kauppojen_lukumaara_2017",
+				"type": "String"
+			},
+			{
+				"name": "Neliohinta_2018",
+				"type": "String"
+			},
+			{
+				"name": "Keskipinta_ala_2018",
+				"type": "String"
+			},
+			{
+				"name": "Kauppojen_lukumaara_2018",
+				"type": "String"
+			}
+		]
 	}
 }
