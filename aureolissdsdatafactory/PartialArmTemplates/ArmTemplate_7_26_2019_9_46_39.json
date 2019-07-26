@@ -1,0 +1,616 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "aureolissdsdatafactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/BKT_currated')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLake_GEN1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "curated"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Alue",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2000",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2001",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2002",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2003",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2004",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2005",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2006",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2007",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2008",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2009",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2010",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2011",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2012",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2013",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2014",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2015",
+						"type": "String"
+					},
+					{
+						"name": "BKT_2016",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2000",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2001",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2002",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2003",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2004",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2005",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2006",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2007",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2008",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2009",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2010",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2011",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2012",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2013",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2014",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2015",
+						"type": "String"
+					},
+					{
+						"name": "Tyolliset_2016",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2000",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2001",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2002",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2003",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2004",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2005",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2006",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2007",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2008",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2009",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2010",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2011",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2012",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2013",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2014",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2015",
+						"type": "String"
+					},
+					{
+						"name": "Vakiluku_2016",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLake_GEN1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Omakotitalojen_hinnat_2015_2018.csv",
+						"fileSystem": "realestatedata1"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasunto_currated')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLake_GEN1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "curated"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Postinumero",
+						"type": "String"
+					},
+					{
+						"name": "Talotyyppi",
+						"type": "String"
+					},
+					{
+						"name": "Rakennusvuosi",
+						"type": "String"
+					},
+					{
+						"name": "Alue",
+						"type": "String"
+					},
+					{
+						"name": "Kaupunki",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2010",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2010",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2011",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2011",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2012",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2012",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2013",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2013",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2014",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2014",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2015",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2015",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2016",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2016",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2017",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2017",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2018",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2018",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/omakotitalo_currated')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLake_GEN1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "curated"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Aluejako",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2015",
+						"type": "String"
+					},
+					{
+						"name": "Keskipinta_ala_2015",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2015",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2016",
+						"type": "String"
+					},
+					{
+						"name": "Keskipinta_ala_2016",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2016",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2017",
+						"type": "String"
+					},
+					{
+						"name": "Keskipinta_ala_2017",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2017",
+						"type": "String"
+					},
+					{
+						"name": "Neliohinta_2018",
+						"type": "String"
+					},
+					{
+						"name": "Keskipinta_ala_2018",
+						"type": "String"
+					},
+					{
+						"name": "Kauppojen_lukumaara_2018",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BKT_flow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Source 2-4 load data three times from the same file, to create\ncolumns for each variable for every year. Select 6-8 drops unnecessary columns. Then (left) join the streams together in join 1 and 2. \n\nIssues:\nSelect 9 Alue-field mapping keeps dropping by itself.\nThe fields seems to be strings, but are actually decimals in SQL.",
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "BKT_csv",
+								"type": "DatasetReference"
+							},
+							"name": "source2"
+						},
+						{
+							"dataset": {
+								"referenceName": "BKT_csv",
+								"type": "DatasetReference"
+							},
+							"name": "source3"
+						},
+						{
+							"dataset": {
+								"referenceName": "BKT_csv",
+								"type": "DatasetReference"
+							},
+							"name": "source4"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "BKT_SQL",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "BKT_currated",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
+						}
+					],
+					"script": "\n\nsource(output(\n\t\tTaloustoimi as string,\n\t\tAlue as string,\n\t\tTiedot as string,\n\t\t{2000} as string,\n\t\t{2001} as string,\n\t\t{2002} as string,\n\t\t{2003} as string,\n\t\t{2004} as string,\n\t\t{2005} as string,\n\t\t{2006} as string,\n\t\t{2007} as string,\n\t\t{2008} as string,\n\t\t{2009} as string,\n\t\t{2010} as string,\n\t\t{2011} as string,\n\t\t{2012} as string,\n\t\t{2013} as string,\n\t\t{2014} as string,\n\t\t{2015} as string,\n\t\t{2016} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source2\nsource(output(\n\t\tTaloustoimi as string,\n\t\tAlue as string,\n\t\tTiedot as string,\n\t\t{2000} as string,\n\t\t{2001} as string,\n\t\t{2002} as string,\n\t\t{2003} as string,\n\t\t{2004} as string,\n\t\t{2005} as string,\n\t\t{2006} as string,\n\t\t{2007} as string,\n\t\t{2008} as string,\n\t\t{2009} as string,\n\t\t{2010} as string,\n\t\t{2011} as string,\n\t\t{2012} as string,\n\t\t{2013} as string,\n\t\t{2014} as string,\n\t\t{2015} as string,\n\t\t{2016} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source3\nsource(output(\n\t\tTaloustoimi as string,\n\t\tAlue as string,\n\t\tTiedot as string,\n\t\t{2000} as string,\n\t\t{2001} as string,\n\t\t{2002} as string,\n\t\t{2003} as string,\n\t\t{2004} as string,\n\t\t{2005} as string,\n\t\t{2006} as string,\n\t\t{2007} as string,\n\t\t{2008} as string,\n\t\t{2009} as string,\n\t\t{2010} as string,\n\t\t{2011} as string,\n\t\t{2012} as string,\n\t\t{2013} as string,\n\t\t{2014} as string,\n\t\t{2015} as string,\n\t\t{2016} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source4\nsource4 filter(Taloustoimi == 'B1GMHT Bruttokansantuote') ~> Filter1\nsource2 filter(Taloustoimi == 'E1_1H Tyolliset, henkea') ~> Filter2\nsource3 filter(Taloustoimi == 'KVAKI Keskivakiluku (henkea)') ~> Filter3\nFilter1 select(mapColumn(\n\t\tAlue,\n\t\tBKT_2000 = {2000},\n\t\tBKT_2001 = {2001},\n\t\tBKT_2002 = {2002},\n\t\tBKT_2003 = {2003},\n\t\tBKT_2004 = {2004},\n\t\tBKT_2005 = {2005},\n\t\tBKT_2006 = {2006},\n\t\tBKT_2007 = {2007},\n\t\tBKT_2008 = {2008},\n\t\tBKT_2009 = {2009},\n\t\tBKT_2010 = {2010},\n\t\tBKT_2011 = {2011},\n\t\tBKT_2012 = {2012},\n\t\tBKT_2013 = {2013},\n\t\tBKT_2014 = {2014},\n\t\tBKT_2015 = {2015},\n\t\tBKT_2016 = {2016}\n\t)) ~> Select6\nFilter2 select(mapColumn(\n\t\tAlue,\n\t\tTyolliset_2000 = {2000},\n\t\tTyolliset_2001 = {2001},\n\t\tTyolliset_2002 = {2002},\n\t\tTyolliset_2003 = {2003},\n\t\tTyolliset_2004 = {2004},\n\t\tTyolliset_2005 = {2005},\n\t\tTyolliset_2006 = {2006},\n\t\tTyolliset_2007 = {2007},\n\t\tTyolliset_2008 = {2008},\n\t\tTyolliset_2009 = {2009},\n\t\tTyolliset_2010 = {2010},\n\t\tTyolliset_2011 = {2011},\n\t\tTyolliset_2012 = {2012},\n\t\tTyolliset_2013 = {2013},\n\t\tTyolliset_2014 = {2014},\n\t\tTyolliset_2015 = {2015},\n\t\tTyolliset_2016 = {2016}\n\t)) ~> Select7\nSelect6, Select7 join(Select6@Alue == Select7@Alue,\n\tjoinType:'left',\n\tbroadcast: 'none')~> Join1\nFilter3 select(mapColumn(\n\t\tAlue,\n\t\tVakiluku_2000 = {2000},\n\t\tVakiluku_2001 = {2001},\n\t\tVakiluku_2002 = {2002},\n\t\tVakiluku_2003 = {2003},\n\t\tVakiluku_2004 = {2004},\n\t\tVakiluku_2005 = {2005},\n\t\tVakiluku_2006 = {2006},\n\t\tVakiluku_2007 = {2007},\n\t\tVakiluku_2008 = {2008},\n\t\tVakiluku_2009 = {2009},\n\t\tVakiluku_2010 = {2010},\n\t\tVakiluku_2011 = {2011},\n\t\tVakiluku_2012 = {2012},\n\t\tVakiluku_2013 = {2013},\n\t\tVakiluku_2014 = {2014},\n\t\tVakiluku_2015 = {2015},\n\t\tVakiluku_2016 = {2016}\n\t)) ~> Select8\nJoin1, Select8 join(Select6@Alue == Select8@Alue,\n\tjoinType:'left',\n\tbroadcast: 'none')~> Join2\nJoin2 select(mapColumn(\n\t\tAlue = Select6@Alue,\n\t\tBKT_2000,\n\t\tBKT_2001,\n\t\tBKT_2002,\n\t\tBKT_2003,\n\t\tBKT_2004,\n\t\tBKT_2005,\n\t\tBKT_2006,\n\t\tBKT_2007,\n\t\tBKT_2008,\n\t\tBKT_2009,\n\t\tBKT_2010,\n\t\tBKT_2011,\n\t\tBKT_2012,\n\t\tBKT_2013,\n\t\tBKT_2014,\n\t\tBKT_2015,\n\t\tBKT_2016,\n\t\tTyolliset_2000,\n\t\tTyolliset_2001,\n\t\tTyolliset_2002,\n\t\tTyolliset_2003,\n\t\tTyolliset_2004,\n\t\tTyolliset_2005,\n\t\tTyolliset_2006,\n\t\tTyolliset_2007,\n\t\tTyolliset_2008,\n\t\tTyolliset_2009,\n\t\tTyolliset_2010,\n\t\tTyolliset_2011,\n\t\tTyolliset_2012,\n\t\tTyolliset_2013,\n\t\tTyolliset_2014,\n\t\tTyolliset_2015,\n\t\tTyolliset_2016,\n\t\tVakiluku_2000,\n\t\tVakiluku_2001,\n\t\tVakiluku_2002,\n\t\tVakiluku_2003,\n\t\tVakiluku_2004,\n\t\tVakiluku_2005,\n\t\tVakiluku_2006,\n\t\tVakiluku_2007,\n\t\tVakiluku_2008,\n\t\tVakiluku_2009,\n\t\tVakiluku_2010,\n\t\tVakiluku_2011,\n\t\tVakiluku_2012,\n\t\tVakiluku_2013,\n\t\tVakiluku_2014,\n\t\tVakiluku_2015,\n\t\tVakiluku_2016\n\t)) ~> Select9\nSelect9 sink(input(\n\t\tAlue as string,\n\t\tBKT_2000 as decimal(20,2),\n\t\tBKT_2001 as decimal(20,2),\n\t\tBKT_2002 as decimal(20,2),\n\t\tBKT_2003 as decimal(20,2),\n\t\tBKT_2004 as decimal(20,2),\n\t\tBKT_2005 as decimal(20,2),\n\t\tBKT_2006 as decimal(20,2),\n\t\tBKT_2007 as decimal(20,2),\n\t\tBKT_2008 as decimal(20,2),\n\t\tBKT_2009 as decimal(20,2),\n\t\tBKT_2010 as decimal(20,2),\n\t\tBKT_2011 as decimal(20,2),\n\t\tBKT_2012 as decimal(20,2),\n\t\tBKT_2013 as decimal(20,2),\n\t\tBKT_2014 as decimal(20,2),\n\t\tBKT_2015 as decimal(20,2),\n\t\tBKT_2016 as decimal(20,2),\n\t\tTyolliset_2000 as decimal(20,2),\n\t\tTyolliset_2001 as decimal(20,2),\n\t\tTyolliset_2002 as decimal(20,2),\n\t\tTyolliset_2003 as decimal(20,2),\n\t\tTyolliset_2004 as decimal(20,2),\n\t\tTyolliset_2005 as decimal(20,2),\n\t\tTyolliset_2006 as decimal(20,2),\n\t\tTyolliset_2007 as decimal(20,2),\n\t\tTyolliset_2008 as decimal(20,2),\n\t\tTyolliset_2009 as decimal(20,2),\n\t\tTyolliset_2010 as decimal(20,2),\n\t\tTyolliset_2011 as decimal(20,2),\n\t\tTyolliset_2012 as decimal(20,2),\n\t\tTyolliset_2013 as decimal(20,2),\n\t\tTyolliset_2014 as decimal(20,2),\n\t\tTyolliset_2015 as decimal(20,2),\n\t\tTyolliset_2016 as decimal(20,2),\n\t\tVakiluku_2000 as decimal(20,2),\n\t\tVakiluku_2001 as decimal(20,2),\n\t\tVakiluku_2002 as decimal(20,2),\n\t\tVakiluku_2003 as decimal(20,2),\n\t\tVakiluku_2004 as decimal(20,2),\n\t\tVakiluku_2005 as decimal(20,2),\n\t\tVakiluku_2006 as decimal(20,2),\n\t\tVakiluku_2007 as decimal(20,2),\n\t\tVakiluku_2008 as decimal(20,2),\n\t\tVakiluku_2009 as decimal(20,2),\n\t\tVakiluku_2010 as decimal(20,2),\n\t\tVakiluku_2011 as decimal(20,2),\n\t\tVakiluku_2012 as decimal(20,2),\n\t\tVakiluku_2013 as decimal(20,2),\n\t\tVakiluku_2014 as decimal(20,2),\n\t\tVakiluku_2015 as decimal(20,2),\n\t\tVakiluku_2016 as decimal(20,2)\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true) ~> sink2\nSelect9 sink(input(\n\t\tAlue as string,\n\t\tBKT_2000 as string,\n\t\tBKT_2001 as string,\n\t\tBKT_2002 as string,\n\t\tBKT_2003 as string,\n\t\tBKT_2004 as string,\n\t\tBKT_2005 as string,\n\t\tBKT_2006 as string,\n\t\tBKT_2007 as string,\n\t\tBKT_2008 as string,\n\t\tBKT_2009 as string,\n\t\tBKT_2010 as string,\n\t\tBKT_2011 as string,\n\t\tBKT_2012 as string,\n\t\tBKT_2013 as string,\n\t\tBKT_2014 as string,\n\t\tBKT_2015 as string,\n\t\tBKT_2016 as string,\n\t\tTyolliset_2000 as string,\n\t\tTyolliset_2001 as string,\n\t\tTyolliset_2002 as string,\n\t\tTyolliset_2003 as string,\n\t\tTyolliset_2004 as string,\n\t\tTyolliset_2005 as string,\n\t\tTyolliset_2006 as string,\n\t\tTyolliset_2007 as string,\n\t\tTyolliset_2008 as string,\n\t\tTyolliset_2009 as string,\n\t\tTyolliset_2010 as string,\n\t\tTyolliset_2011 as string,\n\t\tTyolliset_2012 as string,\n\t\tTyolliset_2013 as string,\n\t\tTyolliset_2014 as string,\n\t\tTyolliset_2015 as string,\n\t\tTyolliset_2016 as string,\n\t\tVakiluku_2000 as string,\n\t\tVakiluku_2001 as string,\n\t\tVakiluku_2002 as string,\n\t\tVakiluku_2003 as string,\n\t\tVakiluku_2004 as string,\n\t\tVakiluku_2005 as string,\n\t\tVakiluku_2006 as string,\n\t\tVakiluku_2007 as string,\n\t\tVakiluku_2008 as string,\n\t\tVakiluku_2009 as string,\n\t\tVakiluku_2010 as string,\n\t\tVakiluku_2011 as string,\n\t\tVakiluku_2012 as string,\n\t\tVakiluku_2013 as string,\n\t\tVakiluku_2014 as string,\n\t\tVakiluku_2015 as string,\n\t\tVakiluku_2016 as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false) ~> sink3"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/BKT_currated')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Omakotitalo_flow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Read data from Omakotitalohinnat -file and load the data to SQL table.",
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "OKThinnat2015",
+								"type": "DatasetReference"
+							},
+							"name": "Omakotitalohinnat2015"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Omakotitalojen_hinnat_2015_2018_SQL",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						},
+						{
+							"dataset": {
+								"referenceName": "omakotitalo_currated",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						}
+					],
+					"script": "\n\nsource(output(\n\t\tAluejako as string,\n\t\t{2015 Neliohinta (EUR/m2)} as decimal(20,2),\n\t\t{2015 Keskipinta-ala m2} as decimal(20,2),\n\t\t{2015 Kauppojen lukumaara} as integer,\n\t\t{2016 Neliohinta (EUR/m2)} as decimal(20,2),\n\t\t{2016 Keskipinta-ala m2} as decimal(20,2),\n\t\t{2016 Kauppojen lukumaara} as integer,\n\t\t{2017 Neliohinta (EUR/m2)} as decimal(20,2),\n\t\t{2017 Keskipinta-ala m2} as decimal(20,2),\n\t\t{2017 Kauppojen lukumaara} as integer,\n\t\t{2018 Neliohinta (EUR/m2)} as decimal(20,2),\n\t\t{2018 Keskipinta-ala m2} as decimal(20,2),\n\t\t{2018 Kauppojen lukumaara} as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> Omakotitalohinnat2015\nOmakotitalohinnat2015 select() ~> Select4\nSelect4 sink(input(\n\t\tAluejako as string,\n\t\tNeliohinta_2015 as decimal(20,2),\n\t\tKeskipinta_ala_2015 as decimal(20,2),\n\t\tKauppojen_lukumaara_2015 as integer,\n\t\tNeliohinta_2016 as decimal(20,2),\n\t\tKeskipinta_ala_2016 as decimal(20,2),\n\t\tKauppojen_lukumaara_2016 as integer,\n\t\tNeliohinta_2017 as decimal(20,2),\n\t\tKeskipinta_ala_2017 as decimal(20,2),\n\t\tKauppojen_lukumaara_2017 as integer,\n\t\tNeliohinta_2018 as decimal(20,2),\n\t\tKeskipinta_ala_2018 as decimal(20,2),\n\t\tKauppojen_lukumaara_2018 as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tmapColumn(\n\t\tAluejako,\n\t\tNeliohinta_2015 = {2015 Neliohinta (EUR/m2)},\n\t\tKeskipinta_ala_2015 = {2015 Keskipinta-ala m2},\n\t\tKauppojen_lukumaara_2015 = {2015 Kauppojen lukumaara},\n\t\tNeliohinta_2016 = {2016 Neliohinta (EUR/m2)},\n\t\tKeskipinta_ala_2016 = {2016 Keskipinta-ala m2},\n\t\tKauppojen_lukumaara_2016 = {2016 Kauppojen lukumaara},\n\t\tNeliohinta_2017 = {2017 Neliohinta (EUR/m2)},\n\t\tKeskipinta_ala_2017 = {2017 Keskipinta-ala m2},\n\t\tKauppojen_lukumaara_2017 = {2017 Keskipinta-ala m2},\n\t\tNeliohinta_2018 = {2018 Neliohinta (EUR/m2)},\n\t\tKeskipinta_ala_2018 = {2018 Keskipinta-ala m2},\n\t\tKauppojen_lukumaara_2018 = {2018 Kauppojen lukumaara}\n\t)) ~> sink1\nSelect4 sink(input(\n\t\tAluejako as string,\n\t\tNeliohinta_2015 as string,\n\t\tKeskipinta_ala_2015 as string,\n\t\tKauppojen_lukumaara_2015 as string,\n\t\tNeliohinta_2016 as string,\n\t\tKeskipinta_ala_2016 as string,\n\t\tKauppojen_lukumaara_2016 as string,\n\t\tNeliohinta_2017 as string,\n\t\tKeskipinta_ala_2017 as string,\n\t\tKauppojen_lukumaara_2017 as string,\n\t\tNeliohinta_2018 as string,\n\t\tKeskipinta_ala_2018 as string,\n\t\tKauppojen_lukumaara_2018 as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false) ~> sink2"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/omakotitalo_currated')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasunto_flow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Read osakeasunto data from two files and join them together. Source files separated as they did not fit into one from Tilastokeskus. DerivedColumn2 has derivation for Postinumero, Alue and Kaupunki using Data Factory functions.",
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Osakeasunnot_2015_2018_csv",
+								"type": "DatasetReference"
+							},
+							"name": "Osakeaasuntohinnat2015"
+						},
+						{
+							"dataset": {
+								"referenceName": "Osakeasuntohinnat2010",
+								"type": "DatasetReference"
+							},
+							"name": "Osakeasuntohinnat2010"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Osakeasuntojen_hinnat_2010_2018",
+								"type": "DatasetReference"
+							},
+							"name": "sink4"
+						},
+						{
+							"dataset": {
+								"referenceName": "Osakeasunto_currated",
+								"type": "DatasetReference"
+							},
+							"name": "sink5"
+						}
+					],
+					"script": "\n\nsource(output(\n\t\tPostinumero as string,\n\t\tTalotyyppi as string,\n\t\tRakennusvuosi as string,\n\t\t{2015 Neliohinta (EUR/m2)} as decimal(10,0),\n\t\t{2015 Kauppojen lukumaara} as integer,\n\t\t{2016 Neliohinta (EUR/m2)} as decimal(10,0),\n\t\t{2016 Kauppojen lukumaara} as integer,\n\t\t{2017 Neliohinta (EUR/m2)} as decimal(10,0),\n\t\t{2017 Kauppojen lukumaara} as integer,\n\t\t{2018 Neliohinta (EUR/m2)} as decimal(10,0),\n\t\t{2018 Kauppojen lukumaara} as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> Osakeaasuntohinnat2015\nsource(output(\n\t\tPostinumero as string,\n\t\tTalotyyppi as string,\n\t\tRakennusvuosi as string,\n\t\t{2010 Neliohinta (EUR/m2)} as short,\n\t\t{2010 Kauppojen lukumaara} as short,\n\t\t{2011 Neliohinta (EUR/m2)} as short,\n\t\t{2011 Kauppojen lukumaara} as short,\n\t\t{2012 Neliohinta (EUR/m2)} as short,\n\t\t{2012 Kauppojen lukumaara} as short,\n\t\t{2013 Neliohinta (EUR/m2)} as short,\n\t\t{2013 Kauppojen lukumaara} as short,\n\t\t{2014 Neliohinta (EUR/m2)} as short,\n\t\t{2014 Kauppojen lukumaara} as short\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100) ~> Osakeasuntohinnat2010\nOsakeaasuntohinnat2015 select(mapColumn(\n\t\tPostinumero,\n\t\tTalotyyppi,\n\t\tRakennusvuosi,\n\t\t{2015 Neliohinta} = {2015 Neliohinta (EUR/m2)},\n\t\t{2015 Kauppojen lukumaara},\n\t\t{2016 Neliohinta} = {2016 Neliohinta (EUR/m2)},\n\t\t{2016 Kauppojen lukumaara},\n\t\t{2017 Neliohinta} = {2017 Neliohinta (EUR/m2)},\n\t\t{2017 Kauppojen lukumaara},\n\t\t{2018 Neliohinta} = {2018 Neliohinta (EUR/m2)},\n\t\t{2018 Kauppojen lukumaara}\n\t)) ~> Select2\nSelect2 derive(Postinumero = substring(Postinumero, 1, 5),\n\t\tAlue = trim(substring(Postinumero, instr(Postinumero, ' '), instr(Postinumero, '(') - instr(Postinumero, ' '))),\n\t\tKaupunki = trim(substring(Postinumero, instr(Postinumero, '('), 50),' ())')) ~> DerivedColumn2\nOsakeasuntohinnat2010 select() ~> Select3\nDerivedColumn2, Select3 join(DerivedColumn2@Postinumero == substring(Select3@Postinumero, 1, 5)\n\t&& Select2@Talotyyppi == Select3@Talotyyppi\n\t&& Select2@Rakennusvuosi == Select3@Rakennusvuosi,\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join1\nJoin1 select(mapColumn(\n\t\tPostinumero = DerivedColumn2@Postinumero,\n\t\tAlue,\n\t\tKaupunki,\n\t\tTalotyyppi = Select2@Talotyyppi,\n\t\tRakennusvuosi = Select2@Rakennusvuosi,\n\t\tNeliohinta_2015 = {2015 Neliohinta},\n\t\tKauppojen_lukumaara_2015 = {2015 Kauppojen lukumaara},\n\t\tNeliohinta_2016 = {2016 Neliohinta},\n\t\tKauppojen_lukumaara_2016 = {2016 Kauppojen lukumaara},\n\t\tNeliohinta_2017 = {2017 Neliohinta},\n\t\tKauppojen_lukumaara_2017 = {2017 Kauppojen lukumaara},\n\t\tNeliohinta_2018 = {2018 Neliohinta},\n\t\tKauppojen_lukumaara_2018 = {2018 Kauppojen lukumaara},\n\t\tNeliohinta_2010 = {2010 Neliohinta (EUR/m2)},\n\t\tKauppojen_lukumaara_2010 = {2010 Kauppojen lukumaara},\n\t\tNeliohinta_2011 = {2011 Neliohinta (EUR/m2)},\n\t\tKauppojen_lukumaara_2011 = {2011 Kauppojen lukumaara},\n\t\tNeliohinta_2012 = {2012 Neliohinta (EUR/m2)},\n\t\tKauppojen_lukumaara_2012 = {2012 Kauppojen lukumaara},\n\t\tNeliohinta_2013 = {2013 Neliohinta (EUR/m2)},\n\t\tKauppojen_lukumaara_2013 = {2013 Kauppojen lukumaara},\n\t\tNeliohinta_2014 = {2014 Neliohinta (EUR/m2)},\n\t\tKauppojen_lukumaara_2014 = {2014 Kauppojen lukumaara}\n\t),\n\tskipDuplicateMapOutputs: true) ~> Select7\nSelect7 sink(input(\n\t\tPostinumero as string,\n\t\tAlue as string,\n\t\tKaupunki as string,\n\t\tTalotyyppi as string,\n\t\tRakennusvuosi as string,\n\t\tNeliohinta_2010 as decimal(20,2),\n\t\tKauppojen_lukumaara_2010 as integer,\n\t\tNeliohinta_2011 as decimal(20,2),\n\t\tKauppojen_lukumaara_2011 as integer,\n\t\tNeliohinta_2012 as decimal(20,2),\n\t\tKauppojen_lukumaara_2012 as integer,\n\t\tNeliohinta_2013 as decimal(20,2),\n\t\tKauppojen_lukumaara_2013 as integer,\n\t\tNeliohinta_2014 as decimal(20,2),\n\t\tKauppojen_lukumaara_2014 as integer,\n\t\tNeliohinta_2015 as decimal(20,2),\n\t\tKauppojen_lukumaara_2015 as integer,\n\t\tNeliohinta_2016 as decimal(20,2),\n\t\tKauppojen_lukumaara_2016 as integer,\n\t\tNeliohinta_2017 as decimal(20,2),\n\t\tKauppojen_lukumaara_2017 as integer,\n\t\tNeliohinta_2018 as decimal(20,2),\n\t\tKauppojen_lukumaara_2018 as integer\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tkeys:['Postinumero','Talotyyppi','Rakennusvuosi']) ~> sink4\nSelect7 sink(input(\n\t\tPostinumero as string,\n\t\tTalotyyppi as string,\n\t\tRakennusvuosi as string,\n\t\tAlue as string,\n\t\tKaupunki as string,\n\t\tNeliohinta_2010 as string,\n\t\tKauppojen_lukumaara_2010 as string,\n\t\tNeliohinta_2011 as string,\n\t\tKauppojen_lukumaara_2011 as string,\n\t\tNeliohinta_2012 as string,\n\t\tKauppojen_lukumaara_2012 as string,\n\t\tNeliohinta_2013 as string,\n\t\tKauppojen_lukumaara_2013 as string,\n\t\tNeliohinta_2014 as string,\n\t\tKauppojen_lukumaara_2014 as string,\n\t\tNeliohinta_2015 as string,\n\t\tKauppojen_lukumaara_2015 as string,\n\t\tNeliohinta_2016 as string,\n\t\tKauppojen_lukumaara_2016 as string,\n\t\tNeliohinta_2017 as string,\n\t\tKauppojen_lukumaara_2017 as string,\n\t\tNeliohinta_2018 as string,\n\t\tKauppojen_lukumaara_2018 as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false) ~> sink5"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Osakeasunto_currated')]"
+			]
+		}
+	]
+}

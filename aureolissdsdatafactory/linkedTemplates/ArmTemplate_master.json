@@ -120,9 +120,6 @@
 					"Azure_folder_password": {
 						"value": "[parameters('Azure_folder_password')]"
 					},
-					"sdsirserver_connectionString": {
-						"value": "[parameters('sdsirserver_connectionString')]"
-					},
 					"Azure_folder_properties_typeProperties_userId": {
 						"value": "[parameters('Azure_folder_properties_typeProperties_userId')]"
 					}
@@ -145,6 +142,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"sdsirserver_connectionString": {
+						"value": "[parameters('sdsirserver_connectionString')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
