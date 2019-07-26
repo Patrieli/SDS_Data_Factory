@@ -14,8 +14,218 @@
 			},
 			"columnDelimiter": ";",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "Alue",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2000",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2001",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2002",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2003",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2004",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2005",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2006",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2007",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2008",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2009",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2010",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2011",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2012",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2013",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2014",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2015",
+				"type": "String"
+			},
+			{
+				"name": "BKT_2016",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2000",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2001",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2002",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2003",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2004",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2005",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2006",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2007",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2008",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2009",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2010",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2011",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2012",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2013",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2014",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2015",
+				"type": "String"
+			},
+			{
+				"name": "Tyolliset_2016",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2000",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2001",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2002",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2003",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2004",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2005",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2006",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2007",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2008",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2009",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2010",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2011",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2012",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2013",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2014",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2015",
+				"type": "String"
+			},
+			{
+				"name": "Vakiluku_2016",
+				"type": "String"
+			}
+		]
 	}
 }
