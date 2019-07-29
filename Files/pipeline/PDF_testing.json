@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "PDF_read",
+						"referenceName": "PDF_read_testing",
 						"type": "DataFlowReference"
 					}
 				}
