@@ -1,5 +1,5 @@
 {
-	"name": "PDF_read",
+	"name": "PDF_read_testing",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
