@@ -30,7 +30,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "Osakeasunto_currated",
+						"referenceName": "DelimitedText4",
 						"type": "DatasetReference"
 					},
 					"name": "sink5"
