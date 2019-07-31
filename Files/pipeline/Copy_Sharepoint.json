@@ -18,8 +18,9 @@
 					"source": {
 						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "HttpReadSetting",
-							"requestMethod": "GET"
+							"type": "FileServerReadSetting",
+							"recursive": true,
+							"wildcardFileName": "*.*"
 						},
 						"formatSettings": {
 							"type": "DelimitedTextReadSetting"
@@ -40,7 +41,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SharePoint",
+						"referenceName": "Share",
 						"type": "DatasetReference"
 					}
 				],
