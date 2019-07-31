@@ -9,112 +9,112 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "Lapsen_koko_nimi",
+				"name": "Lapsen_koko_nimi__Den_minderårigas_fullständiga_namn",
 				"type": "varchar"
 			},
 			{
-				"name": "Ikä",
+				"name": "Ikä__Ålder",
 				"type": "varchar"
 			},
 			{
-				"name": "Syntymäaika",
+				"name": "Syntymäaika__Födelsedatum",
 				"type": "varchar"
 			},
 			{
-				"name": "Lapsen_koko_nimi2",
+				"name": "Lapsen_koko_nimi__Den_minderårigas_fullständiga_namn_2",
 				"type": "varchar"
 			},
 			{
-				"name": "Ikä2",
+				"name": "Ikä__Ålder_2",
 				"type": "varchar"
 			},
 			{
-				"name": "Syntymäaika2",
+				"name": "Syntymäaika__Födelsedatum_2",
 				"type": "varchar"
 			},
 			{
-				"name": "Varausnumero",
+				"name": "Varausnumero__Bokningsnummer",
 				"type": "varchar"
 			},
 			{
-				"name": "Laiva1",
+				"name": "Laiva__Fartayg1",
 				"type": "varchar"
 			},
 			{
-				"name": "Lähtöpäivä1",
+				"name": "Lähtöpäivä__Avresedatum1",
 				"type": "varchar"
 			},
 			{
-				"name": "Mistä1",
+				"name": "Mistä__Från1",
 				"type": "varchar"
 			},
 			{
-				"name": "Mihin1",
+				"name": "Laiva__Fartyg2",
 				"type": "varchar"
 			},
 			{
-				"name": "Laiva2",
+				"name": "Lähtöpäivä__Avresedatum2",
 				"type": "varchar"
 			},
 			{
-				"name": "Lähtöpäivä2",
+				"name": "Mistä__Från2",
 				"type": "varchar"
 			},
 			{
-				"name": "Mistä2",
+				"name": "Laiva__Fartyg3",
 				"type": "varchar"
 			},
 			{
-				"name": "Mihin2",
+				"name": "Lähtöpäivä__Avresedatum3",
 				"type": "varchar"
 			},
 			{
-				"name": "Laiva3",
+				"name": "Mistä__Från3",
 				"type": "varchar"
 			},
 			{
-				"name": "Lähtöpäivä3",
+				"name": "Nimi__Namn",
 				"type": "varchar"
 			},
 			{
-				"name": "Mistä3",
+				"name": "Postiosoite__Adress",
 				"type": "varchar"
 			},
 			{
-				"name": "Mihin3",
+				"name": "Puhelinnumero__Telefon",
 				"type": "varchar"
 			},
 			{
-				"name": "Huoltajan_nimi",
+				"name": "Nimi__Namn_2",
 				"type": "varchar"
 			},
 			{
-				"name": "Postiosoite",
+				"name": "Postiosoite__Adress_2",
 				"type": "varchar"
 			},
 			{
-				"name": "Puhelinnumero",
+				"name": "Puhelinnumero__Telefon_2",
 				"type": "varchar"
 			},
 			{
-				"name": "Valtuutetun_nimi2",
+				"name": "Paikka_ja_päivämäärä__Datum_och_ort",
 				"type": "varchar"
 			},
 			{
-				"name": "Postiosoite2",
+				"name": "Mihin__Till_1",
 				"type": "varchar"
 			},
 			{
-				"name": "Puhelinnumero2",
+				"name": "Mihin__Till_2",
 				"type": "varchar"
 			},
 			{
-				"name": "Paikka_ja_päivämäärä",
+				"name": "Mihin__Till_3",
 				"type": "varchar"
 			}
 		],
 		"typeProperties": {
-			"tableName": "[dbo].[testing]"
+			"tableName": "[dbo].[Mlupa3]"
 		}
 	}
 }
