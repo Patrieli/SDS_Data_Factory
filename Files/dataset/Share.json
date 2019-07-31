@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText5",
+	"name": "Share",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Share",
