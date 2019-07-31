@@ -44,7 +44,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SDS_Data",
+						"referenceName": "Share",
 						"type": "DatasetReference"
 					}
 				],
