@@ -27,9 +27,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
 		},
+		"Office3651_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'Office3651'"
+		},
 		"SDS_DataBricks_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks'"
+		},
+		"Share_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Share'"
+		},
+		"SharePoint_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SharePoint'"
 		},
 		"sdsirserver_connectionString": {
 			"type": "secureString",
@@ -46,6 +58,22 @@
 		"DataLake_GEN1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
+		},
+		"Office3651_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
+		},
+		"Share_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "jaakko.mantila@aureolis.com"
+		},
+		"SharePoint_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://aureolisoy.sharepoint.com/sites/ULT-Kestiimi2019/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FULT%2DKestiimi2019%2FShared%20Documents%2FSmart%20Data%20Service%2FSource%5FData"
+		},
+		"SharePoint_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "jaakko.mantila@aureolis.com"
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
@@ -90,14 +118,29 @@
 					"DataLake_GEN1_accountKey": {
 						"value": "[parameters('DataLake_GEN1_accountKey')]"
 					},
+					"Office3651_servicePrincipalKey": {
+						"value": "[parameters('Office3651_servicePrincipalKey')]"
+					},
 					"SDS_DataBricks_accessToken": {
 						"value": "[parameters('SDS_DataBricks_accessToken')]"
+					},
+					"SharePoint_password": {
+						"value": "[parameters('SharePoint_password')]"
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
 					"DataLake_GEN1_properties_typeProperties_url": {
 						"value": "[parameters('DataLake_GEN1_properties_typeProperties_url')]"
+					},
+					"Office3651_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('Office3651_properties_typeProperties_servicePrincipalId')]"
+					},
+					"SharePoint_properties_typeProperties_url": {
+						"value": "[parameters('SharePoint_properties_typeProperties_url')]"
+					},
+					"SharePoint_properties_typeProperties_userName": {
+						"value": "[parameters('SharePoint_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -116,12 +159,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"Azure_folder_password": {
-						"value": "[parameters('Azure_folder_password')]"
-					},
-					"Azure_folder_properties_typeProperties_userId": {
-						"value": "[parameters('Azure_folder_properties_typeProperties_userId')]"
 					}
 				}
 			},
@@ -143,8 +180,40 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"Azure_folder_password": {
+						"value": "[parameters('Azure_folder_password')]"
+					},
+					"Share_password": {
+						"value": "[parameters('Share_password')]"
+					},
 					"sdsirserver_connectionString": {
 						"value": "[parameters('sdsirserver_connectionString')]"
+					},
+					"Azure_folder_properties_typeProperties_userId": {
+						"value": "[parameters('Azure_folder_properties_typeProperties_userId')]"
+					},
+					"Share_properties_typeProperties_userId": {
+						"value": "[parameters('Share_properties_typeProperties_userId')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
@@ -152,7 +221,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_2')]"
 			]
 		}
 	]

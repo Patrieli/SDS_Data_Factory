@@ -20,7 +20,16 @@
 		"DataLake_GEN1_accountKey": {
 			"value": ""
 		},
+		"Office3651_servicePrincipalKey": {
+			"value": ""
+		},
 		"SDS_DataBricks_accessToken": {
+			"value": ""
+		},
+		"Share_password": {
+			"value": ""
+		},
+		"SharePoint_password": {
 			"value": ""
 		},
 		"sdsirserver_connectionString": {
@@ -34,6 +43,18 @@
 		},
 		"DataLake_GEN1_properties_typeProperties_url": {
 			"value": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
+		},
+		"Office3651_properties_typeProperties_servicePrincipalId": {
+			"value": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
+		},
+		"Share_properties_typeProperties_userId": {
+			"value": "jaakko.mantila@aureolis.com"
+		},
+		"SharePoint_properties_typeProperties_url": {
+			"value": "https://aureolisoy.sharepoint.com/sites/ULT-Kestiimi2019/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FULT%2DKestiimi2019%2FShared%20Documents%2FSmart%20Data%20Service%2FSource%5FData"
+		},
+		"SharePoint_properties_typeProperties_userName": {
+			"value": "jaakko.mantila@aureolis.com"
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"

@@ -6,20 +6,231 @@
 			"type": "string",
 			"metadata": "Data Factory Name",
 			"defaultValue": "aureolissdsdatafactory"
-		},
-		"Azure_folder_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Azure_folder'"
-		},
-		"Azure_folder_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "jaakko.mantila@aureolis.com"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Demograph2013')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Demographics_2013_2014.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (HE)\";\"Asukkaiden keski-ik�",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+						"type": "String"
+					},
+					{
+						"name": " 2013 (KO)\";\"Asukkaiden keskitulot",
+						"type": "String"
+					},
+					{
+						"name": " 2013 (HR)\";\"Taloudet yhteens�",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (TE)\";\"Talouksien keskikoko",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (TE)\";\"Asuntojen keskipinta-ala",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (RA)\";\"Ty�lliset",
+						"type": "String"
+					},
+					{
+						"name": " 2013 (PT)\";\"Ty�tt�m�t",
+						"type": "String"
+					},
+					{
+						"name": " 2013 (PT)\"",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Demograph2014')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Demographics_2014_2015.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (HE)\";\"Asukkaiden keski-ik�",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (KO)\";\"Asukkaiden keskitulot",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (HR)\";\"Taloudet yhteens�",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (TE)\";\"Talouksien keskikoko",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (TE)\";\"Asuntojen keskipinta-ala",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (RA)\";\"Ty�lliset",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (PT)\";\"Ty�tt�m�t",
+						"type": "String"
+					},
+					{
+						"name": " 2014 (PT)\"",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Demograph2015')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Demographics_2015_2016.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+						"type": "String"
+					},
+					{
+						"name": " 2016 (HE)\";\"Asukkaiden keski-ik�",
+						"type": "String"
+					},
+					{
+						"name": " 2016 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+						"type": "String"
+					},
+					{
+						"name": " 2016 (KO)\";\"Asukkaiden keskitulot",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (HR)\";\"Taloudet yhteens�",
+						"type": "String"
+					},
+					{
+						"name": " 2016 (TE)\";\"Talouksien keskikoko",
+						"type": "String"
+					},
+					{
+						"name": " 2016 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+						"type": "String"
+					},
+					{
+						"name": " 2016 (TE)\";\"Asuntojen keskipinta-ala",
+						"type": "String"
+					},
+					{
+						"name": " 2016 (RA)\";\"Ty�lliset",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (PT)\";\"Ty�tt�m�t",
+						"type": "String"
+					},
+					{
+						"name": " 2015 (PT)\"",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Demograph2016')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -1181,7 +1392,6 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
-					"rowDelimiter": "\n",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -1378,112 +1588,112 @@
 				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "Lapsen_koko_nimi",
+						"name": "Lapsen_koko_nimi__Den_minderårigas_fullständiga_namn",
 						"type": "varchar"
 					},
 					{
-						"name": "Ikä",
+						"name": "Ikä__Ålder",
 						"type": "varchar"
 					},
 					{
-						"name": "Syntymäaika",
+						"name": "Syntymäaika__Födelsedatum",
 						"type": "varchar"
 					},
 					{
-						"name": "Lapsen_koko_nimi2",
+						"name": "Lapsen_koko_nimi__Den_minderårigas_fullständiga_namn_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Ikä2",
+						"name": "Ikä__Ålder_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Syntymäaika2",
+						"name": "Syntymäaika__Födelsedatum_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Varausnumero",
+						"name": "Varausnumero__Bokningsnummer",
 						"type": "varchar"
 					},
 					{
-						"name": "Laiva1",
+						"name": "Laiva__Fartayg1",
 						"type": "varchar"
 					},
 					{
-						"name": "Lähtöpäivä1",
+						"name": "Lähtöpäivä__Avresedatum1",
 						"type": "varchar"
 					},
 					{
-						"name": "Mistä1",
+						"name": "Mistä__Från1",
 						"type": "varchar"
 					},
 					{
-						"name": "Mihin1",
+						"name": "Laiva__Fartyg2",
 						"type": "varchar"
 					},
 					{
-						"name": "Laiva2",
+						"name": "Lähtöpäivä__Avresedatum2",
 						"type": "varchar"
 					},
 					{
-						"name": "Lähtöpäivä2",
+						"name": "Mistä__Från2",
 						"type": "varchar"
 					},
 					{
-						"name": "Mistä2",
+						"name": "Laiva__Fartyg3",
 						"type": "varchar"
 					},
 					{
-						"name": "Mihin2",
+						"name": "Lähtöpäivä__Avresedatum3",
 						"type": "varchar"
 					},
 					{
-						"name": "Laiva3",
+						"name": "Mistä__Från3",
 						"type": "varchar"
 					},
 					{
-						"name": "Lähtöpäivä3",
+						"name": "Nimi__Namn",
 						"type": "varchar"
 					},
 					{
-						"name": "Mistä3",
+						"name": "Postiosoite__Adress",
 						"type": "varchar"
 					},
 					{
-						"name": "Mihin3",
+						"name": "Puhelinnumero__Telefon",
 						"type": "varchar"
 					},
 					{
-						"name": "Huoltajan_nimi",
+						"name": "Nimi__Namn_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Postiosoite",
+						"name": "Postiosoite__Adress_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Puhelinnumero",
+						"name": "Puhelinnumero__Telefon_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Valtuutetun_nimi2",
+						"name": "Paikka_ja_päivämäärä__Datum_och_ort",
 						"type": "varchar"
 					},
 					{
-						"name": "Postiosoite2",
+						"name": "Mihin__Till_1",
 						"type": "varchar"
 					},
 					{
-						"name": "Puhelinnumero2",
+						"name": "Mihin__Till_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Paikka_ja_päivämäärä",
+						"name": "Mihin__Till_3",
 						"type": "varchar"
 					}
 				],
 				"typeProperties": {
-					"tableName": "[[dbo].[testing]"
+					"tableName": "[[dbo].[Mlupa3]"
 				}
 			},
 			"dependsOn": []
@@ -1747,181 +1957,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/to_csv_csv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLake_GEN1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "to_csv.csv",
-						"fileSystem": "newcontainer"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/vuokra')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Vuosineljannes",
-						"type": "varchar"
-					},
-					{
-						"name": "Alue",
-						"type": "varchar"
-					},
-					{
-						"name": "Huoneluku",
-						"type": "varchar"
-					},
-					{
-						"name": "Rahoitusmuoto",
-						"type": "varchar"
-					},
-					{
-						"name": "Lukumaara",
-						"type": "varchar"
-					},
-					{
-						"name": "Neliovuokra",
-						"type": "varchar"
-					},
-					{
-						"name": "Vuosi",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[Vuokrahinnat_2015Q1_2018Q1]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Azure_folder')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "FileServer",
-				"typeProperties": {
-					"host": "C:\\Users\\mantijaa\\Desktop\\SDS",
-					"userId": "[parameters('Azure_folder_properties_typeProperties_userId')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Azure_folder_password')]"
-					}
-				},
-				"connectVia": {
-					"referenceName": "SDS-IR-mantijaa",
-					"type": "IntegrationRuntimeReference"
-				}
 			},
 			"dependsOn": []
 		}
