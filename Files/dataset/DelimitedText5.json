@@ -1,0 +1,22 @@
+{
+	"name": "DelimitedText5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Share",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"folderPath": "Source_Data"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"nullValue": ".",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
