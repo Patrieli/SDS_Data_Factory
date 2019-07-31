@@ -1588,107 +1588,107 @@
 				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "Lapsen_koko_nimi__Den_minderårigas_fullständiga_namn",
+						"name": "Column_1",
 						"type": "varchar"
 					},
 					{
-						"name": "Ikä__Ålder",
+						"name": "Column_2",
 						"type": "varchar"
 					},
 					{
-						"name": "Syntymäaika__Födelsedatum",
+						"name": "Column_3",
 						"type": "varchar"
 					},
 					{
-						"name": "Lapsen_koko_nimi__Den_minderårigas_fullständiga_namn_2",
+						"name": "Column_4",
 						"type": "varchar"
 					},
 					{
-						"name": "Ikä__Ålder_2",
+						"name": "Column_5",
 						"type": "varchar"
 					},
 					{
-						"name": "Syntymäaika__Födelsedatum_2",
+						"name": "Column_6",
 						"type": "varchar"
 					},
 					{
-						"name": "Varausnumero__Bokningsnummer",
+						"name": "Column_7",
 						"type": "varchar"
 					},
 					{
-						"name": "Laiva__Fartayg1",
+						"name": "Column_8",
 						"type": "varchar"
 					},
 					{
-						"name": "Lähtöpäivä__Avresedatum1",
+						"name": "Column_9",
 						"type": "varchar"
 					},
 					{
-						"name": "Mistä__Från1",
+						"name": "Column_10",
 						"type": "varchar"
 					},
 					{
-						"name": "Laiva__Fartyg2",
+						"name": "Column_11",
 						"type": "varchar"
 					},
 					{
-						"name": "Lähtöpäivä__Avresedatum2",
+						"name": "Column_12",
 						"type": "varchar"
 					},
 					{
-						"name": "Mistä__Från2",
+						"name": "Column_13",
 						"type": "varchar"
 					},
 					{
-						"name": "Laiva__Fartyg3",
+						"name": "Column_14",
 						"type": "varchar"
 					},
 					{
-						"name": "Lähtöpäivä__Avresedatum3",
+						"name": "Column_15",
 						"type": "varchar"
 					},
 					{
-						"name": "Mistä__Från3",
+						"name": "Column_16",
 						"type": "varchar"
 					},
 					{
-						"name": "Nimi__Namn",
+						"name": "Column_17",
 						"type": "varchar"
 					},
 					{
-						"name": "Postiosoite__Adress",
+						"name": "Column_18",
 						"type": "varchar"
 					},
 					{
-						"name": "Puhelinnumero__Telefon",
+						"name": "Column_19",
 						"type": "varchar"
 					},
 					{
-						"name": "Nimi__Namn_2",
+						"name": "Column_20",
 						"type": "varchar"
 					},
 					{
-						"name": "Postiosoite__Adress_2",
+						"name": "Column_21",
 						"type": "varchar"
 					},
 					{
-						"name": "Puhelinnumero__Telefon_2",
+						"name": "Column_22",
 						"type": "varchar"
 					},
 					{
-						"name": "Paikka_ja_päivämäärä__Datum_och_ort",
+						"name": "Column_23",
 						"type": "varchar"
 					},
 					{
-						"name": "Mihin__Till_1",
+						"name": "Column_24",
 						"type": "varchar"
 					},
 					{
-						"name": "Mihin__Till_2",
+						"name": "Column_25",
 						"type": "varchar"
 					},
 					{
-						"name": "Mihin__Till_3",
+						"name": "Column_26",
 						"type": "varchar"
 					}
 				],

@@ -1,0 +1,171 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "aureolissdsdatafactory"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/PDF_read')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Column_1",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_2",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_3",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_4",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_5",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_6",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_7",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_8",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_9",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_10",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_11",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_12",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_13",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_14",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_15",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_16",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_17",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_18",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_19",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_20",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_21",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_22",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_23",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_24",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_25",
+						"type": "varchar"
+					},
+					{
+						"name": "Column_26",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[Mlupa3]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PDF_read_testing')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "to_csv_csv",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "PDF_read",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"script": "\n\nsource(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string,\n\t\tColumn_11 as string,\n\t\tColumn_12 as string,\n\t\tColumn_13 as string,\n\t\tColumn_14 as string,\n\t\tColumn_15 as string,\n\t\tColumn_16 as string,\n\t\tColumn_17 as string,\n\t\tColumn_18 as string,\n\t\tColumn_19 as string,\n\t\tColumn_20 as string,\n\t\tColumn_21 as string,\n\t\tColumn_22 as string,\n\t\tColumn_23 as string,\n\t\tColumn_24 as string,\n\t\tColumn_25 as string,\n\t\tColumn_26 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tskipLines: 1) ~> source1\nsource1 select(mapColumn(\n\t\tColumn_1,\n\t\tColumn_2,\n\t\tColumn_3,\n\t\tColumn_4,\n\t\tColumn_5,\n\t\tColumn_6,\n\t\tColumn_7,\n\t\tColumn_8,\n\t\tColumn_9,\n\t\tColumn_10,\n\t\tColumn_11,\n\t\tColumn_12,\n\t\tColumn_13,\n\t\tColumn_14,\n\t\tColumn_15,\n\t\tColumn_16,\n\t\tColumn_17,\n\t\tColumn_18,\n\t\tColumn_19,\n\t\tColumn_20,\n\t\tColumn_21,\n\t\tColumn_22,\n\t\tColumn_23,\n\t\tColumn_24,\n\t\tColumn_25,\n\t\tColumn_26\n\t)) ~> Select1\nSelect1 sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string,\n\t\tColumn_11 as string,\n\t\tColumn_12 as string,\n\t\tColumn_13 as string,\n\t\tColumn_14 as string,\n\t\tColumn_15 as string,\n\t\tColumn_16 as string,\n\t\tColumn_17 as string,\n\t\tColumn_18 as string,\n\t\tColumn_19 as string,\n\t\tColumn_20 as string,\n\t\tColumn_21 as string,\n\t\tColumn_22 as string,\n\t\tColumn_23 as string,\n\t\tColumn_24 as string,\n\t\tColumn_25 as string,\n\t\tColumn_26 as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true) ~> sink1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/PDF_read')]"
+			]
+		}
+	]
+}
