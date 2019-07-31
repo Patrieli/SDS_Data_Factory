@@ -5,9 +5,9 @@
 		"annotations": [],
 		"type": "FileServer",
 		"typeProperties": {
-			"host": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service\\Source_Data",
+			"host": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service",
 			"userId": "jaakko.mantila@aureolis.com",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIwYzZkYzI4NS1kMzYxLTRlZWEtYWMwYi1lMWE3NWNiZWE0MWQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiY2UyOWJiZS0wNmI5LTQwMmQtYWIyMS05NzYxZGU0NzhmOGQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "SDS-IR-mantijaa",
