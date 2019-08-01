@@ -129,7 +129,9 @@
 			},
 			{
 				"name": "Paivitetty_pvm",
-				"type": "nvarchar"
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
 			}
 		],
 		"typeProperties": {
