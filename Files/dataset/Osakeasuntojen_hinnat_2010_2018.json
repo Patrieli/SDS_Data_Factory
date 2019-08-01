@@ -10,23 +10,23 @@
 		"schema": [
 			{
 				"name": "Postinumero",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Alue",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Kaupunki",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Talotyyppi",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Rakennusvuosi",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Neliohinta_2010",
@@ -126,6 +126,10 @@
 				"name": "Kauppojen_lukumaara_2018",
 				"type": "int",
 				"precision": 10
+			},
+			{
+				"name": "Paivitetty_pvm",
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
