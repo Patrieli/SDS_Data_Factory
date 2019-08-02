@@ -8,7 +8,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy",
+						"activity": "Copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -34,7 +34,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy",
+						"activity": "Copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -60,7 +60,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy",
+						"activity": "Copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -86,7 +86,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy",
+						"activity": "Copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -112,7 +112,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Copy",
+						"activity": "Copy1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -134,8 +134,7 @@
 				}
 			},
 			{
-				"name": "Copy",
-				"description": "Copies all .csv files from Jaakko's folder to Aureolissdsdatalake.",
+				"name": "Copy1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -156,8 +155,7 @@
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSetting",
-							"skipLineCount": 0
+							"type": "DelimitedTextReadSetting"
 						}
 					},
 					"sink": {
@@ -176,7 +174,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SDS_Data",
+						"referenceName": "Share",
 						"type": "DatasetReference"
 					}
 				],
