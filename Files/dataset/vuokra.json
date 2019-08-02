@@ -10,32 +10,38 @@
 		"schema": [
 			{
 				"name": "Vuosineljannes",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Alue",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Huoneluku",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Rahoitusmuoto",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Lukumaara",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Neliovuokra",
-				"type": "varchar"
+				"type": "nvarchar"
 			},
 			{
 				"name": "Vuosi",
 				"type": "int",
 				"precision": 10
+			},
+			{
+				"name": "Paivitetty_pvm",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
 			}
 		],
 		"typeProperties": {
