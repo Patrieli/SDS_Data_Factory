@@ -79,6 +79,12 @@
 				"name": "Kauppojen_lukumaara_2018",
 				"type": "int",
 				"precision": 10
+			},
+			{
+				"name": "Paivitetty_pvm",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
 			}
 		],
 		"typeProperties": {
