@@ -1,0 +1,24 @@
+{
+	"name": "Osakeasunto_unpivot",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Osakeasuntojen_hinnat_2010_2018",
+						"type": "DatasetReference"
+					},
+					"name": "OsakeasuntojenHinnat20102018"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "Unpivot"
+				}
+			],
+			"script": "\n\nsource(output(\n\t\tPostinumero as string,\n\t\tAlue as string,\n\t\tKaupunki as string,\n\t\tTalotyyppi as string,\n\t\tRakennusvuosi as string,\n\t\tNeliohinta_2010 as decimal(20,2),\n\t\tKauppojen_lukumaara_2010 as integer,\n\t\tNeliohinta_2011 as decimal(20,2),\n\t\tKauppojen_lukumaara_2011 as integer,\n\t\tNeliohinta_2012 as decimal(20,2),\n\t\tKauppojen_lukumaara_2012 as integer,\n\t\tNeliohinta_2013 as decimal(20,2),\n\t\tKauppojen_lukumaara_2013 as integer,\n\t\tNeliohinta_2014 as decimal(20,2),\n\t\tKauppojen_lukumaara_2014 as integer,\n\t\tNeliohinta_2015 as decimal(20,2),\n\t\tKauppojen_lukumaara_2015 as integer,\n\t\tNeliohinta_2016 as decimal(20,2),\n\t\tKauppojen_lukumaara_2016 as integer,\n\t\tNeliohinta_2017 as decimal(20,2),\n\t\tKauppojen_lukumaara_2017 as integer,\n\t\tNeliohinta_2018 as decimal(20,2),\n\t\tKauppojen_lukumaara_2018 as integer,\n\t\tPaivitetty_pvm as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tisolationLevel: 'READ_UNCOMMITTED',\n\tformat: 'table') ~> OsakeasuntojenHinnat20102018\nOsakeasuntojenHinnat20102018 unpivot(output(\n\t\tVuosi as integer,\n\t\tNeliohinta_2010 as decimal(20,2),\n\t\tNeliohinta_2011 as decimal(20,2),\n\t\tNeliohinta_2012 as decimal(20,2),\n\t\tNeliohinta_2013 as decimal(20,2),\n\t\tNeliohinta_2014 as decimal(20,2),\n\t\tNeliohinta_2015 as decimal(20,2),\n\t\tNeliohinta_2016 as decimal(20,2),\n\t\tNeliohinta_2017 as decimal(20,2),\n\t\tNeliohinta_2018 as decimal(20,2),\n\t\tKauppojen_lukumaara_2010 as integer,\n\t\tKauppojen_lukumaara_2011 as integer,\n\t\tKauppojen_lukumaara_2012 as integer,\n\t\tKauppojen_lukumaara_2013 as integer,\n\t\tKauppojen_lukumaara_2014 as integer,\n\t\tKauppojen_lukumaara_2015 as integer,\n\t\tKauppojen_lukumaara_2016 as integer,\n\t\tKauppojen_lukumaara_2017 as integer,\n\t\tKauppojen_lukumaara_2018 as integer\n\t),\n\tungroupBy(Postinumero,\n\t\tAlue,\n\t\tKaupunki,\n\t\tTalotyyppi,\n\t\tRakennusvuosi),\n\tpivotValues: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018],\n\tlateral: true,\n\tignoreNullPivots: false) ~> Unpivot"
+		}
+	}
+}
