@@ -12,7 +12,8 @@
 				"type": "FileServerLocation",
 				"fileName": "vaerak_025_201700_taajama_aste.csv"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-15",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
