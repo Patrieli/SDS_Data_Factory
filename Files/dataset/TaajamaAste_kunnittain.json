@@ -1,0 +1,30 @@
+{
+	"name": "TaajamaAste_kunnittain",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServer2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": " "
+			},
+			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	}
+}
