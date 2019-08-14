@@ -40,7 +40,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "TaajamaAste",
+						"referenceName": "TaajamaAste_kunnittain",
 						"type": "DatasetReference"
 					}
 				],
