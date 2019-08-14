@@ -1,0 +1,28 @@
+{
+	"name": "TaajamaAste",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServer2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "vaerak_025_201700_taajama_aste.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	}
+}
