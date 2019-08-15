@@ -26,7 +26,7 @@
 					"name": "DerivedColumn1"
 				}
 			],
-			"script": "\n\nsource(output(\n\t\tVuosi as string,\n\t\tAlue as string,\n\t\t{Väestö 31.12.} as string,\n\t\t{Taajama-aste, %} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: true) ~> TaajamaAste\nTaajamaAste derive(Column_1 = SUBSTRING(Column_2, 1, 3),\n\t\t{} = ERROR_FUNCTION('')) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> sink1"
+			"script": "\n\nsource(output(\n\t\tVuosi as string,\n\t\tAlue as string,\n\t\t{Väestö 31.12.} as integer,\n\t\t{Taajama-aste, %} as float '##.#%'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: true) ~> TaajamaAste\nTaajamaAste derive(Column_1 = SUBSTRING(Column_2, 1, 3),\n\t\t{} = ERROR_FUNCTION('')) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> sink1"
 		}
 	}
 }
