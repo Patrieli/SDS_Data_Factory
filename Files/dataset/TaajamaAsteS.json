@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "TaajamaAste",
-				"folderPath": "ABC",
+				"fileName": "TaajamaAsteS",
+				"folderPath": "SDS_data",
 				"fileSystem": "realestatedata"
 			},
 			"columnDelimiter": ";",
