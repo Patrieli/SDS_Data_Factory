@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "TaajamaAsteS",
-				"folderPath": "SDS_data",
+				"folderPath": "SDS_Data",
 				"fileSystem": "realestatedata"
 			},
 			"columnDelimiter": ";",
