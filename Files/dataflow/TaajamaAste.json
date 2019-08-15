@@ -12,9 +12,17 @@
 					"name": "TaajamaAste"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [],
-			"script": "\n\nsource(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> TaajamaAste"
+			"script": "\n\nsource(output(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> TaajamaAste\nTaajamaAste sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false) ~> sink1"
 		}
 	}
 }
