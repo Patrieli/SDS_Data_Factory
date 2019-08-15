@@ -1,6 +1,7 @@
 {
 	"name": "TaajamaAste_kunnittain",
 	"properties": {
+		"description": "kuntakohtaiset väestömäärät ja taajama-aste v. 2017",
 		"linkedServiceName": {
 			"referenceName": "FileServer2",
 			"type": "LinkedServiceReference"
@@ -20,9 +21,19 @@
 		},
 		"schema": [
 			{
+				"name": "Vuosi",
 				"type": "String"
 			},
 			{
+				"name": "Alue",
+				"type": "String"
+			},
+			{
+				"name": "Väestö 31.12.",
+				"type": "String"
+			},
+			{
+				"name": "Taajama-aste, %",
 				"type": "String"
 			}
 		]
