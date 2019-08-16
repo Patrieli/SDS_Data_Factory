@@ -46,7 +46,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "TaajamaAsteS",
+						"referenceName": "SDS_Data",
 						"type": "DatasetReference"
 					}
 				]

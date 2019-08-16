@@ -2,17 +2,20 @@
 	"name": "SDS_Data",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Azure_folder",
+			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
-				"folderPath": "SDS_Data"
+				"type": "AzureBlobFSLocation",
+				"fileName": "TaajamaAste",
+				"folderPath": "ABC",
+				"fileSystem": "realestatedata"
 			},
 			"columnDelimiter": ";",
+			"encodingName": "ISO-8859-1",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"nullValue": ".",
