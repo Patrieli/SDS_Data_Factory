@@ -11,8 +11,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "TaajamaAste",
-				"folderPath": "ABC",
+				"fileName": "vaerak_025_201700_taajama_aste_kunnittain.csv",
+				"folderPath": "SDS_Data",
 				"fileSystem": "realestatedata"
 			},
 			"columnDelimiter": ";",
