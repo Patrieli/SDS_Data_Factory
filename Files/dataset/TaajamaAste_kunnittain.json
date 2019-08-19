@@ -3,15 +3,16 @@
 	"properties": {
 		"description": "kuntakohtaiset väestömäärät ja taajama-aste v. 2017",
 		"linkedServiceName": {
-			"referenceName": "FileServer2",
+			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "FileServerLocation",
-				"fileName": "vaerak_025_201700_taajama_aste_kunnittain.csv"
+				"type": "AzureBlobFSLocation",
+				"folderPath": "SDS_Data",
+				"fileSystem": "realestatedata"
 			},
 			"columnDelimiter": ";",
 			"encodingName": "ISO-8859-1",
