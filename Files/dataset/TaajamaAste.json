@@ -15,6 +15,7 @@
 			"columnDelimiter": ";",
 			"encodingName": "ISO-8859-15",
 			"escapeChar": "\\",
+			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
 		"schema": [
