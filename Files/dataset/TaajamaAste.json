@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "FileServerLocation",
-				"fileName": "vaerak_025_201700_taajama_aste.csv"
+				"fileName": "vaerak_025_201700_taajama_aste_kunnittain.csv"
 			},
 			"columnDelimiter": ";",
 			"encodingName": "ISO-8859-15",
