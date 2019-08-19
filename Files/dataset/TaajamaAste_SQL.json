@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "TaajamaAste_SQL",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
@@ -9,8 +9,8 @@
 		"type": "AzureSqlTable",
 		"schema": [],
 		"typeProperties": {
-			"schema": "",
-			"table": "TaajamaAste"
+			"schema": "[dbo.TaajamaAste]",
+			"table": "T"
 		}
 	}
 }
