@@ -46,7 +46,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "SDS_Data",
+						"referenceName": "TaajamaAste_kunnittain",
 						"type": "DatasetReference"
 					}
 				]
