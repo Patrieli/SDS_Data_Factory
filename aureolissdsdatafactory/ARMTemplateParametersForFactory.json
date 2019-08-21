@@ -20,6 +20,12 @@
 		"DataLake_GEN1_accountKey": {
 			"value": ""
 		},
+		"FileServer1_password": {
+			"value": ""
+		},
+		"FileServer2_password": {
+			"value": ""
+		},
 		"Office3651_servicePrincipalKey": {
 			"value": ""
 		},
@@ -38,14 +44,32 @@
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://aureolissdsdatalake.dfs.core.windows.net"
 		},
+		"Azure_folder_properties_typeProperties_host": {
+			"value": "C:\\Users\\mantijaa\\Desktop\\SDS"
+		},
 		"Azure_folder_properties_typeProperties_userId": {
 			"value": "jaakko.mantila@aureolis.com"
 		},
 		"DataLake_GEN1_properties_typeProperties_url": {
 			"value": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
 		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "C:\\Users\\sihvohan\\SDS"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "hannu.sihvonen@aureolis.com"
+		},
+		"FileServer2_properties_typeProperties_host": {
+			"value": "C:\\Users\\sihvohan\\SDS"
+		},
+		"FileServer2_properties_typeProperties_userId": {
+			"value": "hannu.sihvonen@aureolis.com"
+		},
 		"Office3651_properties_typeProperties_servicePrincipalId": {
 			"value": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
+		},
+		"Share_properties_typeProperties_host": {
+			"value": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service"
 		},
 		"Share_properties_typeProperties_userId": {
 			"value": "jaakko.mantila@aureolis.com"

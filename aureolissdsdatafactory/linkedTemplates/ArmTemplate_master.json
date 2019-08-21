@@ -27,6 +27,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
 		},
+		"FileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer1'"
+		},
+		"FileServer2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer2'"
+		},
 		"Office3651_servicePrincipalKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalKey' of 'Office3651'"
@@ -51,6 +59,10 @@
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
 		},
+		"Azure_folder_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\mantijaa\\Desktop\\SDS"
+		},
 		"Azure_folder_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "jaakko.mantila@aureolis.com"
@@ -59,9 +71,29 @@
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
 		},
+		"FileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\sihvohan\\SDS"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "hannu.sihvonen@aureolis.com"
+		},
+		"FileServer2_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\sihvohan\\SDS"
+		},
+		"FileServer2_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "hannu.sihvonen@aureolis.com"
+		},
 		"Office3651_properties_typeProperties_servicePrincipalId": {
 			"type": "string",
 			"defaultValue": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
+		},
+		"Share_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service"
 		},
 		"Share_properties_typeProperties_userId": {
 			"type": "string",
@@ -183,14 +215,38 @@
 					"Azure_folder_password": {
 						"value": "[parameters('Azure_folder_password')]"
 					},
+					"FileServer1_password": {
+						"value": "[parameters('FileServer1_password')]"
+					},
+					"FileServer2_password": {
+						"value": "[parameters('FileServer2_password')]"
+					},
 					"Share_password": {
 						"value": "[parameters('Share_password')]"
 					},
 					"sdsirserver_connectionString": {
 						"value": "[parameters('sdsirserver_connectionString')]"
 					},
+					"Azure_folder_properties_typeProperties_host": {
+						"value": "[parameters('Azure_folder_properties_typeProperties_host')]"
+					},
 					"Azure_folder_properties_typeProperties_userId": {
 						"value": "[parameters('Azure_folder_properties_typeProperties_userId')]"
+					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
+					},
+					"FileServer2_properties_typeProperties_host": {
+						"value": "[parameters('FileServer2_properties_typeProperties_host')]"
+					},
+					"FileServer2_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer2_properties_typeProperties_userId')]"
+					},
+					"Share_properties_typeProperties_host": {
+						"value": "[parameters('Share_properties_typeProperties_host')]"
 					},
 					"Share_properties_typeProperties_userId": {
 						"value": "[parameters('Share_properties_typeProperties_userId')]"
