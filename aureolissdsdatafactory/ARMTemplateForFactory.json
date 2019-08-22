@@ -281,13 +281,46 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "TaajamaAste_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy_TaajamaAste",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "TaajamaAste_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {}
+						}
 					}
 				],
 				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/TaajamaAste')]",
-				"[concat(variables('factoryId'), '/datasets/TaajamaAste_kunnittain')]"
+				"[concat(variables('factoryId'), '/datasets/TaajamaAste_kunnittain')]",
+				"[concat(variables('factoryId'), '/dataflows/TaajamaAste_flow')]"
 			]
 		},
 		{
