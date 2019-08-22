@@ -1,5 +1,5 @@
 {
-	"name": "to_csv_csv",
+	"name": "demo_csv",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataLake_GEN1",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "to_csv.csv",
+				"fileName": "demo.csv",
 				"fileSystem": "newcontainer"
 			},
 			"columnDelimiter": ";",
