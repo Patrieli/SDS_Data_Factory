@@ -65,109 +65,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Vuokra_curated')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLake_GEN1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "curated"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Vuosineljannes",
-						"type": "String"
-					},
-					{
-						"name": "Vuosi",
-						"type": "String"
-					},
-					{
-						"name": "Alue",
-						"type": "String"
-					},
-					{
-						"name": "Huoneluku",
-						"type": "String"
-					},
-					{
-						"name": "Rahoitusmuoto",
-						"type": "String"
-					},
-					{
-						"name": "Lukumaara",
-						"type": "String"
-					},
-					{
-						"name": "Neliovuokra",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Vuokrahinnat_2015Q1_2018Q1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Vuosineljannes",
-						"type": "varchar"
-					},
-					{
-						"name": "Alue",
-						"type": "varchar"
-					},
-					{
-						"name": "Huoneluku",
-						"type": "varchar"
-					},
-					{
-						"name": "Rahoitusmuoto",
-						"type": "varchar"
-					},
-					{
-						"name": "Lukumaara",
-						"type": "varchar"
-					},
-					{
-						"name": "Neliovuokra",
-						"type": "varchar"
-					},
-					{
-						"name": "Vuosi",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[Vuokrahinnat_2015Q1_2018Q1]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/omakotitalo_currated')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -507,6 +404,25 @@
 				"connectVia": {
 					"referenceName": "SDS-IR-mantijaa",
 					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "TaajamaAste"
 				}
 			},
 			"dependsOn": []
@@ -932,7 +848,7 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "TaajamaAste_SQL",
+								"referenceName": "AzureSqlTable1",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
@@ -943,10 +859,12 @@
 							"name": "DerivedColumn1"
 						}
 					],
-					"script": "\n\nsource(output(\n\t\tVuosi as short,\n\t\tAlue as string,\n\t\t{Väestö 31.12.} as integer,\n\t\t{Taajama-aste, %} as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1\nsource1 derive(Kunta = substring(Alue,5),\n\t\tKuntakoodi = substring(Alue, 1, 3)) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tmapColumn(\n\t\tVuosi,\n\t\t{Väestö 31.12.},\n\t\t{Taajama-aste, %},\n\t\tKunta,\n\t\tKuntakoodi\n\t)) ~> sink1"
+					"script": "\n\nsource(output(\n\t\tVuosi as short,\n\t\tAlue as string,\n\t\t{Väestö 31.12.} as integer,\n\t\t{Taajama-aste, %} as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1\nsource1 derive(Kunta = substring(Alue,5),\n\t\tKuntakoodi = substring(Alue, 1, 3)) ~> DerivedColumn1\nDerivedColumn1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\tmapColumn(\n\t\tVuosi,\n\t\tAlue,\n\t\t{Väestö 31.12.},\n\t\t{Taajama-aste, %},\n\t\tKunta,\n\t\tKuntakoodi\n\t)) ~> sink1"
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/AzureSqlTable1')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Vuokra_flow')]",
@@ -997,7 +915,6 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/Vuokra_curated')]",
 				"[concat(variables('factoryId'), '/datasets/vuokra')]"
 			]
 		},
@@ -1040,6 +957,73 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/BKT_flow')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy_Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".csv"
+								}
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Share",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SDS_Data_Sink",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Share')]"
 			]
 		}
 	]
