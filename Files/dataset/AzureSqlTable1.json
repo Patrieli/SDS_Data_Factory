@@ -7,7 +7,35 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
+		"schema": [
+			{
+				"name": "Vuosi",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Alue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Väestö 31.12.",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Taajama-aste, %",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "Kunta",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Kuntakoodi",
+				"type": "nvarchar"
+			}
+		],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "TaajamaAste"
