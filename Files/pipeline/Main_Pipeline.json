@@ -1,7 +1,7 @@
 {
 	"name": "Main_Pipeline",
 	"properties": {
-		"description": "Starts the Copy Data action and after that starts each of the 5 separate pipelines. ",
+		"description": "Starts the Copy Data action and after that starts each of the 6 separate pipelines. ",
 		"activities": [
 			{
 				"name": "Osakeasunto_flow",
@@ -149,22 +149,22 @@
 					"source": {
 						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "FileServerReadSetting",
+							"type": "FileServerReadSettings",
 							"recursive": true,
 							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "DelimitedTextReadSetting"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
 						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSetting"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "DelimitedTextWriteSetting",
+							"type": "DelimitedTextWriteSettings",
 							"quoteAllText": true,
 							"fileExtension": ".csv"
 						}
@@ -184,6 +184,32 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "TaajamaAste_flow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "TaajamaAste_flow",
+						"type": "DataFlowReference"
+					}
+				}
 			}
 		],
 		"annotations": []
