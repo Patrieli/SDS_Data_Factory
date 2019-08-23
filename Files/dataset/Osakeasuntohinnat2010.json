@@ -23,6 +23,55 @@
 		},
 		"schema": [
 			{
+				"name": "Postinumero",
+				"type": "String"
+			},
+			{
+				"name": "Talotyyppi",
+				"type": "String"
+			},
+			{
+				"name": "Rakennusvuosi",
+				"type": "String"
+			},
+			{
+				"name": "2010 Neliöhinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2010 Kauppojen lukumäärä",
+				"type": "String"
+			},
+			{
+				"name": "2011 Neliöhinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2011 Kauppojen lukumäärä",
+				"type": "String"
+			},
+			{
+				"name": "2012 Neliöhinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2012 Kauppojen lukumäärä",
+				"type": "String"
+			},
+			{
+				"name": "2013 Neliöhinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2013 Kauppojen lukumäärä",
+				"type": "String"
+			},
+			{
+				"name": "2014 Neliöhinta (EUR/m2)",
+				"type": "String"
+			},
+			{
+				"name": "2014 Kauppojen lukumäärä",
 				"type": "String"
 			}
 		]
