@@ -23,47 +23,47 @@
 		},
 		"schema": [
 			{
-				"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+				"name": "Postinumeroalue",
 				"type": "String"
 			},
 			{
-				"name": " 2014 (HE)\";\"Asukkaiden keski-ik�",
+				"name": "Asukkaat yhteensä, 2014 (HE)",
 				"type": "String"
 			},
 			{
-				"name": " 2014 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+				"name": "Asukkaiden keski-ikä, 2014 (HE)",
 				"type": "String"
 			},
 			{
-				"name": " 2013 (KO)\";\"Asukkaiden keskitulot",
+				"name": "Alemman korkeakoulututkinnon suorittaneet, 2013 (KO)",
 				"type": "String"
 			},
 			{
-				"name": " 2013 (HR)\";\"Taloudet yhteens�",
+				"name": "Asukkaiden keskitulot, 2013 (HR)",
 				"type": "String"
 			},
 			{
-				"name": " 2014 (TE)\";\"Talouksien keskikoko",
+				"name": "Taloudet yhteensä, 2014 (TE)",
 				"type": "String"
 			},
 			{
-				"name": " 2014 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+				"name": "Talouksien keskikoko, 2014 (TE)",
 				"type": "String"
 			},
 			{
-				"name": " 2014 (TE)\";\"Asuntojen keskipinta-ala",
+				"name": "Omistusasunnoissa asuvat taloudet, 2014 (TE)",
 				"type": "String"
 			},
 			{
-				"name": " 2014 (RA)\";\"Ty�lliset",
+				"name": "Asuntojen keskipinta-ala, 2014 (RA)",
 				"type": "String"
 			},
 			{
-				"name": " 2013 (PT)\";\"Ty�tt�m�t",
+				"name": "Työlliset, 2013 (PT)",
 				"type": "String"
 			},
 			{
-				"name": " 2013 (PT)\"",
+				"name": "Työttömät, 2013 (PT)",
 				"type": "String"
 			}
 		]
