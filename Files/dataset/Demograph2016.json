@@ -23,47 +23,47 @@
 		},
 		"schema": [
 			{
-				"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+				"name": "Postinumeroalue",
 				"type": "String"
 			},
 			{
-				"name": " 2017 (HE)\";\"Asukkaiden keski-ik�",
+				"name": "Asukkaat yhteensä, 2017 (HE)",
 				"type": "String"
 			},
 			{
-				"name": " 2017 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+				"name": "Asukkaiden keski-ikä, 2017 (HE)",
 				"type": "String"
 			},
 			{
-				"name": " 2017 (KO)\";\"Asukkaiden keskitulot",
+				"name": "Alemman korkeakoulututkinnon suorittaneet, 2017 (KO)",
 				"type": "String"
 			},
 			{
-				"name": " 2016 (HR)\";\"Taloudet yhteens�",
+				"name": "Asukkaiden keskitulot, 2016 (HR)",
 				"type": "String"
 			},
 			{
-				"name": " 2017 (TE)\";\"Talouksien keskikoko",
+				"name": "Taloudet yhteensä, 2017 (TE)",
 				"type": "String"
 			},
 			{
-				"name": " 2017 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+				"name": "Talouksien keskikoko, 2017 (TE)",
 				"type": "String"
 			},
 			{
-				"name": " 2017 (TE)\";\"Asuntojen keskipinta-ala",
+				"name": "Omistusasunnoissa asuvat taloudet, 2017 (TE)",
 				"type": "String"
 			},
 			{
-				"name": " 2017 (RA)\";\"Ty�lliset",
+				"name": "Asuntojen keskipinta-ala, 2017 (RA)",
 				"type": "String"
 			},
 			{
-				"name": " 2016 (PT)\";\"Ty�tt�m�t",
+				"name": "Työlliset, 2016 (PT)",
 				"type": "String"
 			},
 			{
-				"name": " 2016 (PT)\"",
+				"name": "Työttömät, 2016 (PT)",
 				"type": "String"
 			}
 		]
