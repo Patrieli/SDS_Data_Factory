@@ -27,7 +27,7 @@
 				"type": "String"
 			},
 			{
-				"name": "2015 Neliohinta (EUR/m2)",
+				"name": "2015 Neliöhinta (EUR/m2)",
 				"type": "String"
 			},
 			{
@@ -35,11 +35,11 @@
 				"type": "String"
 			},
 			{
-				"name": "2015 Kauppojen lukumaara",
+				"name": "2015 Kauppojen lukumäärä",
 				"type": "String"
 			},
 			{
-				"name": "2016 Neliohinta (EUR/m2)",
+				"name": "2016 Neliöhinta (EUR/m2)",
 				"type": "String"
 			},
 			{
@@ -47,11 +47,11 @@
 				"type": "String"
 			},
 			{
-				"name": "2016 Kauppojen lukumaara",
+				"name": "2016 Kauppojen lukumäärä",
 				"type": "String"
 			},
 			{
-				"name": "2017 Neliohinta (EUR/m2)",
+				"name": "2017 Neliöhinta (EUR/m2)",
 				"type": "String"
 			},
 			{
@@ -59,11 +59,11 @@
 				"type": "String"
 			},
 			{
-				"name": "2017 Kauppojen lukumaara",
+				"name": "2017 Kauppojen lukumäärä",
 				"type": "String"
 			},
 			{
-				"name": "2018 Neliohinta (EUR/m2)",
+				"name": "2018 Neliöhinta (EUR/m2)",
 				"type": "String"
 			},
 			{
@@ -71,7 +71,7 @@
 				"type": "String"
 			},
 			{
-				"name": "2018 Kauppojen lukumaara",
+				"name": "2018 Kauppojen lukumäärä",
 				"type": "String"
 			}
 		]
