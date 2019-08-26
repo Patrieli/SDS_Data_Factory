@@ -7,7 +7,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Notebook1",
+						"activity": "Python1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -29,8 +29,8 @@
 				}
 			},
 			{
-				"name": "Notebook1",
-				"type": "DatabricksNotebook",
+				"name": "Python1",
+				"type": "DatabricksSparkPython",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -41,7 +41,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/test_pdf"
+					"pythonFile": "dbfs:/FileStore/Hello.py"
 				},
 				"linkedServiceName": {
 					"referenceName": "SDS_DataBricks_North",
