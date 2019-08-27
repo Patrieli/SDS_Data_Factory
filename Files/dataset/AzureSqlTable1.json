@@ -1,0 +1,65 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Postinumeroalue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Postinumeroalueen nimi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Kuntakoodi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Kunnan nimi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Kuntaryhmakoodi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Kuntaryhman nimi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Seutukuntakoodi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Seutukunnan nimi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Maakuntakoodi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Maakunnan nimi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Suuraluekoodi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Suuralueen nimi",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Alueet"
+		}
+	}
+}

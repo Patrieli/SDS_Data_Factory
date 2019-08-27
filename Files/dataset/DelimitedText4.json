@@ -1,0 +1,153 @@
+{
+	"name": "DelimitedText4",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "alueryhmittely_posnro.csv",
+				"folderPath": "SDS_Data",
+				"fileSystem": "realestatedata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Postinumeroalue",
+				"type": "String"
+			},
+			{
+				"name": "Postinumeroalueen nimi",
+				"type": "String"
+			},
+			{
+				"name": "Postinumeroalueen nimi (sv)",
+				"type": "String"
+			},
+			{
+				"name": "Kunta",
+				"type": "String"
+			},
+			{
+				"name": "Kunnan nimi",
+				"type": "String"
+			},
+			{
+				"name": "Kunnan nimi (sv)",
+				"type": "String"
+			},
+			{
+				"name": "Kuntaryhma",
+				"type": "String"
+			},
+			{
+				"name": "Kuntaryhman nimi",
+				"type": "String"
+			},
+			{
+				"name": "Seutukunta",
+				"type": "String"
+			},
+			{
+				"name": "Seutukunnan nimi",
+				"type": "String"
+			},
+			{
+				"name": "Maakunta",
+				"type": "String"
+			},
+			{
+				"name": "Maakunnan nimi",
+				"type": "String"
+			},
+			{
+				"name": "Suuralue",
+				"type": "String"
+			},
+			{
+				"name": "Suuralueen nimi",
+				"type": "String"
+			},
+			{
+				"name": "AVI",
+				"type": "String"
+			},
+			{
+				"name": "AVI:n nimi",
+				"type": "String"
+			},
+			{
+				"name": "ELY",
+				"type": "String"
+			},
+			{
+				"name": "ELY:n nimi",
+				"type": "String"
+			},
+			{
+				"name": "NUTS 1",
+				"type": "String"
+			},
+			{
+				"name": "NUTS 1 nimi",
+				"type": "String"
+			},
+			{
+				"name": "NUTS 2",
+				"type": "String"
+			},
+			{
+				"name": "NUTS 2 nimi",
+				"type": "String"
+			},
+			{
+				"name": "NUTS 3",
+				"type": "String"
+			},
+			{
+				"name": "NUTS 3 nimi",
+				"type": "String"
+			},
+			{
+				"name": "Sairaanhoitopiiri",
+				"type": "String"
+			},
+			{
+				"name": "Sairaanhoitopiirin nimi",
+				"type": "String"
+			},
+			{
+				"name": "Vaalipiiri",
+				"type": "String"
+			},
+			{
+				"name": "Vaalipiirin nimi",
+				"type": "String"
+			},
+			{
+				"name": "Hovioikeus",
+				"type": "String"
+			},
+			{
+				"name": "Hovioikeuden nimi",
+				"type": "String"
+			},
+			{
+				"name": "Karajaoikeus",
+				"type": "String"
+			},
+			{
+				"name": "Karajaoikeuden nimi",
+				"type": "String"
+			}
+		]
+	}
+}
