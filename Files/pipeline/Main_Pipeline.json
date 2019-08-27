@@ -210,6 +210,32 @@
 						"type": "DataFlowReference"
 					}
 				}
+			},
+			{
+				"name": "Osakeasunto_Unpivot_flow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Osakeasunto_flow",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Osakeasunto_Unpivot_flow",
+						"type": "DataFlowReference"
+					}
+				}
 			}
 		],
 		"annotations": []
