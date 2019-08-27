@@ -1,0 +1,53 @@
+{
+	"name": "vuokrahinnat_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Postinumero",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Alue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Kaupunki",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Talotyyppi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Rakennusvuosi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Vuosi",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Osakeasuntojen_hinnat_2010_2018_UP"
+		}
+	}
+}
