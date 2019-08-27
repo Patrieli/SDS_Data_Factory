@@ -1,0 +1,136 @@
+{
+	"name": "vuokrahinnat_2010_2018_BU",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Postinumero",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Alue",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Kaupunki",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Talotyyppi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Rakennusvuosi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Neliohinta_2015",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2015",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2016",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2016",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2017",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2017",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2018",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2018",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2010",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2010",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2011",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2011",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2012",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2012",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2013",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2013",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Neliohinta_2014",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 2
+			},
+			{
+				"name": "Kauppojen_lukumaara_2014",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Osakeasuntojen_hinnat_2010_2018_BU"
+		}
+	}
+}
