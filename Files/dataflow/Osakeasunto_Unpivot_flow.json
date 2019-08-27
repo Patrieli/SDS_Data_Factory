@@ -1,0 +1,12 @@
+{
+	"name": "Osakeasunto_Unpivot_flow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [],
+			"script": "\n"
+		}
+	}
+}
