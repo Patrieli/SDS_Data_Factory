@@ -16,8 +16,8 @@
 				"userProperties": [],
 				"typeProperties": {
 					"webServiceInputs": {
-						"": {
-							"filePath": "",
+						"input1": {
+							"filePath": "realestatedata1/osakeout.csv",
 							"linkedServiceName": {
 								"referenceName": "AzureBlobStorage1",
 								"type": "LinkedServiceReference"
