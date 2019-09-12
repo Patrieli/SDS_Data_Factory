@@ -56,7 +56,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "jsoncontent",
-					"value": ""
+					"value": {
+						"value": "@activity('WebActivity1').output",
+						"type": "Expression"
+					}
 				}
 			}
 		],
