@@ -31,7 +31,14 @@
 			{
 				"name": "Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
 				"type": "DatabricksNotebook",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Web1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -46,6 +53,40 @@
 				"linkedServiceName": {
 					"referenceName": "SDS_DataBricks_North",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x4.px",
+					"method": "POST",
+					"body": {
+						"query": [
+							{
+								"code": "Tiedot",
+								"selection": {
+									"filter": "item",
+									"values": [
+										"lkm",
+										"keskivuokra"
+									]
+								}
+							}
+						],
+						"response": {
+							"format": "json-stat"
+						}
+					}
 				}
 			}
 		],
