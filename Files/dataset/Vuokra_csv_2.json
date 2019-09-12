@@ -21,7 +21,7 @@
 		},
 		"schema": [
 			{
-				"name": "Vuosineljannes",
+				"name": "Vuosineljännes",
 				"type": "String"
 			},
 			{
@@ -37,11 +37,11 @@
 				"type": "String"
 			},
 			{
-				"name": "Lukumaara",
+				"name": "Tiedot",
 				"type": "String"
 			},
 			{
-				"name": "Neliovuokra",
+				"name": "value",
 				"type": "String"
 			}
 		]
