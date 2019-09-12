@@ -92,10 +92,7 @@
 							"referenceName": "Vuokra_csv_2",
 							"type": "DatasetReference"
 						}
-					],
-					"authentication": {
-						"type": "MSI"
-					}
+					]
 				}
 			}
 		],
