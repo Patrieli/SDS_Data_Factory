@@ -5,7 +5,14 @@
 			{
 				"name": "PDF_read",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Python1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -19,6 +26,38 @@
 						"referenceName": "PDF_read_testing",
 						"type": "DataFlowReference"
 					}
+				}
+			},
+			{
+				"name": "Python1",
+				"type": "DatabricksSparkPython",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pythonFile": "dbfs:/PDF_read.py",
+					"libraries": [
+						{
+							"pypi": {
+								"package": "os"
+							}
+						},
+						{
+							"pypi": {
+								"package": "azure.storage.blob"
+							}
+						}
+					]
+				},
+				"linkedServiceName": {
+					"referenceName": "SDS_DataBricks_North",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
