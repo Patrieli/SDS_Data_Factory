@@ -7,7 +7,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "Vuokra_csv",
+						"referenceName": "Vuokra_csv_2",
 						"type": "DatasetReference"
 					},
 					"name": "Vuokrahinnat2015"
