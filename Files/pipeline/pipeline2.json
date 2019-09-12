@@ -41,8 +41,31 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Set Variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "WebActivity1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
+		"parameters": {
+			"json3": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"jsoncontent": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
