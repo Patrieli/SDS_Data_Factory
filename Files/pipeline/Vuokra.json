@@ -5,7 +5,14 @@
 			{
 				"name": "vuokra_flow",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -19,6 +26,26 @@
 						"referenceName": "Vuokra_flow2",
 						"type": "DataFlowReference"
 					}
+				}
+			},
+			{
+				"name": "Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus"
+				},
+				"linkedServiceName": {
+					"referenceName": "SDS_DataBricks_North",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
