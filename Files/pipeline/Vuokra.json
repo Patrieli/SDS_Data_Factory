@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "Vuokra_flow",
+						"referenceName": "Vuokra_flow2",
 						"type": "DataFlowReference"
 					}
 				}
