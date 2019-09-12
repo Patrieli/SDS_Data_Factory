@@ -63,11 +63,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"json3": {
-				"type": "string"
-			}
-		},
 		"variables": {
 			"jsoncontent": {
 				"type": "String"
