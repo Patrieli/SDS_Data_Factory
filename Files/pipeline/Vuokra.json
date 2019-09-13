@@ -7,7 +7,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
+						"activity": "DatabricksNotebook1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -29,8 +29,8 @@
 				}
 			},
 			{
-				"name": "Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
-				"type": "DatabricksNotebook",
+				"name": "WebActivity1",
+				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -41,7 +41,54 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus"
+					"url": {
+						"value": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x5.px",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": {
+						"value": "{\n  \"query\": [],\n  \"response\": {\n    \"format\": \"json-stat\"\n  }\n}",
+						"type": "Expression"
+					},
+					"datasets": [
+						{
+							"referenceName": "Vuokra_csv_2",
+							"type": "DatasetReference"
+						}
+					]
+				}
+			},
+			{
+				"name": "DatabricksNotebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "WebActivity1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
+					"baseParameters": {
+						"jsoncontent": {
+							"value": "@string(activity('GetDataFromPxnet2').output)",
+							"type": "Expression"
+						},
+						"storageaccountname": "aureolissdsdatalakegen1",
+						"storageaccountaccesskey": "uRbvlw1Sve+C5k8xwfxsowf5DpoccyRUyJ+hdsxrD7oQk5D8QBCnhKNKAF5XiyH29vi/PJSxh9NZKBUBBEGQOA==",
+						"containername": "realestatedata1",
+						"filename": "Vuokrahinnat_2015Q1_Alkaen.csv"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "SDS_DataBricks_North",
@@ -49,6 +96,11 @@
 				}
 			}
 		],
+		"variables": {
+			"jsoncontent": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
