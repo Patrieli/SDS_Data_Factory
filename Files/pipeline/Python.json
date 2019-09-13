@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "DatabricksSparkPython1",
-				"type": "DatabricksSparkPython",
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,10 +15,17 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"pythonFile": "dbfs:/PDF_read.py"
+					"notebookPath": "/Users/jaakko.mantila@aureolis.com/test_pdf",
+					"libraries": [
+						{
+							"pypi": {
+								"package": "pandas"
+							}
+						}
+					]
 				},
 				"linkedServiceName": {
-					"referenceName": "SDS_DataBricks",
+					"referenceName": "SDS_DataBricks_North",
 					"type": "LinkedServiceReference"
 				}
 			}
