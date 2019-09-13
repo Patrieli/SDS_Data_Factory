@@ -15,24 +15,14 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x4.px",
+					"url": {
+						"value": "@variables('POST_url')",
+						"type": "Expression"
+					},
 					"method": "POST",
 					"body": {
-						"query": [
-							{
-								"code": "Tiedot",
-								"selection": {
-									"filter": "item",
-									"values": [
-										"lkm",
-										"keskivuokra"
-									]
-								}
-							}
-						],
-						"response": {
-							"format": "json-stat"
-						}
+						"value": "@variables('POST_body')",
+						"type": "Expression"
 					},
 					"datasets": [
 						{
@@ -83,6 +73,30 @@
 		"variables": {
 			"jsoncontent": {
 				"type": "String"
+			},
+			"POST_url": {
+				"type": "String",
+				"defaultValue": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x4.px"
+			},
+			"POST_body": {
+				"type": "String",
+				"defaultValue": {
+					"query": [
+						{
+							"code": "Tiedot",
+							"selection": {
+								"filter": "item",
+								"values": [
+									"lkm",
+									"keskivuokra"
+								]
+							}
+						}
+					],
+					"response": {
+						"format": "json-stat"
+					}
+				}
 			}
 		},
 		"annotations": []
