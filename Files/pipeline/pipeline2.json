@@ -70,6 +70,21 @@
 				}
 			}
 		],
+		"parameters": {
+			"POST_url": {
+				"type": "string",
+				"defaultValue": "asdhttp://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x5.px"
+			},
+			"POST_body": {
+				"type": "string",
+				"defaultValue": {
+					"query": [],
+					"response": {
+						"format": "json-stat"
+					}
+				}
+			}
+		},
 		"variables": {
 			"jsoncontent": {
 				"type": "String"
