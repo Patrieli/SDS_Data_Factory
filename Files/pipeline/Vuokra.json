@@ -7,7 +7,7 @@
 				"type": "ExecuteDataFlow",
 				"dependsOn": [
 					{
-						"activity": "DatabricksNotebook1",
+						"activity": "SaveJsonToCsv",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -29,7 +29,7 @@
 				}
 			},
 			{
-				"name": "WebActivity1",
+				"name": "GetDataFromPxnet2",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -59,11 +59,11 @@
 				}
 			},
 			{
-				"name": "DatabricksNotebook1",
+				"name": "SaveJsonToCsv",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "WebActivity1",
+						"activity": "GetDataFromPxnet2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
