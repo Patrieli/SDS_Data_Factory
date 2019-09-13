@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "WebActivity1",
+				"name": "GetDataFromPxnet2",
 				"type": "WebActivity",
 				"dependsOn": [],
 				"policy": {
@@ -47,7 +47,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "WebActivity1",
+						"activity": "GetDataFromPxnet2",
 						"dependencyConditions": [
 							"Succeeded"
 						]
