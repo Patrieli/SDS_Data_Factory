@@ -43,31 +43,11 @@
 				}
 			},
 			{
-				"name": "Set Variable1",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "WebActivity1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "jsoncontent",
-					"value": {
-						"value": "@string(activity('WebActivity1').output)",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "Notebook1",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Set Variable1",
+						"activity": "WebActivity1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -84,14 +64,10 @@
 				"typeProperties": {
 					"notebookPath": "/Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
 					"baseParameters": {
-						"jsoncontent": {
-							"value": "@variables('jsoncontent')",
+						"input": {
+							"value": "@string(activity('WebActivity1').output)",
 							"type": "Expression"
-						},
-						"storage_account_name": "aureolissdsdatalakegen1",
-						"storage_account_access_key": "uRbvlw1Sve+C5k8xwfxsowf5DpoccyRUyJ+hdsxrD7oQk5D8QBCnhKNKAF5XiyH29vi/PJSxh9NZKBUBBEGQOA==",
-						"container_name": "realestatedata1",
-						"filename": "Vuokrahinnat_2015Q1_Alkaen.csv"
+						}
 					}
 				},
 				"linkedServiceName": {
