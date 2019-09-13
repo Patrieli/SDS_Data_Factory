@@ -16,12 +16,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"url": {
-						"value": "@variables('POST_url')",
+						"value": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x4.px",
 						"type": "Expression"
 					},
 					"method": "POST",
 					"body": {
-						"value": "@variables('POST_body')",
+						"value": "{\n  \"query\": [],\n  \"response\": {\n    \"format\": \"json-stat\"\n  }\n}",
 						"type": "Expression"
 					},
 					"datasets": [
@@ -55,7 +55,7 @@
 					"notebookPath": "/Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
 					"baseParameters": {
 						"jsoncontent": {
-							"value": "@string(activity('WebActivity1').output)",
+							"value": "@string(activity('GetDataFromPxnet2').output)",
 							"type": "Expression"
 						},
 						"storageaccountname": "aureolissdsdatalakegen1",
@@ -73,30 +73,6 @@
 		"variables": {
 			"jsoncontent": {
 				"type": "String"
-			},
-			"POST_url": {
-				"type": "String",
-				"defaultValue": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x4.px"
-			},
-			"POST_body": {
-				"type": "String",
-				"defaultValue": {
-					"query": [
-						{
-							"code": "Tiedot",
-							"selection": {
-								"filter": "item",
-								"values": [
-									"lkm",
-									"keskivuokra"
-								]
-							}
-						}
-					],
-					"response": {
-						"format": "json-stat"
-					}
-				}
 			}
 		},
 		"annotations": []
