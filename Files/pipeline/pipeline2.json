@@ -17,6 +17,9 @@
 				"typeProperties": {
 					"url": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x5.px",
 					"method": "POST",
+					"headers": {
+						"Accept-Encoding": "UTF-8"
+					},
 					"body": {
 						"query": [],
 						"response": {
