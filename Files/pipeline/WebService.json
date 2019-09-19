@@ -26,7 +26,7 @@
 					},
 					"webServiceOutputs": {
 						"output1": {
-							"filePath": "realestatedata1/output2.csv",
+							"filePath": "realestatedata1/output1.csv",
 							"linkedServiceName": {
 								"referenceName": "AzureBlobStorage1",
 								"type": "LinkedServiceReference"
