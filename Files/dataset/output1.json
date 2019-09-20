@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText5",
+	"name": "output1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "DataLake_GEN1",
