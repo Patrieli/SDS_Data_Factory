@@ -1,0 +1,28 @@
+{
+	"name": "Osakeasunto_ennusteet2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "output1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Osakeasunto_ennusteet",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [],
+			"script": "\n\nsource(output(\n\t\t{Scored Label Mean} as double,\n\t\t{Scored Label Standard Deviation} as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1\nsource1 sink(input(\n\t\tScored_Label_Mean as decimal(20,2),\n\t\tScored_Label_Standard_Deviation as decimal(20,2)\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'table',\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\ttruncate:true,\n\tmapColumn(\n\t\tScored_Label_Mean = {Scored Label Mean},\n\t\tScored_Label_Standard_Deviation = {Scored Label Standard Deviation}\n\t)) ~> sink1"
+		}
+	}
+}
