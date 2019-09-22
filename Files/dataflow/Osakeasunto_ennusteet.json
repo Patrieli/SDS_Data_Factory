@@ -1,5 +1,5 @@
 {
-	"name": "Osakeasunto_ennusteet2",
+	"name": "Osakeasunto_ennusteet",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
