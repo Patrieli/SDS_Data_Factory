@@ -1,5 +1,5 @@
 {
-	"name": "WebService",
+	"name": "Osakeasunto_ennusteet",
 	"properties": {
 		"activities": [
 			{
@@ -42,14 +42,7 @@
 			{
 				"name": "Osakeasunto_ennusteet",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [
-					{
-						"activity": "ML Batch Execution1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
