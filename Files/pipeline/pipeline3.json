@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"pythonFile": "dbfs:/tables/data_fix.py"
+					"pythonFile": "dbfs:/FileStore/tables/data_fix.py"
 				},
 				"linkedServiceName": {
 					"referenceName": "SDS_DataBricks_North",
