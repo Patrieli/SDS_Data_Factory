@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"webServiceInputs": {
 						"input1": {
-							"filePath": "realestatedata1/input3.csv",
+							"filePath": "realestatedata1/input1_test.csv",
 							"linkedServiceName": {
 								"referenceName": "AzureBlobStorage1",
 								"type": "LinkedServiceReference"
@@ -37,29 +37,6 @@
 				"linkedServiceName": {
 					"referenceName": "Osakeasunto_WebService",
 					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "data_fix",
-				"type": "DatabricksSparkPython",
-				"dependsOn": [
-					{
-						"activity": "AzureMLBatchExecution1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"pythonFile": "dbfs:/data_fix"
 				}
 			},
 			{
@@ -86,6 +63,33 @@
 						"referenceName": "Osakeasunto_ennusteet",
 						"type": "DataFlowReference"
 					}
+				}
+			},
+			{
+				"name": "data_fix",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "AzureMLBatchExecution1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/jaakko.mantila@aureolis.com/data_fix"
+				},
+				"linkedServiceName": {
+					"referenceName": "SDS_DataBricks_North",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
