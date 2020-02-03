@@ -13,7 +13,7 @@
 				"fileName": "tp_tilasto_proj_hidas.csv",
 				"container": "tyopaikkaprojektio"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": ";",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
