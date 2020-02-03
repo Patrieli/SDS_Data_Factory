@@ -1,0 +1,28 @@
+{
+	"name": "Tp_tilasto_proj_nopea",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "tp_tilasto_proj_nopea.csv",
+				"container": "tyopaikkaprojektio"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Toimiala;Tol;Tyyppi;Vuosi;Uusimaa;Hel;Esp;Van;Kau;PKS;Hyv;Jar;Ker;Kir;Man;Nur;Por;Sip;Tuu;Vih;Kehys;Raas;Lohj;Lovi;Porv;Riih;Uusimaa_p;Hel_p;Esp_p;Van_p;Kau_p;PKS_p;Hyv_p;Jar_p;Ker_p;Kir_p;Man_p;Nur_p;Por_p;Sip_p;Tuu_p;Vih_p;Kehys_p;Raas_p;Lohj_p;Lovi_p;Porv_p;Riih_p",
+				"type": "String"
+			}
+		]
+	}
+}
