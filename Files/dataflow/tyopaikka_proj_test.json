@@ -1,0 +1,34 @@
+{
+	"name": "tyopaikka_proj_test",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Tp_tilasto_proj_perus",
+						"type": "DatasetReference"
+					},
+					"name": "projperus"
+				},
+				{
+					"dataset": {
+						"referenceName": "Tp_tilasto_proj_nopea",
+						"type": "DatasetReference"
+					},
+					"name": "projnopea"
+				},
+				{
+					"dataset": {
+						"referenceName": "Tp_tilasto_proj_hidas",
+						"type": "DatasetReference"
+					},
+					"name": "projhidas"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"script": "source(output(\n\t\t{Toimiala;Tol;Tyyppi;Vuosi;Uusimaa;Hel;Esp;Van;Kau;PKS;Hyv;Jar;Ker;Kir;Man;Nur;Por;Sip;Tuu;Vih;Kehys;Raas;Lohj;Lovi;Porv;Riih;Uusimaa_p;Hel_p;Esp_p;Van_p;Kau_p;PKS_p;Hyv_p;Jar_p;Ker_p;Kir_p;Man_p;Nur_p;Por_p;Sip_p;Tuu_p;Vih_p;Kehys_p;Raas_p;Lohj_p;Lovi_p;Porv_p;Riih_p} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> projperus\nsource(output(\n\t\t{Toimiala;Tol;Tyyppi;Vuosi;Uusimaa;Hel;Esp;Van;Kau;PKS;Hyv;Jar;Ker;Kir;Man;Nur;Por;Sip;Tuu;Vih;Kehys;Raas;Lohj;Lovi;Porv;Riih;Uusimaa_p;Hel_p;Esp_p;Van_p;Kau_p;PKS_p;Hyv_p;Jar_p;Ker_p;Kir_p;Man_p;Nur_p;Por_p;Sip_p;Tuu_p;Vih_p;Kehys_p;Raas_p;Lohj_p;Lovi_p;Porv_p;Riih_p} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> projnopea\nsource(output(\n\t\t{Toimiala;Tol;Tyyppi;Vuosi;Uusimaa;Hel;Esp;Van;Kau;PKS;Hyv;Jar;Ker;Kir;Man;Nur;Por;Sip;Tuu;Vih;Kehys;Raas;Lohj;Lovi;Porv;Riih;Uusimaa_p;Hel_p;Esp_p;Van_p;Kau_p;PKS_p;Hyv_p;Jar_p;Ker_p;Kir_p;Man_p;Nur_p;Por_p;Sip_p;Tuu_p;Vih_p;Kehys_p;Raas_p;Lohj_p;Lovi_p;Porv_p;Riih_p} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> projhidas"
+		}
+	}
+}
