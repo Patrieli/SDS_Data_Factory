@@ -1,0 +1,16 @@
+{
+	"name": "tyopaikka_proj_hidas",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "tyopaikka_proj_hidas"
+		}
+	}
+}
