@@ -29,21 +29,21 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "tyopaikka_proj_hidas",
+						"referenceName": "Tyopaikka_proj_hidas",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
 				},
 				{
 					"dataset": {
-						"referenceName": "tyopaikka_proj_nopea",
+						"referenceName": "Tyopaikka_proj_nopea",
 						"type": "DatasetReference"
 					},
 					"name": "sink2"
 				},
 				{
 					"dataset": {
-						"referenceName": "tyopaikka_proj_perus",
+						"referenceName": "Tyopaikka_proj_perus",
 						"type": "DatasetReference"
 					},
 					"name": "sink3"

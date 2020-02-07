@@ -1,5 +1,5 @@
 {
-	"name": "tyopaikka_proj_hidas",
+	"name": "Tyopaikka_proj_hidas",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
