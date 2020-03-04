@@ -4,7 +4,7 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory Name",
+			"metadata": "Data Factory name",
 			"defaultValue": "aureolissdsdatafactory"
 		},
 		"AzureBlobStorage1_connectionString": {
@@ -35,13 +35,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'FileServer2'"
 		},
+		"MachineLearning1_apiKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'apiKey' of 'MachineLearning1'"
+		},
 		"Office3651_servicePrincipalKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalKey' of 'Office3651'"
 		},
+		"Osakeasunto_WebService_apiKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'apiKey' of 'Osakeasunto_WebService'"
+		},
 		"SDS_DataBricks_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks'"
+		},
+		"SDS_DataBricks_North_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks_North'"
 		},
 		"Share_password": {
 			"type": "secureString",
@@ -117,7 +129,7 @@
 		},
 		"containerSasToken": {
 			"type": "string",
-			"metadata": "Sas Token to storage account containing linked ARM templates"
+			"metadata": "Sas token to storage account containing linked ARM templates"
 		}
 	},
 	"variables": {
@@ -150,11 +162,20 @@
 					"DataLake_GEN1_accountKey": {
 						"value": "[parameters('DataLake_GEN1_accountKey')]"
 					},
+					"MachineLearning1_apiKey": {
+						"value": "[parameters('MachineLearning1_apiKey')]"
+					},
 					"Office3651_servicePrincipalKey": {
 						"value": "[parameters('Office3651_servicePrincipalKey')]"
 					},
+					"Osakeasunto_WebService_apiKey": {
+						"value": "[parameters('Osakeasunto_WebService_apiKey')]"
+					},
 					"SDS_DataBricks_accessToken": {
 						"value": "[parameters('SDS_DataBricks_accessToken')]"
+					},
+					"SDS_DataBricks_North_accessToken": {
+						"value": "[parameters('SDS_DataBricks_North_accessToken')]"
 					},
 					"SharePoint_password": {
 						"value": "[parameters('SharePoint_password')]"
@@ -211,6 +232,26 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"Azure_folder_password": {
 						"value": "[parameters('Azure_folder_password')]"
@@ -254,17 +295,17 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_1')]"
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_2')]"
 			]
 		},
 		{
-			"name": "ArmTemplate_3",
+			"name": "ArmTemplate_4",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2018-02-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -277,7 +318,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_2')]"
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_3')]"
 			]
 		}
 	]

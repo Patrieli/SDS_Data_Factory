@@ -26,10 +26,19 @@
 		"FileServer2_password": {
 			"value": ""
 		},
+		"MachineLearning1_apiKey": {
+			"value": ""
+		},
 		"Office3651_servicePrincipalKey": {
 			"value": ""
 		},
+		"Osakeasunto_WebService_apiKey": {
+			"value": ""
+		},
 		"SDS_DataBricks_accessToken": {
+			"value": ""
+		},
+		"SDS_DataBricks_North_accessToken": {
 			"value": ""
 		},
 		"Share_password": {

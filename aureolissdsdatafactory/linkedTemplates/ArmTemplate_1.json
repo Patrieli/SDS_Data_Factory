@@ -4,7 +4,7 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory Name",
+			"metadata": "Data Factory name",
 			"defaultValue": "aureolissdsdatafactory"
 		}
 	},
@@ -12,6 +12,353 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Curated_blob')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "curated"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Postinumero;Alue;Kaupunki;Talotyyppi;Rakennusvuosi;Neliohinta_2015;Kauppojen_lukumaara_2015;Neliohinta_2016;Kauppojen_lukumaara_2016;Neliohinta_2017;Kauppojen_lukumaara_2017;Neliohinta_2018;Kauppojen_lukumaara_2018;Neliohinta_2010;Kauppojen_lukumaara_2010;Neliohinta_2011;Kauppojen_lukumaara_2011;Neliohinta_2012;Kauppojen_lukumaara_2012;Neliohinta_2013;Kauppojen_lukumaara_2013;Neliohinta_2014;Kauppojen_lukumaara_2014",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Osakeasuntojen_hinnat_2010_2014.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLake_GEN1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "curated"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "/",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLake_GEN1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Omakotitalojen_hinnat_2015_2018.csv",
+						"fileSystem": "realestatedata1"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText4')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "alueryhmittely_posnro.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Postinumeroalue",
+						"type": "String"
+					},
+					{
+						"name": "Postinumeroalueen nimi",
+						"type": "String"
+					},
+					{
+						"name": "Postinumeroalueen nimi (sv)",
+						"type": "String"
+					},
+					{
+						"name": "Kunta",
+						"type": "String"
+					},
+					{
+						"name": "Kunnan nimi",
+						"type": "String"
+					},
+					{
+						"name": "Kunnan nimi (sv)",
+						"type": "String"
+					},
+					{
+						"name": "Kuntaryhma",
+						"type": "String"
+					},
+					{
+						"name": "Kuntaryhman nimi",
+						"type": "String"
+					},
+					{
+						"name": "Seutukunta",
+						"type": "String"
+					},
+					{
+						"name": "Seutukunnan nimi",
+						"type": "String"
+					},
+					{
+						"name": "Maakunta",
+						"type": "String"
+					},
+					{
+						"name": "Maakunnan nimi",
+						"type": "String"
+					},
+					{
+						"name": "Suuralue",
+						"type": "String"
+					},
+					{
+						"name": "Suuralueen nimi",
+						"type": "String"
+					},
+					{
+						"name": "AVI",
+						"type": "String"
+					},
+					{
+						"name": "AVI:n nimi",
+						"type": "String"
+					},
+					{
+						"name": "ELY",
+						"type": "String"
+					},
+					{
+						"name": "ELY:n nimi",
+						"type": "String"
+					},
+					{
+						"name": "NUTS 1",
+						"type": "String"
+					},
+					{
+						"name": "NUTS 1 nimi",
+						"type": "String"
+					},
+					{
+						"name": "NUTS 2",
+						"type": "String"
+					},
+					{
+						"name": "NUTS 2 nimi",
+						"type": "String"
+					},
+					{
+						"name": "NUTS 3",
+						"type": "String"
+					},
+					{
+						"name": "NUTS 3 nimi",
+						"type": "String"
+					},
+					{
+						"name": "Sairaanhoitopiiri",
+						"type": "String"
+					},
+					{
+						"name": "Sairaanhoitopiirin nimi",
+						"type": "String"
+					},
+					{
+						"name": "Vaalipiiri",
+						"type": "String"
+					},
+					{
+						"name": "Vaalipiirin nimi",
+						"type": "String"
+					},
+					{
+						"name": "Hovioikeus",
+						"type": "String"
+					},
+					{
+						"name": "Hovioikeuden nimi",
+						"type": "String"
+					},
+					{
+						"name": "Karajaoikeus",
+						"type": "String"
+					},
+					{
+						"name": "Karajaoikeuden nimi",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Demograph2012')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Demographics_2012_2013.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Postinumeroalue",
+						"type": "String"
+					},
+					{
+						"name": "Asukkaat yhteensä, 2013 (HE)",
+						"type": "String"
+					},
+					{
+						"name": "Asukkaiden keski-ikä, 2013 (HE)",
+						"type": "String"
+					},
+					{
+						"name": "Alemman korkeakoulututkinnon suorittaneet, 2012 (KO)",
+						"type": "String"
+					},
+					{
+						"name": "Asukkaiden keskitulot, 2012 (HR)",
+						"type": "String"
+					},
+					{
+						"name": "Taloudet yhteensä, 2013 (TE)",
+						"type": "String"
+					},
+					{
+						"name": "Talouksien keskikoko, 2013 (TE)",
+						"type": "String"
+					},
+					{
+						"name": "Omistusasunnoissa asuvat taloudet, 2013 (TE)",
+						"type": "String"
+					},
+					{
+						"name": "Asuntojen keskipinta-ala, 2013 (RA)",
+						"type": "String"
+					},
+					{
+						"name": "Työlliset, 2012 (PT)",
+						"type": "String"
+					},
+					{
+						"name": "Työttömät, 2012 (PT)",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Demograph2013')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -31,6 +378,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -38,47 +386,47 @@
 				},
 				"schema": [
 					{
-						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+						"name": "Postinumeroalue",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (HE)\";\"Asukkaiden keski-ik�",
+						"name": "Asukkaat yhteensä, 2014 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+						"name": "Asukkaiden keski-ikä, 2014 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2013 (KO)\";\"Asukkaiden keskitulot",
+						"name": "Alemman korkeakoulututkinnon suorittaneet, 2013 (KO)",
 						"type": "String"
 					},
 					{
-						"name": " 2013 (HR)\";\"Taloudet yhteens�",
+						"name": "Asukkaiden keskitulot, 2013 (HR)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (TE)\";\"Talouksien keskikoko",
+						"name": "Taloudet yhteensä, 2014 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+						"name": "Talouksien keskikoko, 2014 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (TE)\";\"Asuntojen keskipinta-ala",
+						"name": "Omistusasunnoissa asuvat taloudet, 2014 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (RA)\";\"Ty�lliset",
+						"name": "Asuntojen keskipinta-ala, 2014 (RA)",
 						"type": "String"
 					},
 					{
-						"name": " 2013 (PT)\";\"Ty�tt�m�t",
+						"name": "Työlliset, 2013 (PT)",
 						"type": "String"
 					},
 					{
-						"name": " 2013 (PT)\"",
+						"name": "Työttömät, 2013 (PT)",
 						"type": "String"
 					}
 				]
@@ -104,6 +452,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -111,47 +460,47 @@
 				},
 				"schema": [
 					{
-						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+						"name": "Postinumeroalue",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (HE)\";\"Asukkaiden keski-ik�",
+						"name": "Asukkaat yhteensä, 2015 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+						"name": "Asukkaiden keski-ikä, 2015 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (KO)\";\"Asukkaiden keskitulot",
+						"name": "Alemman korkeakoulututkinnon suorittaneet, 2014 (KO)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (HR)\";\"Taloudet yhteens�",
+						"name": "Asukkaiden keskitulot, 2014 (HR)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (TE)\";\"Talouksien keskikoko",
+						"name": "Taloudet yhteensä, 2015 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+						"name": "Talouksien keskikoko, 2015 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (TE)\";\"Asuntojen keskipinta-ala",
+						"name": "Omistusasunnoissa asuvat taloudet, 2015 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (RA)\";\"Ty�lliset",
+						"name": "Asuntojen keskipinta-ala, 2015 (RA)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (PT)\";\"Ty�tt�m�t",
+						"name": "Työlliset, 2014 (PT)",
 						"type": "String"
 					},
 					{
-						"name": " 2014 (PT)\"",
+						"name": "Työttömät, 2014 (PT)",
 						"type": "String"
 					}
 				]
@@ -177,6 +526,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -184,47 +534,47 @@
 				},
 				"schema": [
 					{
-						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+						"name": "Postinumeroalue",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (HE)\";\"Asukkaiden keski-ik�",
+						"name": "Asukkaat yhteensä, 2016 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+						"name": "Asukkaiden keski-ikä, 2016 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (KO)\";\"Asukkaiden keskitulot",
+						"name": "Alemman korkeakoulututkinnon suorittaneet, 2016 (KO)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (HR)\";\"Taloudet yhteens�",
+						"name": "Asukkaiden keskitulot, 2015 (HR)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (TE)\";\"Talouksien keskikoko",
+						"name": "Taloudet yhteensä, 2016 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+						"name": "Talouksien keskikoko, 2016 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (TE)\";\"Asuntojen keskipinta-ala",
+						"name": "Omistusasunnoissa asuvat taloudet, 2016 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (RA)\";\"Ty�lliset",
+						"name": "Asuntojen keskipinta-ala, 2016 (RA)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (PT)\";\"Ty�tt�m�t",
+						"name": "Työlliset, 2015 (PT)",
 						"type": "String"
 					},
 					{
-						"name": " 2015 (PT)\"",
+						"name": "Työttömät, 2015 (PT)",
 						"type": "String"
 					}
 				]
@@ -250,6 +600,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -257,47 +608,47 @@
 				},
 				"schema": [
 					{
-						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
+						"name": "Postinumeroalue",
 						"type": "String"
 					},
 					{
-						"name": " 2017 (HE)\";\"Asukkaiden keski-ik�",
+						"name": "Asukkaat yhteensä, 2017 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2017 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
+						"name": "Asukkaiden keski-ikä, 2017 (HE)",
 						"type": "String"
 					},
 					{
-						"name": " 2017 (KO)\";\"Asukkaiden keskitulot",
+						"name": "Alemman korkeakoulututkinnon suorittaneet, 2017 (KO)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (HR)\";\"Taloudet yhteens�",
+						"name": "Asukkaiden keskitulot, 2016 (HR)",
 						"type": "String"
 					},
 					{
-						"name": " 2017 (TE)\";\"Talouksien keskikoko",
+						"name": "Taloudet yhteensä, 2017 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2017 (TE)\";\"Omistusasunnoissa asuvat taloudet",
+						"name": "Talouksien keskikoko, 2017 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2017 (TE)\";\"Asuntojen keskipinta-ala",
+						"name": "Omistusasunnoissa asuvat taloudet, 2017 (TE)",
 						"type": "String"
 					},
 					{
-						"name": " 2017 (RA)\";\"Ty�lliset",
+						"name": "Asuntojen keskipinta-ala, 2017 (RA)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (PT)\";\"Ty�tt�m�t",
+						"name": "Työlliset, 2016 (PT)",
 						"type": "String"
 					},
 					{
-						"name": " 2016 (PT)\"",
+						"name": "Työttömät, 2016 (PT)",
 						"type": "String"
 					}
 				]
@@ -909,6 +1260,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -920,7 +1272,7 @@
 						"type": "String"
 					},
 					{
-						"name": "2015 Neliohinta (EUR/m2)",
+						"name": "2015 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
@@ -928,11 +1280,11 @@
 						"type": "String"
 					},
 					{
-						"name": "2015 Kauppojen lukumaara",
+						"name": "2015 Kauppojen lukumäärä",
 						"type": "String"
 					},
 					{
-						"name": "2016 Neliohinta (EUR/m2)",
+						"name": "2016 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
@@ -940,11 +1292,11 @@
 						"type": "String"
 					},
 					{
-						"name": "2016 Kauppojen lukumaara",
+						"name": "2016 Kauppojen lukumäärä",
 						"type": "String"
 					},
 					{
-						"name": "2017 Neliohinta (EUR/m2)",
+						"name": "2017 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
@@ -952,11 +1304,11 @@
 						"type": "String"
 					},
 					{
-						"name": "2017 Kauppojen lukumaara",
+						"name": "2017 Kauppojen lukumäärä",
 						"type": "String"
 					},
 					{
-						"name": "2018 Neliohinta (EUR/m2)",
+						"name": "2018 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
@@ -964,7 +1316,7 @@
 						"type": "String"
 					},
 					{
-						"name": "2018 Kauppojen lukumaara",
+						"name": "2018 Kauppojen lukumäärä",
 						"type": "String"
 					}
 				]
@@ -1087,6 +1439,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -1106,35 +1459,35 @@
 						"type": "String"
 					},
 					{
-						"name": "2015 Neliohinta (EUR/m2)",
+						"name": "2015 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
-						"name": "2015 Kauppojen lukumaara",
+						"name": "2015 Kauppojen lukumäärä",
 						"type": "String"
 					},
 					{
-						"name": "2016 Neliohinta (EUR/m2)",
+						"name": "2016 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
-						"name": "2016 Kauppojen lukumaara",
+						"name": "2016 Kauppojen lukumäärä",
 						"type": "String"
 					},
 					{
-						"name": "2017 Neliohinta (EUR/m2)",
+						"name": "2017 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
-						"name": "2017 Kauppojen lukumaara",
+						"name": "2017 Kauppojen lukumäärä",
 						"type": "String"
 					},
 					{
-						"name": "2018 Neliohinta (EUR/m2)",
+						"name": "2018 Neliöhinta (EUR/m2)",
 						"type": "String"
 					},
 					{
-						"name": "2018 Kauppojen lukumaara",
+						"name": "2018 Kauppojen lukumäärä",
 						"type": "String"
 					}
 				]
@@ -1261,6 +1614,72 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasunto_ennusteet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Postinumero",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Alue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kaupunki",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Talotyyppi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rakennusvuosi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Vuosi",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Ennuste",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Paivitetty_pvm",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Osakeasunto_ennusteet"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Osakeasuntohinnat2010')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1279,6 +1698,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -1286,6 +1706,55 @@
 				},
 				"schema": [
 					{
+						"name": "Postinumero",
+						"type": "String"
+					},
+					{
+						"name": "Talotyyppi",
+						"type": "String"
+					},
+					{
+						"name": "Rakennusvuosi",
+						"type": "String"
+					},
+					{
+						"name": "2010 Neliöhinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2010 Kauppojen lukumäärä",
+						"type": "String"
+					},
+					{
+						"name": "2011 Neliöhinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2011 Kauppojen lukumäärä",
+						"type": "String"
+					},
+					{
+						"name": "2012 Neliöhinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2012 Kauppojen lukumäärä",
+						"type": "String"
+					},
+					{
+						"name": "2013 Neliöhinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2013 Kauppojen lukumäärä",
+						"type": "String"
+					},
+					{
+						"name": "2014 Neliöhinta (EUR/m2)",
+						"type": "String"
+					},
+					{
+						"name": "2014 Kauppojen lukumäärä",
 						"type": "String"
 					}
 				]
@@ -1464,440 +1933,6 @@
 				],
 				"typeProperties": {
 					"tableName": "[[dbo].[Osakeasuntojen_hinnat_2010_2018]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/PDF_read')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Column_1",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_2",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_3",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_4",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_5",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_6",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_7",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_8",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_9",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_10",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_11",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_12",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_13",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_14",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_15",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_16",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_17",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_18",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_19",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_20",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_21",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_22",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_23",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_24",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_25",
-						"type": "varchar"
-					},
-					{
-						"name": "Column_26",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[Mlupa3]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SDS_Data')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "TaajamaAste",
-						"folderPath": "ABC",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"encodingName": "ISO-8859-1",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Postinumero",
-						"type": "String"
-					},
-					{
-						"name": "Talotyyppi",
-						"type": "String"
-					},
-					{
-						"name": "Rakennusvuosi",
-						"type": "String"
-					},
-					{
-						"name": "2010 Neli�hinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2010 Kauppojen lukum��r�",
-						"type": "String"
-					},
-					{
-						"name": "2011 Neli�hinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2011 Kauppojen lukum��r�",
-						"type": "String"
-					},
-					{
-						"name": "2012 Neli�hinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2012 Kauppojen lukum��r�",
-						"type": "String"
-					},
-					{
-						"name": "2013 Neli�hinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2013 Kauppojen lukum��r�",
-						"type": "String"
-					},
-					{
-						"name": "2014 Neli�hinta (EUR/m2)",
-						"type": "String"
-					},
-					{
-						"name": "2014 Kauppojen lukum��r�",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SDS_Data_Sink')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/TaajamaAste_kunnittain')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "kuntakohtaiset väestömäärät ja taajama-aste v. 2017",
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "vaerak_025_201700_taajama_aste_kunnittain.csv",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"encodingName": "ISO-8859-1",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Vuosi",
-						"type": "String"
-					},
-					{
-						"name": "Alue",
-						"type": "String"
-					},
-					{
-						"name": "Väestö 31.12.",
-						"type": "String"
-					},
-					{
-						"name": "Taajama-aste, %",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Vuokra_csv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Vuokrahinnat_2015Q1_2018Q1.csv",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Vuosineljannes",
-						"type": "String"
-					},
-					{
-						"name": "Alue",
-						"type": "String"
-					},
-					{
-						"name": "Huoneluku",
-						"type": "String"
-					},
-					{
-						"name": "Rahoitusmuoto",
-						"type": "String"
-					},
-					{
-						"name": "Lukumaara",
-						"type": "String"
-					},
-					{
-						"name": "Neliovuokra",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Vuokra_curated')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLake_GEN1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "curated"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Vuosineljannes",
-						"type": "String"
-					},
-					{
-						"name": "Vuosi",
-						"type": "String"
-					},
-					{
-						"name": "Alue",
-						"type": "String"
-					},
-					{
-						"name": "Huoneluku",
-						"type": "String"
-					},
-					{
-						"name": "Rahoitusmuoto",
-						"type": "String"
-					},
-					{
-						"name": "Lukumaara",
-						"type": "String"
-					},
-					{
-						"name": "Neliovuokra",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Vuokrahinnat_2015Q1_2018Q1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Vuosineljannes",
-						"type": "varchar"
-					},
-					{
-						"name": "Alue",
-						"type": "varchar"
-					},
-					{
-						"name": "Huoneluku",
-						"type": "varchar"
-					},
-					{
-						"name": "Rahoitusmuoto",
-						"type": "varchar"
-					},
-					{
-						"name": "Lukumaara",
-						"type": "varchar"
-					},
-					{
-						"name": "Neliovuokra",
-						"type": "varchar"
-					},
-					{
-						"name": "Vuosi",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[Vuokrahinnat_2015Q1_2018Q1]"
 				}
 			},
 			"dependsOn": []

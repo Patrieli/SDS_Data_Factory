@@ -4,7 +4,7 @@
 	"parameters": {
 		"factoryName": {
 			"type": "string",
-			"metadata": "Data Factory Name",
+			"metadata": "Data Factory name",
 			"defaultValue": "aureolissdsdatafactory"
 		},
 		"AzureBlobStorage1_connectionString": {
@@ -23,13 +23,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
 		},
+		"MachineLearning1_apiKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'apiKey' of 'MachineLearning1'"
+		},
 		"Office3651_servicePrincipalKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'servicePrincipalKey' of 'Office3651'"
 		},
+		"Osakeasunto_WebService_apiKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'apiKey' of 'Osakeasunto_WebService'"
+		},
 		"SDS_DataBricks_accessToken": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks'"
+		},
+		"SDS_DataBricks_North_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks_North'"
 		},
 		"SharePoint_password": {
 			"type": "secureString",
@@ -122,6 +134,23 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/MachineLearning1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureML",
+				"typeProperties": {
+					"mlEndpoint": "https://europewest.services.azureml.net/subscriptions/7a92108a70904c7bae2ec9baf4280906/services/c4ecbcf2fa794c79a4c7578313ae21d2/jobs?api-version=2.0",
+					"apiKey": {
+						"type": "SecureString",
+						"value": "[parameters('MachineLearning1_apiKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Office3651')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -135,6 +164,23 @@
 					"servicePrincipalKey": {
 						"type": "SecureString",
 						"value": "[parameters('Office3651_servicePrincipalKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasunto_WebService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureML",
+				"typeProperties": {
+					"mlEndpoint": "https://europewest.services.azureml.net/subscriptions/7a92108a70904c7bae2ec9baf4280906/services/f0054332ac084cb8a2dc1a30d1ecf273/jobs?api-version=2.0",
+					"apiKey": {
+						"type": "SecureString",
+						"value": "[parameters('Osakeasunto_WebService_apiKey')]"
 					}
 				}
 			},
@@ -160,6 +206,24 @@
 						"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
 					},
 					"newClusterVersion": "3.5.x-scala2.11"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SDS_DataBricks_North')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://northeurope.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('SDS_DataBricks_North_accessToken')]"
+					},
+					"existingClusterId": "0826-095403-faded780"
 				}
 			},
 			"dependsOn": []
@@ -212,8 +276,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "DatabricksSparkPython1",
-						"type": "DatabricksSparkPython",
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -224,11 +288,17 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"pythonFile": "dbfs:/PDF_read.py",
-							"parameters": []
+							"notebookPath": "/Users/jaakko.mantila@aureolis.com/test_pdf",
+							"libraries": [
+								{
+									"pypi": {
+										"package": "pandas"
+									}
+								}
+							]
 						},
 						"linkedServiceName": {
-							"referenceName": "SDS_DataBricks",
+							"referenceName": "SDS_DataBricks_North",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -236,7 +306,147 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/SDS_DataBricks')]"
+				"[concat(variables('factoryId'), '/linkedServices/SDS_DataBricks_North')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Alueet_UP')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Postinro",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Postinumeroalueen nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kuntakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kunnan nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kuntaryhmakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kuntaryhman nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Seutukuntakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Seutukunnan nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Maakuntakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Maakunnan nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Suuraluekoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Suuralueen nimi",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Alueet_UP"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Postinumeroalue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Postinumeroalueen nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kuntakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kunnan nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kuntaryhmakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kuntaryhman nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Seutukuntakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Seutukunnan nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Maakuntakoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Maakunnan nimi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Suuraluekoodi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Suuralueen nimi",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Alueet"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
 		},
 		{
@@ -849,6 +1059,7 @@
 						"fileSystem": "realestatedata"
 					},
 					"columnDelimiter": ";",
+					"encodingName": "ISO-8859-1",
 					"escapeChar": "\\",
 					"firstRowAsHeader": true,
 					"nullValue": ".",
@@ -1176,206 +1387,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/DataLake_GEN1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Curated_blob')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"container": "curated"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Postinumero;Alue;Kaupunki;Talotyyppi;Rakennusvuosi;Neliohinta_2015;Kauppojen_lukumaara_2015;Neliohinta_2016;Kauppojen_lukumaara_2016;Neliohinta_2017;Kauppojen_lukumaara_2017;Neliohinta_2018;Kauppojen_lukumaara_2018;Neliohinta_2010;Kauppojen_lukumaara_2010;Neliohinta_2011;Kauppojen_lukumaara_2011;Neliohinta_2012;Kauppojen_lukumaara_2012;Neliohinta_2013;Kauppojen_lukumaara_2013;Neliohinta_2014;Kauppojen_lukumaara_2014",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Osakeasuntojen_hinnat_2010_2014.csv",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLake_GEN1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "curated"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "/",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/DataLake_GEN1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DelimitedText3')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLake_GEN1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Omakotitalojen_hinnat_2015_2018.csv",
-						"fileSystem": "realestatedata1"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/DataLake_GEN1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Demograph2012')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "Demographics_2012_2013.csv",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "\"Postinumeroalue\";\"Asukkaat yhteens�",
-						"type": "String"
-					},
-					{
-						"name": " 2013 (HE)\";\"Asukkaiden keski-ik�",
-						"type": "String"
-					},
-					{
-						"name": " 2013 (HE)\";\"Alemman korkeakoulututkinnon suorittaneet",
-						"type": "String"
-					},
-					{
-						"name": " 2012 (KO)\";\"Asukkaiden keskitulot",
-						"type": "String"
-					},
-					{
-						"name": " 2012 (HR)\";\"Taloudet yhteens�",
-						"type": "String"
-					},
-					{
-						"name": " 2013 (TE)\";\"Talouksien keskikoko",
-						"type": "String"
-					},
-					{
-						"name": " 2013 (TE)\";\"Omistusasunnoissa asuvat taloudet",
-						"type": "String"
-					},
-					{
-						"name": " 2013 (TE)\";\"Asuntojen keskipinta-ala",
-						"type": "String"
-					},
-					{
-						"name": " 2013 (RA)\";\"Ty�lliset",
-						"type": "String"
-					},
-					{
-						"name": " 2012 (PT)\";\"Ty�tt�m�t",
-						"type": "String"
-					},
-					{
-						"name": " 2012 (PT)\"",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
 			]
 		}
 	]

@@ -6,122 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "aureolissdsdatafactory"
-		},
-		"AzureBlobStorage1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
-		},
-		"AzureDataLakeStorage1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
-		},
-		"AzureSqlDatabase1_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
-		},
-		"Azure_folder_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Azure_folder'"
-		},
-		"DataLake_GEN1_accountKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accountKey' of 'DataLake_GEN1'"
-		},
-		"FileServer1_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServer1'"
-		},
-		"FileServer2_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'FileServer2'"
-		},
-		"MachineLearning1_apiKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'apiKey' of 'MachineLearning1'"
-		},
-		"Office3651_servicePrincipalKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'servicePrincipalKey' of 'Office3651'"
-		},
-		"Osakeasunto_WebService_apiKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'apiKey' of 'Osakeasunto_WebService'"
-		},
-		"SDS_DataBricks_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks'"
-		},
-		"SDS_DataBricks_North_accessToken": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessToken' of 'SDS_DataBricks_North'"
-		},
-		"Share_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Share'"
-		},
-		"SharePoint_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'SharePoint'"
-		},
-		"sdsirserver_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'sdsirserver'"
-		},
-		"AzureDataLakeStorage1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
-		},
-		"Azure_folder_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\mantijaa\\Desktop\\SDS"
-		},
-		"Azure_folder_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "jaakko.mantila@aureolis.com"
-		},
-		"DataLake_GEN1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://aureolissdsdatalakegen1.dfs.core.windows.net"
-		},
-		"FileServer1_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\sihvohan\\SDS"
-		},
-		"FileServer1_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "hannu.sihvonen@aureolis.com"
-		},
-		"FileServer2_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\sihvohan\\SDS"
-		},
-		"FileServer2_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "hannu.sihvonen@aureolis.com"
-		},
-		"Office3651_properties_typeProperties_servicePrincipalId": {
-			"type": "string",
-			"defaultValue": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
-		},
-		"Share_properties_typeProperties_host": {
-			"type": "string",
-			"defaultValue": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service"
-		},
-		"Share_properties_typeProperties_userId": {
-			"type": "string",
-			"defaultValue": "jaakko.mantila@aureolis.com"
-		},
-		"SharePoint_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://aureolisoy.sharepoint.com/sites/ULT-Kestiimi2019/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FULT%2DKestiimi2019%2FShared%20Documents%2FSmart%20Data%20Service%2FSource%5FData"
-		},
-		"SharePoint_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "jaakko.mantila@aureolis.com"
-		},
-		"trigger1_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"
 		}
 	},
 	"variables": {
@@ -149,17 +33,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "BKT_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source2": {},
-									"source3": {},
-									"source4": {},
-									"sink2": {},
-									"sink3": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -221,15 +96,13 @@
 						"inputs": [
 							{
 								"referenceName": "Share",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "SDS_Data_Sink",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -286,15 +159,13 @@
 						"inputs": [
 							{
 								"referenceName": "TaajamaAste",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "TaajamaAste_kunnittain",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -320,14 +191,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "TaajamaAste_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -364,19 +229,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Demographics_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Demograph2016": {},
-									"Demograph2015": {},
-									"Demograph2014": {},
-									"Demograph2013": {},
-									"Demograph2012": {},
-									"sink5": {},
-									"sink6": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -411,16 +265,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Osakeasunto_ennusteet",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"source2": {},
-									"sink1": {},
-									"sink2": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -463,16 +309,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Osakeasunto_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Osakeaasuntohinnat2015": {},
-									"Osakeasuntohinnat2010": {},
-									"sink4": {},
-									"sink5": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -501,17 +339,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "BKT_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source2": {},
-									"source3": {},
-									"source4": {},
-									"sink2": {},
-									"sink3": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -540,15 +369,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Vuokra_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Vuokrahinnat2015": {},
-									"sink2": {},
-									"sink3": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -577,19 +399,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Demographics_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Demograph2016": {},
-									"Demograph2015": {},
-									"Demograph2014": {},
-									"Demograph2013": {},
-									"Demograph2012": {},
-									"sink5": {},
-									"sink6": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -618,15 +429,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Omakotitalo_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Omakotitalohinnat2015": {},
-									"sink1": {},
-									"sink2": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -675,15 +479,13 @@
 						"inputs": [
 							{
 								"referenceName": "Share",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "SDS_Data_Sink",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					},
@@ -709,14 +511,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "TaajamaAste_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -745,14 +541,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Osakeasunto_Unpivot_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -795,15 +585,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Omakotitalo_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Omakotitalohinnat2015": {},
-									"sink1": {},
-									"sink2": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -838,16 +621,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Osakeasunto_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Osakeaasuntohinnat2015": {},
-									"Osakeasuntohinnat2010": {},
-									"sink4": {},
-									"sink5": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -919,16 +694,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Osakeasunto_ennusteet",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"source2": {},
-									"sink1": {},
-									"sink2": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -940,8 +707,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Osakeasunto_WebService')]",
-				"[concat(variables('factoryId'), '/dataflows/Osakeasunto_ennusteet')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+				"[concat(variables('factoryId'), '/dataflows/Osakeasunto_ennusteet')]"
 			]
 		},
 		{
@@ -972,14 +738,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "PDF_read_testing",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -1095,15 +855,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Vuokra_flow2",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"Vuokrahinnat2015": {},
-									"sink2": {},
-									"sink3": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -1128,7 +881,6 @@
 								"type": "Expression"
 							},
 							"method": "POST",
-							"headers": {},
 							"body": {
 								"value": "{\n  \"query\": [],\n  \"response\": {\n    \"format\": \"json-stat\"\n  }\n}",
 								"type": "Expression"
@@ -1136,8 +888,7 @@
 							"datasets": [
 								{
 									"referenceName": "Vuokra_csv_2",
-									"type": "DatasetReference",
-									"parameters": {}
+									"type": "DatasetReference"
 								}
 							]
 						}
@@ -1258,16 +1009,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Osakeasunto_ennusteet",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"source2": {},
-									"sink1": {},
-									"sink2": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -1307,8 +1050,7 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Osakeasunto_WebService')]",
 				"[concat(variables('factoryId'), '/dataflows/Osakeasunto_ennusteet')]",
-				"[concat(variables('factoryId'), '/linkedServices/SDS_DataBricks_North')]",
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+				"[concat(variables('factoryId'), '/linkedServices/SDS_DataBricks_North')]"
 			]
 		},
 		{
@@ -1332,14 +1074,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "Aluedata_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -1386,8 +1122,7 @@
 							"datasets": [
 								{
 									"referenceName": "Vuokra_csv_2",
-									"type": "DatasetReference",
-									"parameters": {}
+									"type": "DatasetReference"
 								}
 							]
 						}
@@ -1463,18 +1198,8 @@
 						"typeProperties": {
 							"dataflow": {
 								"referenceName": "tyopaikka_proj_flow",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"projnopea": {},
-									"projperus": {},
-									"projhidas": {},
-									"sink1": {},
-									"sink2": {},
-									"sink3": {}
-								}
+								"type": "DataFlowReference"
 							},
-							"staging": {},
 							"compute": {
 								"coreCount": 8,
 								"computeType": "General"
@@ -1554,9 +1279,7 @@
 					"table": "Alueet_UP"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
@@ -1624,9 +1347,7 @@
 					"table": "Alueet"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BKT_BKT')]",
@@ -1751,9 +1472,7 @@
 					"tableName": "[[dbo].[BKT_2000]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BKT_SQL')]",
@@ -2088,9 +1807,7 @@
 					"tableName": "[[dbo].[BKT_seutukunnittain_2000_2016]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BKT_Vakiluku_2000')]",
@@ -2215,9 +1932,7 @@
 					"tableName": "[[dbo].[BKT_Vakiluku_2000]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BKT_csv')]",
@@ -2597,9 +2312,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
@@ -3572,9 +3285,7 @@
 					"tableName": "[[dbo].[Demographics_2012_2017]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Demographics_curated')]",
@@ -4000,9 +3711,7 @@
 					"tableName": "[[dbo].[Omakotitalojen_hinnat_2015_2018]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Osakeasunnot_2015_2018_csv')]",
@@ -4265,9 +3974,7 @@
 					"table": "Osakeasunto_ennusteet"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Osakeasuntohinnat2010')]",
@@ -4529,9 +4236,7 @@
 					"tableName": "[[dbo].[Osakeasuntojen_hinnat_2010_2018]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Osakeasuntojen_hinnat_2010_2018_UP')]",
@@ -4591,9 +4296,7 @@
 					"table": "Osakeasuntojen_hinnat_2010_2018_UP"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Osakeasuntojen_hinnat_out')]",
@@ -4641,9 +4344,7 @@
 					"table": "Osakeasuntojen_hinnat_out"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/PDF_read')]",
@@ -4766,9 +4467,7 @@
 					"tableName": "[[dbo].[Mlupa3]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SDS_Data')]",
@@ -4991,9 +4690,7 @@
 					"table": "TaajamaAste"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/TaajamaAste_kunnittain')]",
@@ -5094,9 +4791,7 @@
 					"table": "Tyopaikka_proj_hidas"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Tyopaikka_proj_nopea')]",
@@ -5149,9 +4844,7 @@
 					"table": "Tyopaikka_proj_nopea"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Tyopaikka_proj_perus')]",
@@ -5204,9 +4897,7 @@
 					"table": "Tyopaikka_proj_perus"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Vuokra_csv')]",
@@ -5420,9 +5111,7 @@
 					"tableName": "[[dbo].[Vuokrahinnat_2015Q1_2018Q1]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/demo_csv')]",
@@ -5920,9 +5609,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/tp_tilasto_proj_nopea')]",
@@ -6141,9 +5828,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/tp_tilasto_proj_perus')]",
@@ -6362,9 +6047,7 @@
 					}
 				]
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/vuokra')]",
@@ -6418,9 +6101,7 @@
 					"tableName": "[[dbo].[Vuokrahinnat_2015Q1_2018Q1]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/vuokrahinnat_2010_2018_BU')]",
@@ -6559,9 +6240,7 @@
 					"table": "Osakeasuntojen_hinnat_2010_2018_BU"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/vuokrahinnat_sink')]",
@@ -6617,21 +6296,6 @@
 					"table": "Osakeasuntojen_hinnat_2010_2018_UP"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
-				}
-			},
 			"dependsOn": []
 		},
 		{
@@ -6643,24 +6307,11 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
+					"url": "https://aureolissdsdatalake.dfs.core.windows.net",
 					"accountKey": {
 						"type": "SecureString",
-						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+						"value": "**********"
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -6673,11 +6324,11 @@
 				"annotations": [],
 				"type": "FileServer",
 				"typeProperties": {
-					"host": "[parameters('Azure_folder_properties_typeProperties_host')]",
-					"userId": "[parameters('Azure_folder_properties_typeProperties_userId')]",
+					"host": "C:\\Users\\mantijaa\\Desktop\\SDS",
+					"userId": "jaakko.mantila@aureolis.com",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('Azure_folder_password')]"
+						"value": "**********"
 					}
 				},
 				"connectVia": {
@@ -6685,9 +6336,7 @@
 					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/SDS-IR-mantijaa')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DataLake_GEN1')]",
@@ -6697,10 +6346,10 @@
 				"annotations": [],
 				"type": "AzureBlobFS",
 				"typeProperties": {
-					"url": "[parameters('DataLake_GEN1_properties_typeProperties_url')]",
+					"url": "https://aureolissdsdatalakegen1.dfs.core.windows.net",
 					"accountKey": {
 						"type": "SecureString",
-						"value": "[parameters('DataLake_GEN1_accountKey')]"
+						"value": "**********"
 					}
 				}
 			},
@@ -6714,11 +6363,11 @@
 				"annotations": [],
 				"type": "FileServer",
 				"typeProperties": {
-					"host": "[parameters('FileServer1_properties_typeProperties_host')]",
-					"userId": "[parameters('FileServer1_properties_typeProperties_userId')]",
+					"host": "C:\\Users\\sihvohan\\SDS",
+					"userId": "hannu.sihvonen@aureolis.com",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('FileServer1_password')]"
+						"value": "**********"
 					}
 				},
 				"connectVia": {
@@ -6726,9 +6375,7 @@
 					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/FileServer2')]",
@@ -6739,11 +6386,11 @@
 				"annotations": [],
 				"type": "FileServer",
 				"typeProperties": {
-					"host": "[parameters('FileServer2_properties_typeProperties_host')]",
-					"userId": "[parameters('FileServer2_properties_typeProperties_userId')]",
+					"host": "C:\\Users\\sihvohan\\SDS",
+					"userId": "hannu.sihvonen@aureolis.com",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('FileServer2_password')]"
+						"value": "**********"
 					}
 				},
 				"connectVia": {
@@ -6751,9 +6398,7 @@
 					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/MachineLearning1')]",
@@ -6766,7 +6411,7 @@
 					"mlEndpoint": "https://europewest.services.azureml.net/subscriptions/7a92108a70904c7bae2ec9baf4280906/services/c4ecbcf2fa794c79a4c7578313ae21d2/jobs?api-version=2.0",
 					"apiKey": {
 						"type": "SecureString",
-						"value": "[parameters('MachineLearning1_apiKey')]"
+						"value": "**********"
 					}
 				}
 			},
@@ -6782,10 +6427,10 @@
 				"typeProperties": {
 					"office365TenantId": "e25c6449-8fd9-4734-b4e4-8a7a35ab6a3b",
 					"servicePrincipalTenantId": "e25c6449-8fd9-4734-b4e4-8a7a35ab6a3b",
-					"servicePrincipalId": "[parameters('Office3651_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalId": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a",
 					"servicePrincipalKey": {
 						"type": "SecureString",
-						"value": "[parameters('Office3651_servicePrincipalKey')]"
+						"value": "**********"
 					}
 				}
 			},
@@ -6802,7 +6447,7 @@
 					"mlEndpoint": "https://europewest.services.azureml.net/subscriptions/7a92108a70904c7bae2ec9baf4280906/services/f0054332ac084cb8a2dc1a30d1ecf273/jobs?api-version=2.0",
 					"apiKey": {
 						"type": "SecureString",
-						"value": "[parameters('Osakeasunto_WebService_apiKey')]"
+						"value": "**********"
 					}
 				}
 			},
@@ -6820,7 +6465,7 @@
 					"domain": "https://westeurope.azuredatabricks.net",
 					"accessToken": {
 						"type": "SecureString",
-						"value": "[parameters('SDS_DataBricks_accessToken')]"
+						"value": "**********"
 					},
 					"newClusterNodeType": "Standard_DS3_v2",
 					"newClusterNumOfWorker": "2",
@@ -6843,7 +6488,7 @@
 					"domain": "https://northeurope.azuredatabricks.net",
 					"accessToken": {
 						"type": "SecureString",
-						"value": "[parameters('SDS_DataBricks_North_accessToken')]"
+						"value": "**********"
 					},
 					"existingClusterId": "0826-095403-faded780"
 				}
@@ -6858,11 +6503,11 @@
 				"annotations": [],
 				"type": "FileServer",
 				"typeProperties": {
-					"host": "[parameters('Share_properties_typeProperties_host')]",
-					"userId": "[parameters('Share_properties_typeProperties_userId')]",
+					"host": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service",
+					"userId": "jaakko.mantila@aureolis.com",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('Share_password')]"
+						"value": "**********"
 					}
 				},
 				"connectVia": {
@@ -6870,9 +6515,7 @@
 					"type": "IntegrationRuntimeReference"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/SDS-IR-mantijaa')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/SharePoint')]",
@@ -6882,36 +6525,17 @@
 				"annotations": [],
 				"type": "HttpServer",
 				"typeProperties": {
-					"url": "[parameters('SharePoint_properties_typeProperties_url')]",
+					"url": "https://aureolisoy.sharepoint.com/sites/ULT-Kestiimi2019/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FULT%2DKestiimi2019%2FShared%20Documents%2FSmart%20Data%20Service%2FSource%5FData",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Basic",
-					"userName": "[parameters('SharePoint_properties_typeProperties_userName')]",
+					"userName": "jaakko.mantila@aureolis.com",
 					"password": {
 						"type": "SecureString",
-						"value": "[parameters('SharePoint_password')]"
+						"value": "**********"
 					}
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/sdsirserver')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "SqlServer",
-				"typeProperties": {
-					"connectionString": "[parameters('sdsirserver_connectionString')]"
-				},
-				"connectVia": {
-					"referenceName": "SDS-IR-mantijaa",
-					"type": "IntegrationRuntimeReference"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/integrationRuntimes/SDS-IR-mantijaa')]"
-			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/trigger1')]",
@@ -6925,15 +6549,14 @@
 						"pipelineReference": {
 							"referenceName": "PDF_testing",
 							"type": "PipelineReference"
-						},
-						"parameters": {}
+						}
 					}
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
 					"blobPathBeginsWith": "/newcontainer/blobs/",
 					"blobPathEndsWith": ".csv",
-					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"scope": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
@@ -6942,27 +6565,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/PDF_testing')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SDS-IR-mantijaa')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"description": "Self-hosted Integration Runtime ",
-				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
-			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "SelfHosted",
-				"typeProperties": {}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Aluedata_flow')]",

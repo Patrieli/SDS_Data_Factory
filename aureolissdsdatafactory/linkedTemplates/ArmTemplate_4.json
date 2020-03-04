@@ -1,0 +1,1490 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "aureolissdsdatafactory"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/TaajamaAste_flow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "TaajamaAste_kunnittain",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "TaajamaAste_SQL",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "DerivedColumn1"
+						}
+					],
+					"script": "source(output(\n\t\tVuosi as short,\n\t\tAlue as string,\n\t\t{Väestö 31.12.} as integer,\n\t\t{Taajama-aste, %} as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1\nsource1 derive(Kunta = substring(Alue,5),\n\t\tKuntakoodi = substring(Alue, 1, 3)) ~> DerivedColumn1\nDerivedColumn1 sink(input(\n\t\tVuosi as integer,\n\t\tAlue as string,\n\t\t{Väestö 31.12.} as integer,\n\t\t{Taajama-aste, %} as double,\n\t\tKunta as string,\n\t\tKuntakoodi as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'table',\n\tmapColumn(\n\t\tVuosi,\n\t\t{Väestö 31.12.},\n\t\t{Taajama-aste, %},\n\t\tKunta,\n\t\tKuntakoodi\n\t)) ~> sink1"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Vuokra_flow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Read data from Vuokra file, derive Vuosi -column and load the data to SQL table. \n\nAP: Vuokrat vuositasolle + AVG arvot",
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Vuokra_csv",
+								"type": "DatasetReference"
+							},
+							"name": "Vuokrahinnat2015"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Vuokra_curated",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "vuokra",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
+						}
+					],
+					"transformations": [
+						{
+							"name": "Select1"
+						},
+						{
+							"name": "DerivedColumn1"
+						},
+						{
+							"name": "Aggregate1"
+						}
+					],
+					"script": "source(output(\n\t\tVuosineljannes as string,\n\t\tAlue as string,\n\t\tHuoneluku as string,\n\t\tRahoitusmuoto as string,\n\t\tLukumaara as string,\n\t\tNeliovuokra as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 17137,\n\tdateFormats: ['dd/MM/yyyy'],\n\ttimestampFormats: ['MM/dd/yyyy HH:mm:ss'],\n\tpreferredIntegralType: 'integer',\n\tpreferredFractionalType: 'float') ~> Vuokrahinnat2015\nVuokrahinnat2015 select(skipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Select1\nSelect1 derive(Vuosi = toInteger(substring(Vuosineljannes, 1, 4)),\n\t\tPaivitetty_pvm = currentUTC('GMT-2'),\n\t\tLukumaara_int = toInteger(Lukumaara),\n\t\tNeliovuokra_dbl = toDouble(Neliovuokra)) ~> DerivedColumn1\nDerivedColumn1 aggregate(groupBy(Vuosi,\n\t\tAlue,\n\t\tHuoneluku,\n\t\tRahoitusmuoto),\n\tLukumaara = avg(Lukumaara_int),\n\t\tNeliovuokra = avg(Neliovuokra_dbl),\n\t\tPaivitetty_pvm = max(Paivitetty_pvm)) ~> Aggregate1\nAggregate1 sink(input(\n\t\tVuosineljannes as string,\n\t\tVuosi as string,\n\t\tAlue as string,\n\t\tHuoneluku as string,\n\t\tRahoitusmuoto as string,\n\t\tLukumaara as string,\n\t\tNeliovuokra as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['vuokra_curated'],\n\tpartitionBy('hash', 1)) ~> sink2\nAggregate1 sink(input(\n\t\tVuosineljannes as string,\n\t\tAlue as string,\n\t\tHuoneluku as string,\n\t\tRahoitusmuoto as string,\n\t\tLukumaara as string,\n\t\tNeliovuokra as string,\n\t\tVuosi as integer,\n\t\tPaivitetty_pvm as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'table') ~> sink3"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Vuokra_flow2')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Read data from Vuokra file, derive Vuosi -column and load the data to SQL table. \n\nAP: Vuokrat vuositasolle + AVG arvot",
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "Vuokra_csv_2",
+								"type": "DatasetReference"
+							},
+							"name": "Vuokrahinnat2015"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Vuokra_curated",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "vuokra",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
+						}
+					],
+					"transformations": [
+						{
+							"name": "Select1"
+						},
+						{
+							"name": "DerivedColumn1"
+						},
+						{
+							"name": "Aggregate1"
+						}
+					],
+					"script": "source(output(\n\t\t{Vuosineljännes} as string,\n\t\tAlue as string,\n\t\tHuoneluku as string,\n\t\tRahoitusmuoto as string,\n\t\tTiedot as string,\n\t\tvalue as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tlimit: 100000,\n\tdateFormats: ['dd/MM/yyyy'],\n\ttimestampFormats: ['MM/dd/yyyy HH:mm:ss'],\n\tpreferredIntegralType: 'integer',\n\tpreferredFractionalType: 'float') ~> Vuokrahinnat2015\nVuokrahinnat2015 select(skipDuplicateMapInputs: false,\n\tskipDuplicateMapOutputs: false) ~> Select1\nSelect1 derive(Vuosi = toInteger(substring({Vuosineljännes}, 1, 4)),\n\t\tPaivitetty_pvm = currentUTC('GMT-3'),\n\t\tLukumaara_int = toInteger(iif(Tiedot=='Lukumäärä', value, '0')),\n\t\tNeliovuokra_dbl = toDouble(iif(Tiedot=='Neliövuokra', value, '0'))) ~> DerivedColumn1\nDerivedColumn1 aggregate(groupBy(Vuosi,\n\t\tAlue,\n\t\tHuoneluku,\n\t\tRahoitusmuoto),\n\tLukumaara = avg(Lukumaara_int),\n\t\tNeliovuokra = avg(Neliovuokra_dbl),\n\t\tPaivitetty_pvm = max(Paivitetty_pvm)) ~> Aggregate1\nAggregate1 sink(input(\n\t\tVuosineljannes as string,\n\t\tVuosi as string,\n\t\tAlue as string,\n\t\tHuoneluku as string,\n\t\tRahoitusmuoto as string,\n\t\tLukumaara as string,\n\t\tNeliovuokra as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['vuokra_curated'],\n\tpartitionBy('hash', 1)) ~> sink2\nAggregate1 sink(input(\n\t\tVuosineljannes as string,\n\t\tAlue as string,\n\t\tHuoneluku as string,\n\t\tRahoitusmuoto as string,\n\t\tLukumaara as string,\n\t\tNeliovuokra as string,\n\t\tVuosi as integer,\n\t\tPaivitetty_pvm as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'table') ~> sink3"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tyopaikka_proj_flow')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "tp_tilasto_proj_nopea",
+								"type": "DatasetReference"
+							},
+							"name": "projnopea"
+						},
+						{
+							"dataset": {
+								"referenceName": "tp_tilasto_proj_perus",
+								"type": "DatasetReference"
+							},
+							"name": "projperus"
+						},
+						{
+							"dataset": {
+								"referenceName": "tp_tilasto_proj_hidas",
+								"type": "DatasetReference"
+							},
+							"name": "projhidas"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "Tyopaikka_proj_hidas",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						},
+						{
+							"dataset": {
+								"referenceName": "Tyopaikka_proj_nopea",
+								"type": "DatasetReference"
+							},
+							"name": "sink2"
+						},
+						{
+							"dataset": {
+								"referenceName": "Tyopaikka_proj_perus",
+								"type": "DatasetReference"
+							},
+							"name": "sink3"
+						}
+					],
+					"transformations": [
+						{
+							"name": "Unpivot1"
+						},
+						{
+							"name": "Unpivot2"
+						},
+						{
+							"name": "Select1"
+						},
+						{
+							"name": "Select2"
+						},
+						{
+							"name": "Join1"
+						},
+						{
+							"name": "Select3"
+						},
+						{
+							"name": "Select4"
+						},
+						{
+							"name": "Unpivot3"
+						},
+						{
+							"name": "Select5"
+						},
+						{
+							"name": "Unpivot4"
+						},
+						{
+							"name": "Join2"
+						},
+						{
+							"name": "Select6"
+						},
+						{
+							"name": "Select7"
+						},
+						{
+							"name": "Unpivot5"
+						},
+						{
+							"name": "Select8"
+						},
+						{
+							"name": "Unpivot6"
+						},
+						{
+							"name": "Join3"
+						},
+						{
+							"name": "Select9"
+						}
+					],
+					"script": "source(output(\n\t\tToimiala as string,\n\t\tTol as short,\n\t\tTyyppi as string,\n\t\tVuosi as short,\n\t\tUusimaa as integer,\n\t\tHel as integer,\n\t\tEsp as integer,\n\t\tVan as integer,\n\t\tKau as integer,\n\t\tPKS as integer,\n\t\tHyv as integer,\n\t\tJar as integer,\n\t\tKer as integer,\n\t\tKir as integer,\n\t\tMan as integer,\n\t\tNur as integer,\n\t\tPor as integer,\n\t\tSip as integer,\n\t\tTuu as integer,\n\t\tVih as integer,\n\t\tKehys as integer,\n\t\tRaas as integer,\n\t\tLohj as integer,\n\t\tLovi as integer,\n\t\tPorv as integer,\n\t\tRiih as integer,\n\t\tUusimaa_p as string,\n\t\tHel_p as string,\n\t\tEsp_p as string,\n\t\tVan_p as string,\n\t\tKau_p as string,\n\t\tPKS_p as string,\n\t\tHyv_p as string,\n\t\tJar_p as string,\n\t\tKer_p as string,\n\t\tKir_p as string,\n\t\tMan_p as string,\n\t\tNur_p as string,\n\t\tPor_p as string,\n\t\tSip_p as string,\n\t\tTuu_p as string,\n\t\tVih_p as string,\n\t\tKehys_p as string,\n\t\tRaas_p as string,\n\t\tLohj_p as string,\n\t\tLovi_p as string,\n\t\tPorv_p as string,\n\t\tRiih_p as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> projnopea\nsource(output(\n\t\tToimiala as string,\n\t\tTol as short,\n\t\tTyyppi as string,\n\t\tVuosi as short,\n\t\tUusimaa as integer,\n\t\tHel as integer,\n\t\tEsp as integer,\n\t\tVan as integer,\n\t\tKau as integer,\n\t\tPKS as integer,\n\t\tHyv as integer,\n\t\tJar as integer,\n\t\tKer as integer,\n\t\tKir as integer,\n\t\tMan as integer,\n\t\tNur as integer,\n\t\tPor as integer,\n\t\tSip as integer,\n\t\tTuu as integer,\n\t\tVih as integer,\n\t\tKehys as integer,\n\t\tRaas as integer,\n\t\tLohj as integer,\n\t\tLovi as integer,\n\t\tPorv as integer,\n\t\tRiih as integer,\n\t\tUusimaa_p as string,\n\t\tHel_p as string,\n\t\tEsp_p as string,\n\t\tVan_p as string,\n\t\tKau_p as string,\n\t\tPKS_p as string,\n\t\tHyv_p as string,\n\t\tJar_p as string,\n\t\tKer_p as string,\n\t\tKir_p as string,\n\t\tMan_p as string,\n\t\tNur_p as string,\n\t\tPor_p as string,\n\t\tSip_p as string,\n\t\tTuu_p as string,\n\t\tVih_p as string,\n\t\tKehys_p as string,\n\t\tRaas_p as string,\n\t\tLohj_p as string,\n\t\tLovi_p as string,\n\t\tPorv_p as string,\n\t\tRiih_p as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> projperus\nsource(output(\n\t\tToimiala as string,\n\t\tTol as short,\n\t\tTyyppi as string,\n\t\tVuosi as short,\n\t\tUusimaa as integer,\n\t\tHel as integer,\n\t\tEsp as integer,\n\t\tVan as integer,\n\t\tKau as integer,\n\t\tPKS as integer,\n\t\tHyv as integer,\n\t\tJar as integer,\n\t\tKer as integer,\n\t\tKir as integer,\n\t\tMan as integer,\n\t\tNur as integer,\n\t\tPor as integer,\n\t\tSip as integer,\n\t\tTuu as integer,\n\t\tVih as integer,\n\t\tKehys as integer,\n\t\tRaas as integer,\n\t\tLohj as integer,\n\t\tLovi as integer,\n\t\tPorv as integer,\n\t\tRiih as integer,\n\t\tUusimaa_p as string,\n\t\tHel_p as string,\n\t\tEsp_p as string,\n\t\tVan_p as string,\n\t\tKau_p as string,\n\t\tPKS_p as string,\n\t\tHyv_p as string,\n\t\tJar_p as string,\n\t\tKer_p as string,\n\t\tKir_p as string,\n\t\tMan_p as string,\n\t\tNur_p as string,\n\t\tPor_p as string,\n\t\tSip_p as string,\n\t\tTuu_p as string,\n\t\tVih_p as string,\n\t\tKehys_p as string,\n\t\tRaas_p as string,\n\t\tLohj_p as string,\n\t\tLovi_p as string,\n\t\tPorv_p as string,\n\t\tRiih_p as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> projhidas\nSelect1 unpivot(output(\n\t\tAlue as string,\n\t\tArvo as integer\n\t),\n\tungroupBy(Toimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi),\n\tlateral: false,\n\tignoreNullPivots: true) ~> Unpivot1\nSelect2 unpivot(output(\n\t\tAlue as string,\n\t\tArvoP as string\n\t),\n\tungroupBy(Toimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi),\n\tlateral: false,\n\tignoreNullPivots: true) ~> Unpivot2\nprojhidas select(mapColumn(\n\t\tToimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi,\n\t\tUusimaa,\n\t\tHel,\n\t\tEsp,\n\t\tVan,\n\t\tKau,\n\t\tPKS,\n\t\tHyv,\n\t\tJar,\n\t\tKer,\n\t\tKir,\n\t\tMan,\n\t\tNur,\n\t\tPor,\n\t\tSip,\n\t\tTuu,\n\t\tVih,\n\t\tKehys,\n\t\tRaas,\n\t\tLohj,\n\t\tLovi,\n\t\tPorv,\n\t\tRiih\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nprojhidas select(mapColumn(\n\t\tToimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi,\n\t\tUusimaa_p,\n\t\tHel_p,\n\t\tEsp_p,\n\t\tVan_p,\n\t\tKau_p,\n\t\tPKS_p,\n\t\tHyv_p,\n\t\tJar_p,\n\t\tKer_p,\n\t\tKir_p,\n\t\tMan_p,\n\t\tNur_p,\n\t\tPor_p,\n\t\tSip_p,\n\t\tTuu_p,\n\t\tVih_p,\n\t\tKehys_p,\n\t\tRaas_p,\n\t\tLohj_p,\n\t\tLovi_p,\n\t\tPorv_p,\n\t\tRiih_p\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select2\nUnpivot1, Unpivot2 join(Unpivot1@Toimiala == Unpivot2@Toimiala\n\t&& Unpivot1@Tol == Unpivot2@Tol\n\t&& Unpivot1@Tyyppi == Unpivot2@Tyyppi\n\t&& Unpivot1@Vuosi == Unpivot2@Vuosi\n\t&& substring(Unpivot1@Alue,1,3) == substring(Unpivot2@Alue,1,3),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join1\nJoin1 select(mapColumn(\n\t\tToimiala = Unpivot1@Toimiala,\n\t\tTol = Unpivot1@Tol,\n\t\tTyyppi = Unpivot1@Tyyppi,\n\t\tVuosi = Unpivot1@Vuosi,\n\t\tAlue = Unpivot1@Alue,\n\t\tArvo,\n\t\tArvoP\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select3\nprojnopea select(mapColumn(\n\t\tToimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi,\n\t\tUusimaa,\n\t\tHel,\n\t\tEsp,\n\t\tVan,\n\t\tKau,\n\t\tPKS,\n\t\tHyv,\n\t\tJar,\n\t\tKer,\n\t\tKir,\n\t\tMan,\n\t\tNur,\n\t\tPor,\n\t\tSip,\n\t\tTuu,\n\t\tVih,\n\t\tKehys,\n\t\tRaas,\n\t\tLohj,\n\t\tLovi,\n\t\tPorv,\n\t\tRiih\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select4\nSelect4 unpivot(output(\n\t\tAlue as string,\n\t\tArvo as integer\n\t),\n\tungroupBy(Toimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi),\n\tlateral: false,\n\tignoreNullPivots: true) ~> Unpivot3\nprojnopea select(mapColumn(\n\t\tToimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi,\n\t\tUusimaa_p,\n\t\tHel_p,\n\t\tEsp_p,\n\t\tVan_p,\n\t\tKau_p,\n\t\tPKS_p,\n\t\tHyv_p,\n\t\tJar_p,\n\t\tKer_p,\n\t\tKir_p,\n\t\tMan_p,\n\t\tNur_p,\n\t\tPor_p,\n\t\tSip_p,\n\t\tTuu_p,\n\t\tVih_p,\n\t\tKehys_p,\n\t\tRaas_p,\n\t\tLohj_p,\n\t\tLovi_p,\n\t\tPorv_p,\n\t\tRiih_p\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select5\nSelect5 unpivot(output(\n\t\tAlue as string,\n\t\tArvoP as string\n\t),\n\tungroupBy(Toimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi),\n\tlateral: false,\n\tignoreNullPivots: true) ~> Unpivot4\nUnpivot3, Unpivot4 join(Unpivot3@Toimiala == Unpivot4@Toimiala\n\t&& Unpivot3@Tol == Unpivot4@Tol\n\t&& Unpivot3@Tyyppi == Unpivot4@Tyyppi\n\t&& Unpivot3@Vuosi == Unpivot4@Vuosi\n\t&& substring(Unpivot3@Alue,1,3) == substring(Unpivot4@Alue,1,3),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join2\nJoin2 select(mapColumn(\n\t\tToimiala = Unpivot3@Toimiala,\n\t\tTol = Unpivot3@Tol,\n\t\tTyyppi = Unpivot3@Tyyppi,\n\t\tVuosi = Unpivot3@Vuosi,\n\t\tAlue = Unpivot3@Alue,\n\t\tArvo,\n\t\tArvoP\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select6\nprojperus select(mapColumn(\n\t\tToimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi,\n\t\tUusimaa,\n\t\tHel,\n\t\tEsp,\n\t\tVan,\n\t\tKau,\n\t\tPKS,\n\t\tHyv,\n\t\tJar,\n\t\tKer,\n\t\tKir,\n\t\tMan,\n\t\tNur,\n\t\tPor,\n\t\tSip,\n\t\tTuu,\n\t\tVih,\n\t\tKehys,\n\t\tRaas,\n\t\tLohj,\n\t\tLovi,\n\t\tPorv,\n\t\tRiih\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select7\nSelect7 unpivot(output(\n\t\tAlue as string,\n\t\tArvo as integer\n\t),\n\tungroupBy(Toimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi),\n\tlateral: false,\n\tignoreNullPivots: true) ~> Unpivot5\nprojperus select(mapColumn(\n\t\tToimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi,\n\t\tUusimaa_p,\n\t\tHel_p,\n\t\tEsp_p,\n\t\tVan_p,\n\t\tKau_p,\n\t\tPKS_p,\n\t\tHyv_p,\n\t\tJar_p,\n\t\tKer_p,\n\t\tKir_p,\n\t\tMan_p,\n\t\tNur_p,\n\t\tPor_p,\n\t\tSip_p,\n\t\tTuu_p,\n\t\tVih_p,\n\t\tKehys_p,\n\t\tRaas_p,\n\t\tLohj_p,\n\t\tLovi_p,\n\t\tPorv_p,\n\t\tRiih_p\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select8\nSelect8 unpivot(output(\n\t\tAlue as string,\n\t\tArvoP as string\n\t),\n\tungroupBy(Toimiala,\n\t\tTol,\n\t\tTyyppi,\n\t\tVuosi),\n\tlateral: false,\n\tignoreNullPivots: true) ~> Unpivot6\nUnpivot5, Unpivot6 join(Unpivot5@Toimiala == Unpivot6@Toimiala\n\t&& Unpivot5@Tol == Unpivot6@Tol\n\t&& Unpivot5@Tyyppi == Unpivot6@Tyyppi\n\t&& Unpivot5@Vuosi == Unpivot6@Vuosi\n\t&& substring(Unpivot5@Alue,1,3) == substring(Unpivot6@Alue,1,3),\n\tjoinType:'inner',\n\tbroadcast: 'none')~> Join3\nJoin3 select(mapColumn(\n\t\tToimiala = Unpivot5@Toimiala,\n\t\tTol = Unpivot5@Tol,\n\t\tTyyppi = Unpivot5@Tyyppi,\n\t\tVuosi = Unpivot5@Vuosi,\n\t\tAlue = Unpivot5@Alue,\n\t\tArvo,\n\t\tArvoP\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select9\nSelect3 sink(input(\n\t\tToimiala as string,\n\t\tTol as integer,\n\t\tTyyppi as string,\n\t\tVuosi as integer,\n\t\tAlue as string,\n\t\tArvo as integer,\n\t\tArvoP as decimal(5,2)\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'table') ~> sink1\nSelect6 sink(input(\n\t\tToimiala as string,\n\t\tTol as integer,\n\t\tTyyppi as string,\n\t\tVuosi as integer,\n\t\tAlue as string,\n\t\tArvo as integer,\n\t\tArvoP as decimal(5,2)\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'table') ~> sink2\nSelect9 sink(input(\n\t\tToimiala as string,\n\t\tTol as integer,\n\t\tTyyppi as string,\n\t\tVuosi as integer,\n\t\tAlue as string,\n\t\tArvo as integer,\n\t\tArvoP as decimal(5,2)\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:true,\n\tupdateable:false,\n\tupsertable:false,\n\trecreate:true,\n\tformat: 'table') ~> sink3"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BKT')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "BKT_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "BKT_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source2": {},
+									"source3": {},
+									"source4": {},
+									"sink2": {},
+									"sink3": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy_Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".csv"
+								}
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Share",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SDS_Data_Sink",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy_TaajamaAste')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_TaajamaAste",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "TaajamaAste",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TaajamaAste_kunnittain",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "TaajamaAste_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy_TaajamaAste",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "TaajamaAste_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/TaajamaAste_flow')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Demographics')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Demographics_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Demographics_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Demograph2016": {},
+									"Demograph2015": {},
+									"Demograph2014": {},
+									"Demograph2013": {},
+									"Demograph2012": {},
+									"sink5": {},
+									"sink6": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Ennusteet_pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Osakeasunto_ennusteet",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Osakeasunto_ennusteet",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"source2": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Main_Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Starts the Copy Data action and after that starts each of the 6 separate pipelines. ",
+				"activities": [
+					{
+						"name": "Osakeasunto_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Osakeasunto_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Osakeaasuntohinnat2015": {},
+									"Osakeasuntohinnat2010": {},
+									"sink4": {},
+									"sink5": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "BKT_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "BKT_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source2": {},
+									"source3": {},
+									"source4": {},
+									"sink2": {},
+									"sink3": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "Vuokra_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Vuokra_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Vuokrahinnat2015": {},
+									"sink2": {},
+									"sink3": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "Demographics_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Demographics_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Demograph2016": {},
+									"Demograph2015": {},
+									"Demograph2014": {},
+									"Demograph2013": {},
+									"Demograph2012": {},
+									"sink5": {},
+									"sink6": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "Omakotitalo_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Omakotitalo_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Omakotitalohinnat2015": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "Copy1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".csv"
+								}
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Share",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SDS_Data_Sink",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "TaajamaAste_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "TaajamaAste_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "Osakeasunto_Unpivot_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Osakeasunto_flow",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Osakeasunto_Unpivot_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/Vuokra_flow')]",
+				"[concat(variables('factoryId'), '/dataflows/TaajamaAste_flow')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Omakotitalo')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Omakotitalo_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Omakotitalo_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Omakotitalohinnat2015": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasunto')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Osakeasunto_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Osakeasunto_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Osakeaasuntohinnat2015": {},
+									"Osakeasuntohinnat2010": {},
+									"sink4": {},
+									"sink5": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasunto_ennusteet')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ML Batch Execution1",
+						"type": "AzureMLBatchExecution",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"webServiceInputs": {
+								"input1": {
+									"filePath": "realestatedata1/input3.csv",
+									"linkedServiceName": {
+										"referenceName": "AzureBlobStorage1",
+										"type": "LinkedServiceReference"
+									}
+								}
+							},
+							"webServiceOutputs": {
+								"output1": {
+									"filePath": "realestatedata1/output1.csv",
+									"linkedServiceName": {
+										"referenceName": "AzureBlobStorage1",
+										"type": "LinkedServiceReference"
+									}
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "Osakeasunto_WebService",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Osakeasunto_ennusteet",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Osakeasunto_ennusteet",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"source2": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PDF_testing')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "PDF_read",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Python1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "PDF_read_testing",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "Python1",
+						"type": "DatabricksSparkPython",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pythonFile": "dbfs:/PDF_read.py",
+							"parameters": [],
+							"libraries": [
+								{
+									"pypi": {
+										"package": "os"
+									}
+								},
+								{
+									"pypi": {
+										"package": "azure.storage.blob"
+									}
+								}
+							]
+						},
+						"linkedServiceName": {
+							"referenceName": "SDS_DataBricks_North",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Vuokra')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "vuokra_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "SaveJsonToCsv",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Vuokra_flow2",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Vuokrahinnat2015": {},
+									"sink2": {},
+									"sink3": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "GetDataFromPxnet2",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "http://pxnet2.stat.fi/PXWeb/api/v1/fi/StatFin/asu/asvu/statfin_asvu_pxt_11x5.px",
+								"type": "Expression"
+							},
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"value": "{\n  \"query\": [],\n  \"response\": {\n    \"format\": \"json-stat\"\n  }\n}",
+								"type": "Expression"
+							},
+							"datasets": [
+								{
+									"referenceName": "Vuokra_csv_2",
+									"type": "DatasetReference",
+									"parameters": {}
+								}
+							]
+						}
+					},
+					{
+						"name": "SaveJsonToCsv",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "GetDataFromPxnet2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Vuokrahinnat_2015Q1_Alkaen_Tilastokeskus",
+							"baseParameters": {
+								"jsoncontent": {
+									"value": "@string(activity('GetDataFromPxnet2').output)",
+									"type": "Expression"
+								},
+								"storageaccountname": "aureolissdsdatalakegen1",
+								"storageaccountaccesskey": "uRbvlw1Sve+C5k8xwfxsowf5DpoccyRUyJ+hdsxrD7oQk5D8QBCnhKNKAF5XiyH29vi/PJSxh9NZKBUBBEGQOA==",
+								"containername": "realestatedata1",
+								"filename": "Vuokrahinnat_2015Q1_Alkaen.csv"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "SDS_DataBricks_North",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"variables": {
+					"jsoncontent": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/Vuokra_flow2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Webservice')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "AzureMLBatchExecution1",
+						"type": "AzureMLBatchExecution",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"webServiceInputs": {
+								"input1": {
+									"filePath": "realestatedata1/input1_test.csv",
+									"linkedServiceName": {
+										"referenceName": "AzureBlobStorage1",
+										"type": "LinkedServiceReference"
+									}
+								}
+							},
+							"webServiceOutputs": {
+								"output1": {
+									"filePath": "realestatedata1/output1.csv",
+									"linkedServiceName": {
+										"referenceName": "AzureBlobStorage1",
+										"type": "LinkedServiceReference"
+									}
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "Osakeasunto_WebService",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Osakeasunto_ennusteet",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "data_fix",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Osakeasunto_ennusteet",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"source2": {},
+									"sink1": {},
+									"sink2": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					},
+					{
+						"name": "data_fix",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "AzureMLBatchExecution1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/jaakko.mantila@aureolis.com/data_fix"
+						},
+						"linkedServiceName": {
+							"referenceName": "SDS_DataBricks_North",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Aluedata_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Aluedata_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tyopaikkaprojektio')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "tyopaikka_proj_flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "tyopaikka_proj_flow",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"projnopea": {},
+									"projperus": {},
+									"projhidas": {},
+									"sink1": {},
+									"sink2": {},
+									"sink3": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/tyopaikka_proj_flow')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PDF_testing",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/newcontainer/blobs/",
+					"blobPathEndsWith": ".csv",
+					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PDF_testing')]"
+			]
+		}
+	]
+}
