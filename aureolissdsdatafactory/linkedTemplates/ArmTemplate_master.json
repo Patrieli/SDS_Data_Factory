@@ -67,6 +67,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sdsirserver'"
 		},
+		"AzureBlobStorage2_rest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2_rest'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
@@ -122,6 +126,10 @@
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
 		},
 		"containerUri": {
 			"type": "string",
@@ -180,6 +188,9 @@
 					"SharePoint_password": {
 						"value": "[parameters('SharePoint_password')]"
 					},
+					"AzureBlobStorage2_rest_connectionString": {
+						"value": "[parameters('AzureBlobStorage2_rest_connectionString')]"
+					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -194,6 +205,9 @@
 					},
 					"SharePoint_properties_typeProperties_userName": {
 						"value": "[parameters('SharePoint_properties_typeProperties_userName')]"
+					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -311,6 +325,26 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"trigger1_properties_typeProperties_scope": {
 						"value": "[parameters('trigger1_properties_typeProperties_scope')]"
@@ -318,7 +352,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_3')]"
+				"[resourceId('Microsoft.Resources/deployments', 'ArmTemplate_4')]"
 			]
 		}
 	]

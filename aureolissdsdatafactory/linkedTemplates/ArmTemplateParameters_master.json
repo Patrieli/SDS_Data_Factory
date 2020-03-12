@@ -50,6 +50,9 @@
 		"sdsirserver_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorage2_rest_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://aureolissdsdatalake.dfs.core.windows.net"
 		},
@@ -91,6 +94,9 @@
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "http://dummy.restapiexample.com/api/v1/employees"
 		},
 		"containerUri": {
 			"value": ""

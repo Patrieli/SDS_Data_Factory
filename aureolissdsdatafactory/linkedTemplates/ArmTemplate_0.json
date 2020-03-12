@@ -47,6 +47,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SharePoint'"
 		},
+		"AzureBlobStorage2_rest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2_rest'"
+		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
@@ -66,6 +70,10 @@
 		"SharePoint_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jaakko.mantila@aureolis.com"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
 		}
 	},
 	"variables": {
@@ -266,6 +274,34 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RestService1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('RestService1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2_rest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage2_rest_connectionString')]"
+				}
 			},
 			"dependsOn": []
 		},
@@ -1038,355 +1074,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BKT_csv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureDataLakeStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "BKT_seutukunnittain_2000_2016.csv",
-						"folderPath": "SDS_Data",
-						"fileSystem": "realestatedata"
-					},
-					"columnDelimiter": ";",
-					"encodingName": "ISO-8859-1",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Taloustoimi",
-						"type": "String"
-					},
-					{
-						"name": "Alue",
-						"type": "String"
-					},
-					{
-						"name": "Tiedot",
-						"type": "String"
-					},
-					{
-						"name": "2000",
-						"type": "String"
-					},
-					{
-						"name": "2001",
-						"type": "String"
-					},
-					{
-						"name": "2002",
-						"type": "String"
-					},
-					{
-						"name": "2003",
-						"type": "String"
-					},
-					{
-						"name": "2004",
-						"type": "String"
-					},
-					{
-						"name": "2005",
-						"type": "String"
-					},
-					{
-						"name": "2006",
-						"type": "String"
-					},
-					{
-						"name": "2007",
-						"type": "String"
-					},
-					{
-						"name": "2008",
-						"type": "String"
-					},
-					{
-						"name": "2009",
-						"type": "String"
-					},
-					{
-						"name": "2010",
-						"type": "String"
-					},
-					{
-						"name": "2011",
-						"type": "String"
-					},
-					{
-						"name": "2012",
-						"type": "String"
-					},
-					{
-						"name": "2013",
-						"type": "String"
-					},
-					{
-						"name": "2014",
-						"type": "String"
-					},
-					{
-						"name": "2015",
-						"type": "String"
-					},
-					{
-						"name": "2016",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BKT_currated')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLake_GEN1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "curated"
-					},
-					"columnDelimiter": ";",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"nullValue": ".",
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Alue",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2000",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2001",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2002",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2003",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2004",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2005",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2006",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2007",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2008",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2009",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2010",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2011",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2012",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2013",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2014",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2015",
-						"type": "String"
-					},
-					{
-						"name": "BKT_2016",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2000",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2001",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2002",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2003",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2004",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2005",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2006",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2007",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2008",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2009",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2010",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2011",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2012",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2013",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2014",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2015",
-						"type": "String"
-					},
-					{
-						"name": "Tyolliset_2016",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2000",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2001",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2002",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2003",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2004",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2005",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2006",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2007",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2008",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2009",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2010",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2011",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2012",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2013",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2014",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2015",
-						"type": "String"
-					},
-					{
-						"name": "Vakiluku_2016",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/DataLake_GEN1')]"
 			]
 		}
 	]

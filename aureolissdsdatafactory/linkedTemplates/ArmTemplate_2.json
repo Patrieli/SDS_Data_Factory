@@ -13,6 +13,182 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasuntojen_hinnat')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Osakeasuntojen_hinnat_2010_2014.csv",
+						"folderPath": "SDS_Data",
+						"fileSystem": "realestatedata"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"nullValue": ".",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Osakeasuntojen_hinnat_2010_2018')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Postinumero",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Alue",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Kaupunki",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Talotyyppi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Rakennusvuosi",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Neliohinta_2010",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2010",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2011",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2011",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2012",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2012",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2013",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2013",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2014",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2014",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2015",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2015",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2016",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2016",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2017",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2017",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Neliohinta_2018",
+						"type": "decimal",
+						"precision": 20,
+						"scale": 2
+					},
+					{
+						"name": "Kauppojen_lukumaara_2018",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Paivitetty_pvm",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"tableName": "[[dbo].[Osakeasuntojen_hinnat_2010_2018]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Osakeasuntojen_hinnat_2010_2018_UP')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1077,444 +1253,6 @@
 					},
 					{
 						"name": "Neliohinta",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tp_tilasto_proj_hidas')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "tp_tilasto_proj_hidas_muok.csv",
-						"container": "tyopaikkaprojektio"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Toimiala",
-						"type": "String"
-					},
-					{
-						"name": "Tol",
-						"type": "String"
-					},
-					{
-						"name": "Tyyppi",
-						"type": "String"
-					},
-					{
-						"name": "Vuosi",
-						"type": "String"
-					},
-					{
-						"name": "Uusimaa",
-						"type": "String"
-					},
-					{
-						"name": "Hel",
-						"type": "String"
-					},
-					{
-						"name": "Esp",
-						"type": "String"
-					},
-					{
-						"name": "Van",
-						"type": "String"
-					},
-					{
-						"name": "Kau",
-						"type": "String"
-					},
-					{
-						"name": "PKS",
-						"type": "String"
-					},
-					{
-						"name": "Hyv",
-						"type": "String"
-					},
-					{
-						"name": "Jar",
-						"type": "String"
-					},
-					{
-						"name": "Ker",
-						"type": "String"
-					},
-					{
-						"name": "Kir",
-						"type": "String"
-					},
-					{
-						"name": "Man",
-						"type": "String"
-					},
-					{
-						"name": "Nur",
-						"type": "String"
-					},
-					{
-						"name": "Por",
-						"type": "String"
-					},
-					{
-						"name": "Sip",
-						"type": "String"
-					},
-					{
-						"name": "Tuu",
-						"type": "String"
-					},
-					{
-						"name": "Vih",
-						"type": "String"
-					},
-					{
-						"name": "Kehys",
-						"type": "String"
-					},
-					{
-						"name": "Raas",
-						"type": "String"
-					},
-					{
-						"name": "Lohj",
-						"type": "String"
-					},
-					{
-						"name": "Lovi",
-						"type": "String"
-					},
-					{
-						"name": "Porv",
-						"type": "String"
-					},
-					{
-						"name": "Riih",
-						"type": "String"
-					},
-					{
-						"name": "Uusimaa_p",
-						"type": "String"
-					},
-					{
-						"name": "Hel_p",
-						"type": "String"
-					},
-					{
-						"name": "Esp_p",
-						"type": "String"
-					},
-					{
-						"name": "Van_p",
-						"type": "String"
-					},
-					{
-						"name": "Kau_p",
-						"type": "String"
-					},
-					{
-						"name": "PKS_p",
-						"type": "String"
-					},
-					{
-						"name": "Hyv_p",
-						"type": "String"
-					},
-					{
-						"name": "Jar_p",
-						"type": "String"
-					},
-					{
-						"name": "Ker_p",
-						"type": "String"
-					},
-					{
-						"name": "Kir_p",
-						"type": "String"
-					},
-					{
-						"name": "Man_p",
-						"type": "String"
-					},
-					{
-						"name": "Nur_p",
-						"type": "String"
-					},
-					{
-						"name": "Por_p",
-						"type": "String"
-					},
-					{
-						"name": "Sip_p",
-						"type": "String"
-					},
-					{
-						"name": "Tuu_p",
-						"type": "String"
-					},
-					{
-						"name": "Vih_p",
-						"type": "String"
-					},
-					{
-						"name": "Kehys_p",
-						"type": "String"
-					},
-					{
-						"name": "Raas_p",
-						"type": "String"
-					},
-					{
-						"name": "Lohj_p",
-						"type": "String"
-					},
-					{
-						"name": "Lovi_p",
-						"type": "String"
-					},
-					{
-						"name": "Porv_p",
-						"type": "String"
-					},
-					{
-						"name": "Riih_p",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tp_tilasto_proj_nopea')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "tp_tilasto_proj_nopea_muok.csv",
-						"container": "tyopaikkaprojektio"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "Toimiala",
-						"type": "String"
-					},
-					{
-						"name": "Tol",
-						"type": "String"
-					},
-					{
-						"name": "Tyyppi",
-						"type": "String"
-					},
-					{
-						"name": "Vuosi",
-						"type": "String"
-					},
-					{
-						"name": "Uusimaa",
-						"type": "String"
-					},
-					{
-						"name": "Hel",
-						"type": "String"
-					},
-					{
-						"name": "Esp",
-						"type": "String"
-					},
-					{
-						"name": "Van",
-						"type": "String"
-					},
-					{
-						"name": "Kau",
-						"type": "String"
-					},
-					{
-						"name": "PKS",
-						"type": "String"
-					},
-					{
-						"name": "Hyv",
-						"type": "String"
-					},
-					{
-						"name": "Jar",
-						"type": "String"
-					},
-					{
-						"name": "Ker",
-						"type": "String"
-					},
-					{
-						"name": "Kir",
-						"type": "String"
-					},
-					{
-						"name": "Man",
-						"type": "String"
-					},
-					{
-						"name": "Nur",
-						"type": "String"
-					},
-					{
-						"name": "Por",
-						"type": "String"
-					},
-					{
-						"name": "Sip",
-						"type": "String"
-					},
-					{
-						"name": "Tuu",
-						"type": "String"
-					},
-					{
-						"name": "Vih",
-						"type": "String"
-					},
-					{
-						"name": "Kehys",
-						"type": "String"
-					},
-					{
-						"name": "Raas",
-						"type": "String"
-					},
-					{
-						"name": "Lohj",
-						"type": "String"
-					},
-					{
-						"name": "Lovi",
-						"type": "String"
-					},
-					{
-						"name": "Porv",
-						"type": "String"
-					},
-					{
-						"name": "Riih",
-						"type": "String"
-					},
-					{
-						"name": "Uusimaa_p",
-						"type": "String"
-					},
-					{
-						"name": "Hel_p",
-						"type": "String"
-					},
-					{
-						"name": "Esp_p",
-						"type": "String"
-					},
-					{
-						"name": "Van_p",
-						"type": "String"
-					},
-					{
-						"name": "Kau_p",
-						"type": "String"
-					},
-					{
-						"name": "PKS_p",
-						"type": "String"
-					},
-					{
-						"name": "Hyv_p",
-						"type": "String"
-					},
-					{
-						"name": "Jar_p",
-						"type": "String"
-					},
-					{
-						"name": "Ker_p",
-						"type": "String"
-					},
-					{
-						"name": "Kir_p",
-						"type": "String"
-					},
-					{
-						"name": "Man_p",
-						"type": "String"
-					},
-					{
-						"name": "Nur_p",
-						"type": "String"
-					},
-					{
-						"name": "Por_p",
-						"type": "String"
-					},
-					{
-						"name": "Sip_p",
-						"type": "String"
-					},
-					{
-						"name": "Tuu_p",
-						"type": "String"
-					},
-					{
-						"name": "Vih_p",
-						"type": "String"
-					},
-					{
-						"name": "Kehys_p",
-						"type": "String"
-					},
-					{
-						"name": "Raas_p",
-						"type": "String"
-					},
-					{
-						"name": "Lohj_p",
-						"type": "String"
-					},
-					{
-						"name": "Lovi_p",
-						"type": "String"
-					},
-					{
-						"name": "Porv_p",
-						"type": "String"
-					},
-					{
-						"name": "Riih_p",
 						"type": "String"
 					}
 				]
