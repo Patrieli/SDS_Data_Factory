@@ -22,13 +22,14 @@
 						"requestMethod": "GET"
 					},
 					"sink": {
-						"type": "JsonSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings",
-							"quoteAllText": true
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".csv"
 						}
 					},
 					"enableStaging": false
@@ -41,7 +42,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Json1",
+						"referenceName": "jsontocsv",
 						"type": "DatasetReference"
 					}
 				]

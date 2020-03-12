@@ -1,0 +1,31 @@
+{
+	"name": "jsontocsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake_GEN1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "newcontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Kakkonen Kaapo;16;21.12.2003;.;.;.;798993;Stara;4.7.2019;Helsinki;Superstara;7.7.2020;Tallinna;.;.;.;Ykk�nen Iso;Takajalantie 2 B 39 81980 Lavitsa;047-223332;Vitonen Lulu;Poutapilvenkuja 1 81990 Hattara;047-333333;Hankalampi",
+				"type": "String"
+			},
+			{
+				"name": " 2.7.2019;Tallinna;Helsinki;.",
+				"type": "String"
+			}
+		]
+	}
+}
