@@ -12,9 +12,9 @@
 				"type": "AzureBlobFSLocation",
 				"fileSystem": "newcontainer"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "",
 			"escapeChar": "\\",
-			"firstRowAsHeader": true,
+			"firstRowAsHeader": false,
 			"quoteChar": "\""
 		},
 		"schema": [
