@@ -5,14 +5,7 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Datahakulooppi",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.00:50:00",
 					"retry": 0,
@@ -52,22 +45,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Datahakulooppi",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "Copy data1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 6
-				}
 			}
 		],
 		"annotations": []
