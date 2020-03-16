@@ -8,6 +8,9 @@
 		"AzureBlobStorage1_connectionString": {
 			"value": ""
 		},
+		"AzureBlobStorage2_rest_connectionString": {
+			"value": ""
+		},
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
@@ -50,9 +53,6 @@
 		"sdsirserver_connectionString": {
 			"value": ""
 		},
-		"AzureBlobStorage2_rest_connectionString": {
-			"value": ""
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://aureolissdsdatalake.dfs.core.windows.net"
 		},
@@ -80,6 +80,9 @@
 		"Office3651_properties_typeProperties_servicePrincipalId": {
 			"value": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
 		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "http://dummy.restapiexample.com/api/v1/employees"
+		},
 		"Share_properties_typeProperties_host": {
 			"value": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service"
 		},
@@ -94,9 +97,6 @@
 		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"
-		},
-		"RestService1_properties_typeProperties_url": {
-			"value": "http://dummy.restapiexample.com/api/v1/employees"
 		}
 	}
 }

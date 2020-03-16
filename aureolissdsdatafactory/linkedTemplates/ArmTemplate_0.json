@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
+		"AzureBlobStorage2_rest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2_rest'"
+		},
 		"AzureDataLakeStorage1_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
@@ -47,10 +51,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SharePoint'"
 		},
-		"AzureBlobStorage2_rest_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2_rest'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
@@ -63,6 +63,10 @@
 			"type": "string",
 			"defaultValue": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
 		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
+		},
 		"SharePoint_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolisoy.sharepoint.com/sites/ULT-Kestiimi2019/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FULT%2DKestiimi2019%2FShared%20Documents%2FSmart%20Data%20Service%2FSource%5FData"
@@ -70,10 +74,6 @@
 		"SharePoint_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "jaakko.mantila@aureolis.com"
-		},
-		"RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
 		}
 	},
 	"variables": {
@@ -89,6 +89,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2_rest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage2_rest_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -195,6 +208,21 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/RestService1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('RestService1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SDS_DataBricks')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -257,6 +285,26 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Jsontrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 1,
+						"startTime": "2020-03-12T11:21:00.000Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SDS-IR-mantijaa')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -274,34 +322,6 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RestService1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('RestService1_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2_rest')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureBlobStorage2_rest_connectionString')]"
-				}
 			},
 			"dependsOn": []
 		},
@@ -943,133 +963,6 @@
 				],
 				"typeProperties": {
 					"tableName": "[[dbo].[BKT_seutukunnittain_2000_2016]"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BKT_Vakiluku_2000')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase1",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Alue",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Vakiluku_2000",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2001",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2002",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2003",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2004",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2005",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2006",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2007",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2008",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2009",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2010",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2011",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2012",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2013",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2014",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2015",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					},
-					{
-						"name": "Vakiluku_2016",
-						"type": "decimal",
-						"precision": 20,
-						"scale": 2
-					}
-				],
-				"typeProperties": {
-					"tableName": "[[dbo].[BKT_Vakiluku_2000]"
 				}
 			},
 			"dependsOn": [

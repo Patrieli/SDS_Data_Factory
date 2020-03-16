@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
 		},
+		"AzureBlobStorage2_rest_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2_rest'"
+		},
 		"AzureDataLakeStorage1_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
@@ -67,10 +71,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sdsirserver'"
 		},
-		"AzureBlobStorage2_rest_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage2_rest'"
-		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://aureolissdsdatalake.dfs.core.windows.net"
@@ -107,6 +107,10 @@
 			"type": "string",
 			"defaultValue": "04e283f4-4bf1-47ca-b85c-f73faaa3a58a"
 		},
+		"RestService1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
+		},
 		"Share_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "C:\\Users\\mantijaa\\Aureolis Oy\\ULT - Kesätiimi 2019 - Smart Data Service"
@@ -126,10 +130,6 @@
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/7a92108a-7090-4c7b-ae2e-c9baf4280906/resourceGroups/SmartDataService/providers/Microsoft.Storage/storageAccounts/aureolissdsdatalakegen1"
-		},
-		"RestService1_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "http://dummy.restapiexample.com/api/v1/employees"
 		},
 		"containerUri": {
 			"type": "string",
@@ -161,6 +161,9 @@
 					"AzureBlobStorage1_connectionString": {
 						"value": "[parameters('AzureBlobStorage1_connectionString')]"
 					},
+					"AzureBlobStorage2_rest_connectionString": {
+						"value": "[parameters('AzureBlobStorage2_rest_connectionString')]"
+					},
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
@@ -188,9 +191,6 @@
 					"SharePoint_password": {
 						"value": "[parameters('SharePoint_password')]"
 					},
-					"AzureBlobStorage2_rest_connectionString": {
-						"value": "[parameters('AzureBlobStorage2_rest_connectionString')]"
-					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
@@ -200,14 +200,14 @@
 					"Office3651_properties_typeProperties_servicePrincipalId": {
 						"value": "[parameters('Office3651_properties_typeProperties_servicePrincipalId')]"
 					},
+					"RestService1_properties_typeProperties_url": {
+						"value": "[parameters('RestService1_properties_typeProperties_url')]"
+					},
 					"SharePoint_properties_typeProperties_url": {
 						"value": "[parameters('SharePoint_properties_typeProperties_url')]"
 					},
 					"SharePoint_properties_typeProperties_userName": {
 						"value": "[parameters('SharePoint_properties_typeProperties_userName')]"
-					},
-					"RestService1_properties_typeProperties_url": {
-						"value": "[parameters('RestService1_properties_typeProperties_url')]"
 					}
 				}
 			},
