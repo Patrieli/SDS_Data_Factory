@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
-				"type": "Lookup",
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -15,56 +15,57 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderStoredProcedureName": "[dbo].[sp_InsertIntoEliasTest]",
-						"queryTimeout": "02:00:00"
-					},
-					"dataset": {
-						"referenceName": "ErrorTable",
-						"type": "DatasetReference"
+					"storedProcedureName": "[dbo].[sp_InsertIntoEliasTest]",
+					"storedProcedureParameters": {
+						"PipelineName": {
+							"value": "",
+							"type": "String"
+						},
+						"test": {
+							"value": "",
+							"type": "String"
+						}
 					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
 				}
 			},
 			{
-				"name": "If Condition1",
-				"type": "IfCondition",
+				"name": "Stored procedure2",
+				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "Stored procedure1",
 						"dependencyConditions": [
-							"Succeeded"
+							"Failed"
 						]
 					}
 				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"expression": {
-						"value": "@equals(activity('Lookup1').output.firstRow.Error,False)",
-						"type": "Expression"
-					},
-					"ifFalseActivities": [
-						{
-							"name": "Wait-False",
-							"type": "Wait",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"waitTimeInSeconds": 1
-							}
+					"storedProcedureName": "[dbo].[sp_InsertIntoEliasTest2]",
+					"storedProcedureParameters": {
+						"PipelineName": {
+							"value": {
+								"value": "@activity('Stored procedure1').Error.message",
+								"type": "Expression"
+							},
+							"type": "String"
 						}
-					],
-					"ifTrueActivities": [
-						{
-							"name": "Wait-True",
-							"type": "Wait",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"waitTimeInSeconds": 1
-							}
-						}
-					]
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
